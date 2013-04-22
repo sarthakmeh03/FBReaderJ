@@ -509,20 +509,17 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
 			public void run() {
                 if (myIsActive != active) {
                     ((Button)findViewById(R.id.speak_menu_pause)).setText(active ? R.string.on_press_pause : R.string.on_press_play);
-                    if(!accessibilityManager.isEnabled()){
                     if(myIsActive){
-    				WindowManager.LayoutParams params =
-    				        getWindow().getAttributes();
-    				        params.alpha=1;
-    				        getWindow().setAttributes(params);
-                    }
-                    else{
-                        WindowManager.LayoutParams params =
-                                getWindow().getAttributes();
-                                params.alpha=0.2f;
-                                getWindow().setAttributes(params);
-                    }
-                    }
+	                    WindowManager.LayoutParams params =
+	                            getWindow().getAttributes();
+	                            params.alpha=1;
+	                            getWindow().setAttributes(params);
+	                    } else {
+	                        WindowManager.LayoutParams params =
+	                                getWindow().getAttributes();
+	                                params.alpha=0.2f;
+	                                getWindow().setAttributes(params);
+	                    }
                 }
 			}
 		});
@@ -728,7 +725,6 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
         justPaused = true;
         myTTS.playEarcon(MENU_EARCON, TextToSpeech.QUEUE_ADD, null);
         resumePlaying = true;
-        finish();
         Intent intent = new Intent(this, AccessibleMainMenuActivity.class);
         startActivityForResult(intent, PLAY_AFTER_TOC);
     }
