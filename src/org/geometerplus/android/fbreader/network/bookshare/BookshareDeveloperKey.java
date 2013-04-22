@@ -9,6 +9,6 @@ public class BookshareDeveloperKey {
 	
 	// Enter your developer key here
 	public static final String DEVELOPER_KEY = "";
-    public static final String BUGSENSE_KEY = "";
+    public static final String BUGSENSE_KEY = " ";
     public static final boolean OPT_OUT_GOOGLE_ANALYTICS = false;
 }
