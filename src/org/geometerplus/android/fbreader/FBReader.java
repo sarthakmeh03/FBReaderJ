@@ -46,7 +46,7 @@ import org.benetech.android.R;
 import org.geometerplus.android.fbreader.benetech.SpeakActivity;
 import org.geometerplus.android.fbreader.network.bookshare.BookshareDeveloperKey;
 import org.geometerplus.android.fbreader.network.bookshare.subscription.BooksharePeriodicalDataSource;
-import org.geometerplus.android.fbreader.network.bookshare.subscription.Bookshare_Subscription_Download_Service;
+import org.geometerplus.android.fbreader.network.bookshare.subscription.MainPeriodicalDownloadService;
 import org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEntity;
 import org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalsSQLiteHelper;
 import org.geometerplus.fbreader.Paths;
@@ -55,7 +55,6 @@ import org.geometerplus.zlibrary.core.application.ZLApplication;
 import org.geometerplus.zlibrary.core.filesystem.ZLFile;
 import org.geometerplus.zlibrary.core.library.ZLibrary;
 
-import org.geometerplus.zlibrary.core.options.ZLEnumOption;
 import org.geometerplus.zlibrary.text.view.ZLTextView;
 import org.geometerplus.zlibrary.text.hyphenation.ZLTextHyphenator;
 
@@ -219,9 +218,6 @@ public final class FBReader extends ZLAndroidActivity {
 	}
 
     public void activateSubscriptionDownload(SharedPreferences prefs) {
-        ZLEnumOption<FBReaderApp.AutomaticDownloadType> downloadOption = new ZLEnumOption<FBReaderApp.AutomaticDownloadType>(
-                "DownloadTypeOptions", "AutomaticDownloadType",
-                FBReaderApp.AutomaticDownloadType.downloadMostRecent);
 
         PeriodicalsSQLiteHelper dbHelper = new PeriodicalsSQLiteHelper(getApplicationContext());
         SQLiteDatabase periodicalDb = dbHelper.getWritableDatabase();
@@ -237,12 +233,9 @@ public final class FBReader extends ZLAndroidActivity {
         if (!OM && username != null && password != null
                 && !TextUtils.isEmpty(username)) {
 
-            Intent serviceIntent = new Intent(this, Bookshare_Subscription_Download_Service.class);
-            String downloadTypeStr = downloadOption.getValue().name();
-            Log.i(FBReader.LOG_LABEL, "putting extras in onStartCommand");
-            serviceIntent.putStringArrayListExtra(SUBSCRIBED_PERIODICAL_IDS_KEY, ids);
-            serviceIntent.putExtra(FBReader.AUTOMATIC_DOWNLOAD_TYPE_KEY, downloadTypeStr);
-            startService(serviceIntent);
+            Intent downloadService = new Intent(FBReader.this, MainPeriodicalDownloadService.class);
+            downloadService.putStringArrayListExtra(SUBSCRIBED_PERIODICAL_IDS_KEY, ids);
+            startService(downloadService);
 
         }
     }
