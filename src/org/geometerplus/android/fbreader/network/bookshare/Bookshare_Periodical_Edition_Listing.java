@@ -17,11 +17,9 @@ import javax.xml.parsers.SAXParserFactory;
 import org.accessibility.ParentCloserDialog;
 import org.benetech.android.R;
 import org.bookshare.net.BookshareWebservice;
-import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -62,7 +60,7 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 	protected final static String URI_BOOKSHARE_PERIODICAL_EDITION_SEARCH = Bookshare_Webservice_Login.BOOKSHARE_API_PROTOCOL + Bookshare_Webservice_Login.BOOKSHARE_API_HOST + "/periodical/id/";
 	
 	private final int DATA_FETCHED = 99;
-	private Vector<Bookshare_Periodical_Edition_Bean> vectorResults;
+	private ArrayList<Bookshare_Periodical_Edition_Bean> arrayResults;
 	private ProgressDialog pd_spinning;
 	
 	private final int START_BOOKSHARE_EDITION_DETAILS_ACTIVITY = 13;
@@ -72,7 +70,7 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 	private final int PREVIOUS_PAGE_BOOK_ID = -1;
 	private final int NEXT_PAGE_BOOK_ID = -2;
 	private int current_result_page = 1;
-	private boolean total_pages_count_known = false;
+	PeriodicalEditionSAXHandler saxHandler;
 	
 	private ArrayList<TreeMap<String,Object>> list = new ArrayList<TreeMap<String, Object>>();
 	InputStream inputStream;
@@ -144,7 +142,6 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
     
     
 	private void getListing(final String uri) {
-		vectorResults = new Vector<Bookshare_Periodical_Edition_Bean>();
 
 		//Show progress bar
 		pd_spinning = ProgressDialog.show(this, null, resources.getString(R.string.fetching_periodicals), Boolean.TRUE);
@@ -215,6 +212,8 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 					System.out.println(response);
 					// Parse the response of search result
 					parseResponse(response);
+					arrayResults = saxHandler.getResults();
+					total_pages_result = saxHandler.getTotal_pages_result();
 
 					if(responseType==EDITION_METADATA_RESPONSE){
 						//do nothing
@@ -224,7 +223,7 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 					list.clear();
 
 					// For each bean object stored in the vector, create a row in the list
-					for(Bookshare_Periodical_Edition_Bean bean : vectorResults){
+					for(Bookshare_Periodical_Edition_Bean bean : arrayResults){
 
 						TreeMap<String, Object> row_item = new TreeMap<String, Object>();
 
@@ -270,7 +269,7 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 				View decorView = getWindow().getDecorView();
 				if (null != decorView) {
 					String resultsMessage;
-					if (vectorResults.isEmpty()) {
+					if (arrayResults.isEmpty()) {
 						resultsMessage = resources.getString(R.string.search_complete_no_books);
 						setResult(InternalReturnCodes.NO_BOOKS_FOUND);
 						confirmAndClose("no books found", 3000);
@@ -302,7 +301,7 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 						}
 
 						// Find the corresponding bean object for this row
-						for(Bookshare_Periodical_Edition_Bean bean : vectorResults){
+						for(Bookshare_Periodical_Edition_Bean bean : arrayResults){
 
 							//TODO: Fix bug
 							// Since book ID is unique, that can serve as comparison parameter
@@ -458,7 +457,8 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 
 				/* Get the XMLReader of the SAXParser we created. */
 				XMLReader parser = sp.getXMLReader();
-				parser.setContentHandler(new SAXHandler());
+				saxHandler = new PeriodicalEditionSAXHandler();
+				parser.setContentHandler(saxHandler);
 				parser.parse(is);
 			}
 			catch(SAXException e){
@@ -469,110 +469,6 @@ public class Bookshare_Periodical_Edition_Listing extends ListActivity{
 			}
 			catch(IOException ioe){
 				System.out.println(ioe);
-			}
-		}
-
-		// Class containing the logic for parsing the response of search results
-		private class SAXHandler extends DefaultHandler{
-
-			boolean result = false;
-			boolean id = false;
-			boolean title = false;
-			boolean edition = false;
-			boolean revision= false;
-			boolean num_pages = false;
-
-			boolean editionElementVisited = false;
-			boolean revisionElementVisited = false;
-			
-			String editionStr;
-
-			Bookshare_Periodical_Edition_Bean result_bean;
-
-			public void startElement(String namespaceURI, String localName, String qName, Attributes atts){
-				
-				if(!total_pages_count_known)
-				{
-					if(qName.equalsIgnoreCase("num-pages")){
-						num_pages = true;
-						total_pages_count_known = false;
-					}
-				}
-
-				if(qName.equalsIgnoreCase("result")){
-					result = true;
-					result_bean = new Bookshare_Periodical_Edition_Bean();
-					editionElementVisited = false;
-					revisionElementVisited = false;
-			
-				}
-				if(qName.equalsIgnoreCase("id")){
-					id = true;
-				}
-				if(qName.equalsIgnoreCase("title")){
-					title = true;
-				}
-				if(qName.equalsIgnoreCase("edition")){
-					edition = true;
-					if(!editionElementVisited){
-						editionElementVisited = true;
-					}
-				}
-				if(qName.equalsIgnoreCase("revision")){
-					revision = true;
-					if(!revisionElementVisited){
-						revisionElementVisited = true;
-					}
-				}
-			}
-
-			public void endElement(String uri, String localName, String qName){
-
-				if(num_pages){
-					if(qName.equalsIgnoreCase("num-pages")){
-						num_pages = false;
-					}
-				}
-				if(qName.equalsIgnoreCase("result")){
-					result = false;
-					vectorResults.add(result_bean);
-					result_bean = null;
-				}
-				if(qName.equalsIgnoreCase("id")){
-					id = false;
-				}
-				if(qName.equalsIgnoreCase("title")){
-					title = false;
-				}
-				if(qName.equalsIgnoreCase("edition")){
-					edition = false;
-				}
-				if(qName.equalsIgnoreCase("revision")){
-					revision = false;
-				}
-				
-			}
-
-			public void characters(char[] c, int start, int length){
-				
-				if(num_pages){
-					total_pages_result = Integer.parseInt(new String(c,start,length));
-				}
-				if(result){
-					if(id){
-						result_bean.setId(new String(c,start,length));
-					}
-					if(title){
-						result_bean.setTitle(new String(c,start,length));
-					}
-					if(edition){
-						result_bean.setEdition(new String(c,start,length));
-					}
-					if(revision){
-						result_bean.setRevision(new String(c,start,length));
-					}
-					
-				}
 			}
 		}
 

@@ -169,7 +169,7 @@ PeriodicalEditionListener,PeriodicalMetadataListener{
 	}
 
 	public void onPeriodicalEditionListResponse(
-			Vector<Bookshare_Periodical_Edition_Bean> results) {
+			ArrayList<Bookshare_Periodical_Edition_Bean> results) {
 		if (results == null) {
 			Log.e("GoRead", getClass().getSimpleName() +
 					" Couldn't fetch any periodical Editions");
