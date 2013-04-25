@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.benetech.android.R;
+import org.geometerplus.android.fbreader.TOCActivity;
 import org.geometerplus.fbreader.fbreader.ActionCode;
 import org.geometerplus.zlibrary.core.application.ZLApplication;
 
@@ -94,12 +95,19 @@ public class AccessibleMainMenuActivity extends Activity {
 	}
 
 	@Override
+	    public void onBackPressed() {
+	        setResult(TOCActivity.BACK_PRESSED);
+	        super.onBackPressed();
+	    }
+
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent msg) {
 		if (keyCode == KeyEvent.KEYCODE_CAMERA) {
 			return true;
         } else if (keyCode == KeyEvent.KEYCODE_CALL) {
         	return true;
 		} else if (keyCode == KeyEvent.KEYCODE_BACK) {
+			setResult(TOCActivity.BACK_PRESSED);
 			finish();
 			return true;
 		}
