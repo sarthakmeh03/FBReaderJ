@@ -78,7 +78,6 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
     private int lastSpoken = 0;
     private boolean justPaused = false;
     private boolean resumePlaying = false;
-    private boolean abortedTOCReturn = false;
 
     //Added for the detecting whether the talkback is on
     private AccessibilityManager accessibilityManager;
@@ -329,26 +328,18 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
         if (requestCode == CHECK_TTS_INSTALLED) {
             myTTS = new TextToSpeech(this, this);
         } else {
-            if (resultCode == TOCActivity.BACK_PRESSED) {
-                abortedTOCReturn = true;
-            } else {
                 justPaused = false;
                 resumePlaying = true;
-            }
         }
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-
         try {
             findViewById(R.id.speak_menu_pause).requestFocus();
 
-            if (! abortedTOCReturn) {
-                setCurrentLocation();
-            }
-            abortedTOCReturn = false;
+            setCurrentLocation();
 
             if (resumePlaying || justPaused) {
                 resumePlaying = false;
@@ -699,6 +690,7 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
     private void goForward() {
         stopTalking();
         myTTS.playEarcon(FORWARD_EARCON, TextToSpeech.QUEUE_ADD, null);
+	    setButtonOpacity(0.2f);
         if (myParagraphIndex < myParagraphsNumber) {
             ++myParagraphIndex;
             speakParagraph(getNextParagraph());
@@ -708,6 +700,7 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
     private void goBackward() {
         stopTalking();
         myTTS.playEarcon(BACK_EARCON, TextToSpeech.QUEUE_ADD, null);
+	    setButtonOpacity(0.2f);
         gotoPreviousParagraph();
         speakParagraph(getNextParagraph());
     }
@@ -716,6 +709,8 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
         justPaused = true;
         stopTalking();
         myTTS.playEarcon(CONTENTS_EARCON, TextToSpeech.QUEUE_FLUSH, null);
+	    setButtonOpacity(0.2f);
+	    resumePlaying = true;
         Intent tocIntent = new Intent(this, TOCActivity.class);
         startActivityForResult(tocIntent, PLAY_AFTER_TOC);
     }
@@ -724,6 +719,7 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
         stopTalking();
         justPaused = true;
         myTTS.playEarcon(MENU_EARCON, TextToSpeech.QUEUE_ADD, null);
+	    setButtonOpacity(0.2f);
         resumePlaying = true;
         Intent intent = new Intent(this, AccessibleMainMenuActivity.class);
         startActivityForResult(intent, PLAY_AFTER_TOC);
@@ -731,11 +727,25 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent me){
-        this.detector.onTouchEvent(me);
+
+	    setButtonOpacity(1);
+	    this.detector.onTouchEvent(me);
           return super.dispatchTouchEvent(me);
     }
 
-    @Override
+	private void setButtonOpacity(final float value)
+	{
+		runOnUiThread(new Runnable() {
+	        public void run() {
+	            WindowManager.LayoutParams params =
+	                    getWindow().getAttributes();
+	                    params.alpha=value;
+	                    getWindow().setAttributes(params);
+	        }
+	    });
+	}
+
+	@Override
     public void onSwipe(int direction) {
         myVib.vibrate(VIBE_PATTERN, -1);
         switch (direction) {
