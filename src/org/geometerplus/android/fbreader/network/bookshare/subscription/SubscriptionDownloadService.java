@@ -304,7 +304,7 @@ public class SubscriptionDownloadService extends IntentService {
 	 @Override
 	public void onDestroy() {
 		 final NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		 //notificationManager.cancelAll();
+		 notificationManager.cancelAll();
 		 periodicalDb.close();
 		super.onDestroy();
 	}
