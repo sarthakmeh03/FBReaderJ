@@ -81,6 +81,7 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
     private boolean resumePlaying = false;
     private boolean returnFromOtherScreen = false;
 	private boolean screenLockEventOccurred = false;
+	private BroadcastReceiver mReceiver;
 
     //Added for the detecting whether the talkback is on
     private AccessibilityManager accessibilityManager;
@@ -328,7 +329,7 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		filter.addAction(Intent.ACTION_USER_PRESENT);
-		BroadcastReceiver mReceiver = new ScreenUnlockReceiver();
+		mReceiver = new ScreenUnlockReceiver();
 		registerReceiver(mReceiver, filter);
 	}
 
@@ -391,6 +392,8 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
         myApi.clearHighlighting();
         //LastReadPageOfCurrentBook.saveLocationOfLastReadPage(this);
         savePosition();
+
+		unregisterReceiver(mReceiver);
 		super.onStop();
         EasyTracker.getInstance().activityStop(this);
 	}
