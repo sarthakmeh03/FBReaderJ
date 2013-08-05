@@ -305,10 +305,11 @@ public class Bookshare_Periodical_Edition_Details extends Activity {
 							bookshare_download_not_available_text.setVisibility(View.GONE);
 							
 							//If user is logged in only, show the subscribe option
-							if(isFree){
+							//if(isFree){
+							// Commenting out for now until auto subscribe works as expected
 								chkbx_subscribe_periodical.setVisibility(View.GONE);
 								bookshare_subscribe_explained.setVisibility(View.GONE);
-							}
+							//}
 							
 	                        btn_download.setNextFocusDownId(R.id.bookshare_chkbx_subscribe_periodical);
 	                        btn_download.setNextFocusUpId(R.id.bookshare_book_detail_title);
@@ -671,12 +672,12 @@ public class Bookshare_Periodical_Edition_Details extends Activity {
 	                AllDbPeriodicalEntity allEntity = new AllDbPeriodicalEntity(metadata_bean.getPeriodicalId(), metadata_bean.getTitle(), metadata_bean.getEdition(), Integer.parseInt(metadata_bean.getRevision()), currentDate, currentTime);
 	                SubscribedDbPeriodicalEntity subEntity = new SubscribedDbPeriodicalEntity(metadata_bean.getPeriodicalId(), metadata_bean.getTitle(), metadata_bean.getEdition(), Integer.parseInt(metadata_bean.getRevision()));
 	                dataSource.insertEntity(periodicalDb, PeriodicalsSQLiteHelper.TABLE_ALL_PERIODICALS, allEntity);
-	                if(dataSource.doesExist(periodicalDb, PeriodicalsSQLiteHelper.TABLE_SUBSCRIBED_PERIODICALS, subEntity)){
+/*	                if(dataSource.doesExist(periodicalDb, PeriodicalsSQLiteHelper.TABLE_SUBSCRIBED_PERIODICALS, subEntity)){
 	                	SubscribedDbPeriodicalEntity existingEntity = (SubscribedDbPeriodicalEntity) dataSource.getEntity(periodicalDb, PeriodicalsSQLiteHelper.TABLE_SUBSCRIBED_PERIODICALS, subEntity);
 	                	if(subEntity.getLatestEdition().equalsIgnoreCase(PeriodicalDBUtils.getRecentEditionString(existingEntity.getLatestEdition(),subEntity.getLatestEdition()))){
 	                		dataSource.insertEntity(periodicalDb, PeriodicalsSQLiteHelper.TABLE_SUBSCRIBED_PERIODICALS,subEntity);
 	                	}
-	                }
+	                }*/
 				}
 				else{
 					btn_download.setText(resources.getString(R.string.book_details_download_error));

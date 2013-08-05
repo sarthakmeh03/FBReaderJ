@@ -212,7 +212,7 @@ public final class FBReader extends ZLAndroidActivity {
         }
 
         //Activating subscription download
-        activateSubscriptionDownload(prefs);
+        //activateSubscriptionDownload(prefs);
 
         BugSenseHandler.setup(this, BookshareDeveloperKey.BUGSENSE_KEY);
 	}
