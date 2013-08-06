@@ -161,110 +161,119 @@ public class Bookshare_Menu extends ListActivity {
         });
 		
 		//Listener for the ListView
-		lv.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		lv.setOnItemClickListener(new MenuClickListener(this));
+	}
 
-				// Obtain the layout for selected row
-				LinearLayout row_view  = (LinearLayout)view;
-				
-				// Obtain the text of the row
-				TextView txt_name = (TextView)row_view.findViewById(R.id.text1);
+	private class MenuClickListener implements OnItemClickListener {
+	    private final Activity activity;
 
-				if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_title_label))){
-                    EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
-                        Analytics.EVENT_LABEL_SEARCH_TITLE, null);
-                    showTitleSearch();
-				}
-				else if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_author_label))){
-                    EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
-                        Analytics.EVENT_LABEL_SEARCH_AUTHOR, null);
-                    showAuthorSearch();
-				}
-				else if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_isbn_label))){
-                    EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
-                        Analytics.EVENT_LABEL_SEARCH_ISBN, null);
-                    showISBNSearch();
-				}
-				else if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_latest_label))){
-	                // Changed the behavior to search for the latest book without having to enter the date range
-					//dialog.setTitle("Search for latest books");
-					//dialog_search_title.setText("Enter \"from\" date in MMDDYYYY format");
-					//dialog_example_text.setText("E.g. 01012001 or 10022005");					
-					if(isFree)
-						search_term = URI_String+"latest?api_key="+developerKey;
-					else
-						search_term = URI_String+"latest/for/"+username+"?api_key="+developerKey;
-					query_type = LATEST_REQUEST;
-					intent = new Intent(getApplicationContext(),Bookshare_Books_Listing.class);
-					intent.putExtra(REQUEST_TYPE, LATEST_REQUEST);
-					intent.putExtra(REQUEST_URI, search_term);
-					if(!isFree){
-						intent.putExtra("username", username);
-						intent.putExtra("password", password);
-					}
-                    EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
-                        Analytics.EVENT_LABEL_SEARCH_LATEST, null);
-					startActivityForResult(intent, START_BOOKSHARE_BOOKS_LISTING_ACTIVITY);
-				}
-				
-				// Option to search for popular books on Bookshare website
-				else if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_popular_label))){
-					if(isFree)
-						search_term = URI_String+"popular?api_key="+developerKey;
-					else
-						search_term = URI_String+"popular/for/"+username+"?api_key="+developerKey;
-					query_type = POPULAR_REQUEST;
-					intent = new Intent(getApplicationContext(),Bookshare_Books_Listing.class);
-					intent.putExtra(REQUEST_TYPE, POPULAR_REQUEST);
-					intent.putExtra(REQUEST_URI, search_term);
-					if(!isFree){
-						intent.putExtra("username", username);
-						intent.putExtra("password", password);
-					}
-                    EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
-                        Analytics.EVENT_LABEL_SEARCH_POPULAR, null);
-					startActivityForResult(intent, START_BOOKSHARE_BOOKS_LISTING_ACTIVITY);
-				}
-				//This is when user clickes on 'All Periodicals' (thushv)
-				else if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_periodicals_label))){
-					if(!isFree)
-						search_term= URI_Periodical_String+"list/for/"+username+"?api_key="+developerKey;
-					else
-						search_term= URI_Periodical_String+"list?api_key="+developerKey;
-						
-					
-					query_type= ALL_PERIODICAL_REQUEST;
-					intent = new Intent(getApplicationContext(),Bookshare_Periodical_Listing.class);
-					//set all the extras accordingly
-					intent.putExtra(REQUEST_TYPE, ALL_PERIODICAL_REQUEST);
-					intent.putExtra(REQUEST_URI, search_term);
-					if(!isFree){
-						intent.putExtra("username", username);
-						intent.putExtra("password", password);
-					}
-                    EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_PERIODICALS_BROWSE,
-                        Analytics.EVENT_LABEL_SEARCH_PERIODICALS, null);
-                    startActivityForResult(intent, START_BOOKSHARE_PERIODICAL_LISTING_ACTIVITY);
-					
-					
-				}
-                else if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_log_in))) {
-                    Intent intent = new Intent(getApplicationContext(), Bookshare_Webservice_Login.class);
+        private MenuClickListener(final Activity activity) {
+            this.activity = activity;
+        }
+
+        public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+            // Obtain the layout for selected row
+            LinearLayout row_view  = (LinearLayout)view;
+
+            // Obtain the text of the row
+            TextView txt_name = (TextView)row_view.findViewById(R.id.text1);
+	        String selected = txt_name.getText().toString();
+
+
+            if(position == MenuControl.title.ordinal()){
+                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
+                    Analytics.EVENT_LABEL_SEARCH_TITLE, null);
+                showTitleSearch();
+            }
+            else if(position == MenuControl.author.ordinal()){
+/*                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
+                    Analytics.EVENT_LABEL_SEARCH_AUTHOR, null);*/
+                showAuthorSearch();
+            }
+            else if(position == MenuControl.isbn.ordinal()){
+                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
+                    Analytics.EVENT_LABEL_SEARCH_ISBN, null);
+                showISBNSearch();
+            }
+            else if(position == MenuControl.latest.ordinal()){
+                // Changed the behavior to search for the latest book without having to enter the date range
+                //dialog.setTitle("Search for latest books");
+                //dialog_search_title.setText("Enter \"from\" date in MMDDYYYY format");
+                //dialog_example_text.setText("E.g. 01012001 or 10022005");
+                if(isFree)
+                    search_term = URI_String+"latest?api_key="+developerKey;
+                else
+                    search_term = URI_String+"latest/for/"+username+"?api_key="+developerKey;
+                query_type = LATEST_REQUEST;
+                intent = new Intent(getApplicationContext(),Bookshare_Books_Listing.class);
+                intent.putExtra(REQUEST_TYPE, LATEST_REQUEST);
+                intent.putExtra(REQUEST_URI, search_term);
+                if(!isFree){
+                    intent.putExtra("username", username);
+                    intent.putExtra("password", password);
+                }
+                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
+                    Analytics.EVENT_LABEL_SEARCH_LATEST, null);
+                startActivityForResult(intent, START_BOOKSHARE_BOOKS_LISTING_ACTIVITY);
+            }
+
+            // Option to search for popular books on Bookshare website
+            else if(position == MenuControl.popular.ordinal()){
+                if(isFree)
+                    search_term = URI_String+"popular?api_key="+developerKey;
+                else
+                    search_term = URI_String+"popular/for/"+username+"?api_key="+developerKey;
+                query_type = POPULAR_REQUEST;
+                intent = new Intent(getApplicationContext(),Bookshare_Books_Listing.class);
+                intent.putExtra(REQUEST_TYPE, POPULAR_REQUEST);
+                intent.putExtra(REQUEST_URI, search_term);
+                if(!isFree){
+                    intent.putExtra("username", username);
+                    intent.putExtra("password", password);
+                }
+                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
+                    Analytics.EVENT_LABEL_SEARCH_POPULAR, null);
+                startActivityForResult(intent, START_BOOKSHARE_BOOKS_LISTING_ACTIVITY);
+            }
+            //This is when user clickes on 'All Periodicals' (thushv)
+            else if(position == MenuControl.periodicals.ordinal()){
+                if(!isFree)
+                    search_term= URI_Periodical_String+"list/for/"+username+"?api_key="+developerKey;
+                else
+                    search_term= URI_Periodical_String+"list?api_key="+developerKey;
+
+
+                query_type= ALL_PERIODICAL_REQUEST;
+                intent = new Intent(getApplicationContext(),Bookshare_Periodical_Listing.class);
+                //set all the extras accordingly
+                intent.putExtra(REQUEST_TYPE, ALL_PERIODICAL_REQUEST);
+                intent.putExtra(REQUEST_URI, search_term);
+                if(!isFree){
+                    intent.putExtra("username", username);
+                    intent.putExtra("password", password);
+                }
+                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_PERIODICALS_BROWSE,
+                    Analytics.EVENT_LABEL_SEARCH_PERIODICALS, null);
+                startActivityForResult(intent, START_BOOKSHARE_PERIODICAL_LISTING_ACTIVITY);
+
+
+            }
+            else if(position == MenuControl.logout.ordinal()){
+	            if (txt_name.getText().toString().equals(getString(R.string.bks_menu_log_in))) {
+		            Intent intent = new Intent(getApplicationContext(), Bookshare_Webservice_Login.class);
                     startActivity(intent);
                     EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_LOGIN,
                         Analytics.EVENT_ACTION_LOGIN, null);
                     finish();
-                }
-				
-                else if(txt_name.getText().equals(getResources().getString(R.string.bks_menu_log_out))) {
-                    final Dialog confirmDialog = new Dialog(myActivity);
+	            } else {
+		            final Dialog confirmDialog = new Dialog(myActivity);
                     confirmDialog.setTitle(getResources().getString(R.string.accessible_alert_title));
                     confirmDialog.setContentView(R.layout.accessible_alert_dialog);
                     TextView confirmation = (TextView)confirmDialog.findViewById(R.id.bookshare_confirmation_message);
                     confirmation.setText(getResources().getString(R.string.logout_dialog_message));
                     Button yesButton = (Button)confirmDialog.findViewById(R.id.bookshare_dialog_btn_yes);
                     Button noButton = (Button) confirmDialog.findViewById(R.id.bookshare_dialog_btn_no);
-                    
+
                     yesButton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v){
@@ -278,7 +287,7 @@ public class Bookshare_Menu extends ListActivity {
                             confirmAndClose(getResources().getString(R.string.bks_menu_log_out_confirmation), 2000);
                         }
                     });
-                    
+
                     noButton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -288,9 +297,9 @@ public class Bookshare_Menu extends ListActivity {
                     EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_LOGOUT,
                         Analytics.EVENT_ACTION_LOGOUT, null);
                     confirmDialog.show();
-                }
-			}
-		});
+	            }
+            }
+        }
 	}
 
 	private AlertDialog createLoginDialogBox(){
@@ -494,4 +503,8 @@ public class Bookshare_Menu extends ListActivity {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
+
+	private enum MenuControl {
+		title, author, isbn, latest, popular, periodicals, logout
+	}
 }
