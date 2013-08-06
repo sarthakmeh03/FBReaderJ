@@ -393,7 +393,11 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
         //LastReadPageOfCurrentBook.saveLocationOfLastReadPage(this);
         savePosition();
 
-		unregisterReceiver(mReceiver);
+		try {
+			unregisterReceiver(mReceiver);
+		} catch (Exception e) {
+			//do nothing
+		}
 		super.onStop();
         EasyTracker.getInstance().activityStop(this);
 	}
