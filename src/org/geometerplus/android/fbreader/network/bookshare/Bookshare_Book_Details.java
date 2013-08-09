@@ -8,9 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URISyntaxException;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -47,6 +50,7 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -72,8 +76,9 @@ import android.widget.TextView;
  * applicable.
  * 
  */
-public class Bookshare_Book_Details extends Activity {
+public class Bookshare_Book_Details extends Activity implements OnClickListener {
 
+	Context mcontext = this;
 	private String username;
 	private String password;
 	private Bookshare_Metadata_Bean metadata_bean;
@@ -94,8 +99,13 @@ public class Bookshare_Book_Details extends Activity {
 	private TextView bookshare_download_not_available_text;
 	private TextView subscribe_described_text;
 	private Button btn_download;
+	private Button btn_download_withimages;
+	Button currentbutton;// points to btn_download if(version==1), else
+							// btn_download_withimages
+	private int version;
 	private CheckBox chkbox_subscribe;
 
+	boolean Imagesavailable;
 	boolean isDownloadable;
 	private final int BOOKSHARE_BOOK_DETAILS_FINISHED = 1;
 	private boolean isFree = false;
@@ -151,9 +161,9 @@ public class Bookshare_Book_Details extends Activity {
 					msg.what = DATA_FETCHED;
 					msg.sendToTarget();
 				} catch (IOException ioe) {
-					Log.e(FBReader.LOG_LABEL, "Problem fetching details", ioe);
+					System.out.println(ioe);
 				} catch (URISyntaxException use) {
-                    Log.e(FBReader.LOG_LABEL, "Problem fetching details", use);
+					System.out.println(use);
 				}
 			}
 		}.start();
@@ -176,18 +186,17 @@ public class Bookshare_Book_Details extends Activity {
 
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EasyTracker.getInstance().activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance().activityStop(this);
-    }
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
+	}
 
 	// Handler for processing the returned stream from book detail search
 	Handler handler = new Handler() {
@@ -220,6 +229,7 @@ public class Bookshare_Book_Details extends Activity {
 				}
 				if (metadata_bean != null) {
 					setIsDownloadable(metadata_bean);
+					setImagesAvailable(metadata_bean);
 					setContentView(R.layout.bookshare_book_detail);
 					book_detail_view = (View) findViewById(R.id.book_detail_view);
 					bookshare_book_detail_title_text = (TextView) findViewById(R.id.bookshare_book_detail_title);
@@ -241,90 +251,55 @@ public class Bookshare_Book_Details extends Activity {
 					subscribe_described_text.setVisibility(View.GONE);
 
 					btn_download = (Button) findViewById(R.id.bookshare_btn_download);
+					btn_download_withimages = (Button) findViewById(R.id.bookshare_btn_download_images);
 					bookshare_download_not_available_text = (TextView) findViewById(R.id.bookshare_download_not_available_msg);
 
-					bookshare_book_detail_language.setNextFocusDownId(R.id.bookshare_book_detail_category);
-					bookshare_book_detail_category.setNextFocusDownId(R.id.bookshare_book_detail_publish_date);
-					bookshare_book_detail_publish_date.setNextFocusUpId(R.id.bookshare_book_detail_category);
-					bookshare_book_detail_synopsis_text.setNextFocusUpId(R.id.bookshare_book_detail_copyright);
+					bookshare_book_detail_language
+							.setNextFocusDownId(R.id.bookshare_book_detail_category);
+					bookshare_book_detail_category
+							.setNextFocusDownId(R.id.bookshare_book_detail_publish_date);
+					bookshare_book_detail_publish_date
+							.setNextFocusUpId(R.id.bookshare_book_detail_category);
+					bookshare_book_detail_synopsis_text
+							.setNextFocusUpId(R.id.bookshare_book_detail_copyright);
 
 					book_detail_view.requestFocus();
 					// If the book is not downloadable, do not show the download
 					// button
 					if (!isDownloadable) {
 						btn_download.setVisibility(View.GONE);
-						bookshare_book_detail_authors.setNextFocusDownId(R.id.bookshare_download_not_available_msg);
-                        bookshare_book_detail_isbn.setNextFocusUpId(R.id.bookshare_download_not_available_msg);
-						bookshare_download_not_available_text.setNextFocusUpId(R.id.bookshare_book_detail_authors);
+						btn_download_withimages.setVisibility(View.GONE);
+						bookshare_book_detail_authors
+								.setNextFocusDownId(R.id.bookshare_download_not_available_msg);
+						bookshare_book_detail_isbn
+								.setNextFocusUpId(R.id.bookshare_download_not_available_msg);
+						bookshare_download_not_available_text
+								.setNextFocusUpId(R.id.bookshare_book_detail_authors);
 					} else {
-						bookshare_download_not_available_text.setVisibility(View.GONE);
-						btn_download.setNextFocusDownId(R.id.bookshare_book_detail_isbn);
-						btn_download.setNextFocusUpId(R.id.bookshare_book_detail_authors);
-						bookshare_book_detail_authors.setNextFocusDownId(R.id.bookshare_btn_download);
-						btn_download.setOnClickListener(new OnClickListener() {
-							public void onClick(View v) {
+						bookshare_download_not_available_text
+								.setVisibility(View.GONE);
+						btn_download
+								.setNextFocusDownId(R.id.bookshare_btn_download_images);
+						btn_download
+								.setNextFocusUpId(R.id.bookshare_book_detail_authors);
+						btn_download_withimages
+								.setNextFocusDownId(R.id.bookshare_book_detail_isbn);
+						btn_download_withimages
+								.setNextFocusUpId(R.id.bookshare_btn_download);
+						bookshare_book_detail_authors
+								.setNextFocusDownId(R.id.bookshare_btn_download);
 
-								final String downloadText = btn_download
-										.getText().toString();
-								if (downloadText.equalsIgnoreCase(resources
-										.getString(R.string.book_details_download_button))
-										|| downloadText.equalsIgnoreCase(resources
-												.getString(R.string.book_details_download_error_other_member))) {
+						btn_download
+								.setOnClickListener(Bookshare_Book_Details.this);
+						btn_download_withimages
+								.setOnClickListener(Bookshare_Book_Details.this);
 
-									// Start a new Activity for getting the OM
-									// member list
-									// See onActivityResult for further
-									// processing
-									if (isOM) {
-										Intent intent = new Intent(
-												getApplicationContext(),
-												Bookshare_OM_List.class);
-										intent.putExtra("username", username);
-										intent.putExtra("password", password);
-										startActivityForResult(intent,
-												START_BOOKSHARE_OM_LIST);
-									} else {
-                                        EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_UI,
-                                            Analytics.EVENT_ACTION_BUTTON, Analytics.EVENT_LABEL_DOWNLOAD_BOOK, null);
-										new DownloadFilesTask().execute();
-										showAlert(getResources()
-												.getString(
-														R.string.book_details_download_started));
-									}
-								}
-
-								// View book or display error
-								else if (btn_download
-										.getText()
-										.toString()
-										.equalsIgnoreCase(
-												resources
-														.getString(R.string.book_details_download_success))) {
-									setResult(BOOKSHARE_BOOK_DETAILS_FINISHED);
-									if (null == downloadedBookDir) {
-										final VoiceableDialog finishedDialog = new VoiceableDialog(
-												btn_download.getContext());
-										String message = resources
-												.getString(R.string.book_details_open_error);
-										finishedDialog.popup(message, 2000);
-									} else {
-										if (null != downloadedBookDir) {
-											ZLFile opfFile = getOpfFile();
-											if (null != opfFile) {
-												startActivity(
-                                                    new Intent(getApplicationContext(), FBReader.class)
-														.setAction(Intent.ACTION_VIEW)
-														.putExtra(FBReader.BOOK_PATH_KEY,opfFile.getPath())
-														.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-											}
-
-										}
-									}
-								}
-							}
-						});
 					}
-
+					if (!Imagesavailable) {
+						Log.d("checking images",
+								String.valueOf(Imagesavailable));
+						btn_download_withimages.setVisibility(View.GONE);
+					}
 					// Set the fields of the layout with book details
 					if (metadata_bean.getTitle() != null) {
 						for (int i = 0; i < metadata_bean.getTitle().length; i++) {
@@ -598,29 +573,31 @@ public class Bookshare_Book_Details extends Activity {
 	private class DownloadFilesTask extends AsyncTask<Void, Void, Void> {
 
 		private Bookshare_Error_Bean error;
+		private Bookshare_Packagingstatus_Bean status;
+
+		public String download_uri;
+		final String id = metadata_bean.getContentId();
 
 		// Will be called in the UI thread
 		@Override
 		protected void onPreExecute() {
-			btn_download.setText("Downloading Book...");
-			downloadedBookDir = null;
 
 			// Disable the download button while the download is in progress
-			btn_download.setEnabled(false);
-		}
 
-		// Will be called in a separate thread
-		@Override
-		protected Void doInBackground(Void... params) {
-			final String id = metadata_bean.getContentId();
-			String download_uri;
+			currentbutton.setText("Downloading Book...");
+			// Disable the download button while the download is in progress
+			currentbutton.setEnabled(false);
+
+			downloadedBookDir = null;
+
 			if (isFree)
 				download_uri = Bookshare_Webservice_Login.BOOKSHARE_API_PROTOCOL
 						+ Bookshare_Webservice_Login.BOOKSHARE_API_HOST
 						+ "/download/content/"
 						+ id
-						+ "/version/1?api_key="
-						+ developerKey;
+						+ "/version/"
+						+ version
+						+ "?api_key=" + developerKey;
 			else if (isOM) {
 				download_uri = Bookshare_Webservice_Login.BOOKSHARE_API_PROTOCOL
 						+ Bookshare_Webservice_Login.BOOKSHARE_API_HOST
@@ -637,9 +614,17 @@ public class Bookshare_Book_Details extends Activity {
 						+ Bookshare_Webservice_Login.BOOKSHARE_API_HOST
 						+ "/download/content/"
 						+ id
-						+ "/version/1/for/"
-						+ username + "?api_key=" + developerKey;
+						+ "/version/"
+						+ version
+						+ "/for/" + username + "?api_key=" + developerKey;
 			}
+
+		}
+
+		// Will be called in a separate thread // change the version here for
+		// images
+		@Override
+		protected Void doInBackground(Void... params) {
 
 			final Notification progressNotification = createDownloadProgressNotification(metadata_bean
 					.getTitle()[0]);
@@ -650,10 +635,53 @@ public class Bookshare_Book_Details extends Activity {
 					progressNotification);
 
 			try {
+				System.out.println("download_uri :" + download_uri);
+
 				HttpResponse response = bws.getHttpResponse(password,
 						download_uri);
-				// Get hold of the response entity
 				HttpEntity entity = response.getEntity();
+				Header header = entity.getContentType();
+				String headerValue = header.getValue();
+
+				if (version == 4) {
+					if (!headerValue.contains("zip")) {
+						status = new Bookshare_Packagingstatus_Bean();
+						status.parseInputStream(response.getEntity()
+								.getContent());
+					}
+					Log.d("packaging status, before while",
+							status.getPackagingStatus());
+
+					while (!headerValue.contains("zip")) {
+
+						publishProgress();
+						Log.d("header of response in while", headerValue);
+						Log.d("status in while", status.getPackagingStatus());
+
+						if (status.getContentId() == ""
+								|| status.getPackagingStatus() == "CANCELLED")
+							break;
+
+						Calendar c = Calendar.getInstance();
+						int seconds = c.get(Calendar.SECOND);
+						int x = (seconds + 5) % 60;
+
+						// Log.d("seconds and x", String.valueOf(seconds) +
+						// String.valueOf(x));
+						while (seconds < x) {
+							// Log.d("seconds x", String.valueOf(seconds) + " "
+							// + String.valueOf(x));
+							c = Calendar.getInstance();
+							seconds = c.get(Calendar.SECOND);
+						}
+						response = bws.getHttpResponse(password, download_uri);
+						entity = response.getEntity();
+						headerValue = entity.getContentType().getValue();
+
+					}
+				}
+				// response.
+				// Get hold of the response entity
 
 				if (entity != null) {
 					String filename = "bookshare_" + Math.random() * 10000
@@ -665,7 +693,7 @@ public class Bookshare_Book_Details extends Activity {
 						}
 						filename = temp;
 						filename = filename.replaceAll(" +", "_").replaceAll(
-								":", "__").replaceAll("/", "-");
+								":", "__");
 						if (isOM) {
 							filename = filename + "_" + firstName + "_"
 									+ lastName;
@@ -680,9 +708,11 @@ public class Bookshare_Book_Details extends Activity {
 					if (downloaded_zip_file.exists()) {
 						downloaded_zip_file.delete();
 					}
-					Header header = entity.getContentType();
-					// Log.w("FBR", "******  zip_file *****" + zip_file);
-					final String headerValue = header.getValue();
+
+					// entity.
+
+					// Log.w("", "******  zip_file *****" + zip_file);
+
 					if (headerValue.contains("zip")
 							|| headerValue.contains("bks2")) {
 						try {
@@ -704,7 +734,7 @@ public class Bookshare_Book_Details extends Activity {
 							bout.close();
 							in.close();
 
-							Log.i(FBReader.LOG_LABEL,"******** Downloading complete");
+							System.out.println("******** Downloading complete");
 
 							// Unzip the encrypted archive file
 							if (!isFree) {
@@ -812,9 +842,10 @@ public class Bookshare_Book_Details extends Activity {
 							}
 							downloadSuccess = true;
 						} catch (ZipException e) {
-							Log.e(FBReader.LOG_LABEL, "Zip Exception", e);
+							Log.e("FBR", "Zip Exception", e);
 						}
 					} else {
+						response = bws.getHttpResponse(password, download_uri);
 						downloadSuccess = false;
 						error = new Bookshare_Error_Bean();
 						error.parseInputStream(response.getEntity()
@@ -822,27 +853,35 @@ public class Bookshare_Book_Details extends Activity {
 					}
 				}
 			} catch (URISyntaxException use) {
-                Log.e(FBReader.LOG_LABEL, "Problem downloading", use);
+				System.out.println("URISyntaxException: " + use);
 			} catch (IOException ie) {
-                Log.e(FBReader.LOG_LABEL, "Problem downloading", ie);
+				System.out.println("IOException: " + ie);
 			}
 			return null;
 		}
+
+		/*
+		 * @Override protected void onProgressUpdate(Void... values) { // TODO
+		 * Auto-generated method stub try { Thread.sleep(10000); } catch
+		 * (InterruptedException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } super.onProgressUpdate(values); }
+		 */
 
 		// Will be called in the UI thread
 		@Override
 		protected void onPostExecute(Void param) {
 
 			if (downloadSuccess) {
-				btn_download.setText(resources
+				currentbutton.setText(resources
 						.getString(R.string.book_details_download_success));
-				btn_download.setEnabled(true);
+				currentbutton.setEnabled(true);
+
 			} else {
-				btn_download.setText(resources
+				currentbutton.setText(resources
 						.getString(R.string.book_details_download_error));
-				btn_download.setEnabled(memberId != null);
+				currentbutton.setEnabled(memberId != null);
 				if (memberId != null) {
-					btn_download
+					currentbutton
 							.setText(resources
 									.getString(R.string.book_details_download_error_other_member));
 				}
@@ -866,7 +905,7 @@ public class Bookshare_Book_Details extends Activity {
 									message.what != 0));
 				}
 			};
-			btn_download.requestFocus();
+			currentbutton.requestFocus();
 			downloadFinishHandler.sendEmptyMessage(downloadSuccess ? 1 : 0);
 		}
 	}
@@ -878,6 +917,8 @@ public class Bookshare_Book_Details extends Activity {
 	 *            String representing the response
 	 */
 	private void parseResponse(String response) {
+
+		System.out.println(response);
 
 		InputSource is = new InputSource(new StringReader(response));
 
@@ -1109,6 +1150,9 @@ public class Bookshare_Book_Details extends Activity {
 					vector_downloadFormat.add(new String(c, start, length));
 					metadata_bean.setDownloadFormats(vector_downloadFormat
 							.toArray(new String[0]));
+					// for(int i=0;i<vector_downloadFormat.size();i++)
+					String temp = new String(c, start, length);
+					Log.d("formats", temp);
 				}
 				if (images) {
 					metadata_bean.setImages(new String(c, start, length));
@@ -1182,12 +1226,105 @@ public class Bookshare_Book_Details extends Activity {
 				.getDownloadFormats().length > 0);
 	}
 
+	private void setImagesAvailable(final Bookshare_Metadata_Bean bean) {
+		Imagesavailable = (bean.getImages() != null && !bean.getImages()
+				.contains("0"));
+		Log.d("images", bean.getImages() + String.valueOf(Imagesavailable));
+	}
+
 	/*
 	 * Display voiceable message and then close
 	 */
 	private void confirmAndClose(String msg, int timeout) {
 		final ParentCloserDialog dialog = new ParentCloserDialog(this, this);
 		dialog.popup(msg, timeout);
+	}
+
+	//called after the download button is pressed
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.bookshare_btn_download_images:
+			version = 4;
+			currentbutton = (Button) findViewById(R.id.bookshare_btn_download_images);
+			Log.d("books with images", "on click method");
+			break;
+		case R.id.bookshare_btn_download:
+			version = 1;
+			currentbutton = (Button) findViewById(R.id.bookshare_btn_download);
+			break;
+		}
+		Downloadpressed();
+
+	}
+	
+	//called after the download button is pressed, after onClick method
+	private void Downloadpressed() {
+		// TODO Auto-generated method stub
+
+		final String downloadText = currentbutton.getText().toString();
+		if (downloadText.equalsIgnoreCase(resources
+				.getString(R.string.book_details_download_button))
+				|| downloadText.equalsIgnoreCase(resources
+						.getString(R.string.book_details_download_images))
+				|| downloadText
+						.equalsIgnoreCase(resources
+								.getString(R.string.book_details_download_error_other_member))) {
+
+			// Start a new Activity for getting the OM
+			// member list
+			// See onActivityResult for further
+			// processing
+			if (isOM) {
+				Intent intent = new Intent(getApplicationContext(),
+						Bookshare_OM_List.class);
+				intent.putExtra("username", username);
+				intent.putExtra("password", password);
+				startActivityForResult(intent, START_BOOKSHARE_OM_LIST);
+			} else {
+				EasyTracker.getTracker().trackEvent(
+						Analytics.EVENT_CATEGORY_UI,
+						Analytics.EVENT_ACTION_BUTTON,
+						Analytics.EVENT_LABEL_DOWNLOAD_BOOK, null);
+				// if(version==1)
+				new DownloadFilesTask().execute();
+				// else if(version==4){
+
+			}
+			showAlert(getResources().getString(
+					R.string.book_details_download_started));
+		}
+
+		// View book or display error
+		else if (currentbutton
+				.getText()
+				.toString()
+				.equalsIgnoreCase(
+						resources
+								.getString(R.string.book_details_download_success))) {
+			setResult(BOOKSHARE_BOOK_DETAILS_FINISHED);
+			if (null == downloadedBookDir) {
+				final VoiceableDialog finishedDialog = new VoiceableDialog(
+						currentbutton.getContext());
+				String message = resources
+						.getString(R.string.book_details_open_error);
+				finishedDialog.popup(message, 2000);
+			} else {
+				if (null != downloadedBookDir) {
+					ZLFile opfFile = getOpfFile();
+					if (null != opfFile) {
+						startActivity(new Intent(getApplicationContext(),
+								FBReader.class)
+								.setAction(Intent.ACTION_VIEW)
+								.putExtra(FBReader.BOOK_PATH_KEY,
+										opfFile.getPath())
+								.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+					}
+
+				}
+			}
+		}
 	}
 
 }
