@@ -186,8 +186,8 @@ public class Bookshare_Menu extends ListActivity {
                 showTitleSearch();
             }
             else if(position == MenuControl.author.ordinal()){
-/*                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
-                    Analytics.EVENT_LABEL_SEARCH_AUTHOR, null);*/
+                EasyTracker.getTracker().trackEvent(Analytics.EVENT_CATEGORY_SEARCH, Analytics.EVENT_ACTION_BKS_SEARCH,
+                    Analytics.EVENT_LABEL_SEARCH_AUTHOR, null);
                 showAuthorSearch();
             }
             else if(position == MenuControl.isbn.ordinal()){
