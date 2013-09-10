@@ -3,7 +3,6 @@ package org.geometerplus.android.fbreader.network.bookshare;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +16,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.accessibility.ParentCloserDialog;
 import org.bookshare.net.BookshareWebservice;
 import org.benetech.android.R;
+import org.geometerplus.android.fbreader.FBReader;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -27,11 +27,10 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -138,28 +137,202 @@ public class Bookshare_Books_Listing extends ListActivity{
 
 		// Show a Progress Dialog before the book opens
 		pd_spinning = ProgressDialog.show(this, null, resources.getString(R.string.fetching_books), Boolean.TRUE);
-		
-		new Thread(){
-			public void run(){
-				try{
-					inputStream = bws.getResponseStream(password, uri);
-					
-					// Once the response is obtained, send message to the handler
-					Message msg = Message.obtain();
-					msg.what = DATA_FETCHED;
-					msg.setTarget(handler);
-					msg.sendToTarget(); 
+
+		final AsyncTask<Object, Void, Integer> bookResultsFetcher = new BookListingTask(uri);
+		bookResultsFetcher.execute();
+	}
+
+	private class BookListingTask extends AsyncTask<Object, Void, Integer> {
+
+		String uri;
+
+		public BookListingTask(String requestUri) {
+			uri = requestUri;
+		}
+
+		@Override
+	    protected Integer doInBackground(Object... params) {
+
+			try{
+				inputStream = bws.getResponseStream(password, uri);
+				String response_HTML = bws.convertStreamToString(inputStream);
+
+				// Cleanup the HTML formatted tags
+				String response = response_HTML.replace("&apos;", "\'").replace("&quot;", "\"").replace("&amp;", "and").replace("&#xd;","").replace("&#x97;", "-");
+		//				String response = response_HTML.replace("&apos;", "\'").replace("&quot;", "\"").replace("&#xd;","").replace("&#x97;", "-");
+
+				System.out.println(response);
+				// Parse the response of search result
+				parseResponse(response);
+				Log.w(FBReader.LOG_LABEL, "done with parseResponse in task");
+
+			}
+			catch(Exception e){
+				Log.e(FBReader.LOG_LABEL, "problem getting results", e);
+			}
+
+		 	return 0;
+		}
+
+		@Override
+	    protected void onPreExecute() {
+	        super.onPreExecute();
+	    }
+
+	    @Override
+	    protected void onPostExecute(Integer results) {
+	        super.onPostExecute(results);
+		    Log.w(FBReader.LOG_LABEL, "about to call on ResultsFetched");
+		    onResultsFetched();
+	    }
+
+	}
+
+	private void createPageChanger(String title, int id, int iconId) {
+        TreeMap<String, Object> row_item = new TreeMap<String, Object>();
+        row_item.put("title", title);
+        row_item.put("authors", "");
+        row_item.put("icon", iconId);
+        row_item.put("book_id", String.valueOf(id));
+        row_item.put("download_icon", iconId);
+        list.add(row_item);
+    }
+
+	private void onResultsFetched()
+	{
+		pd_spinning.cancel();
+
+		if(responseType == METADATA_RESPONSE){
+			//Do nothing
+		}
+
+		// Returned response is of our use. Process it
+		if(responseType == LIST_RESPONSE){
+			list.clear();
+
+			// For each bean object stored in the vector, create a row in the list
+			for(Bookshare_Result_Bean bean : vectorResults){
+				String authors = "";
+				TreeMap<String, Object> row_item = new TreeMap<String, Object>();
+				row_item.put("title", bean.getTitle());
+				for(int i = 0; i < bean.getAuthor().length; i++){
+					if(i==0){
+						authors = bean.getAuthor()[i];
+					}
+					else{
+						authors = authors +", "+ bean.getAuthor()[i];
+					}
 				}
-				catch(IOException ioe){
-					System.out.println(ioe);
+				row_item.put("authors", authors);
+				row_item.put("icon", R.drawable.titles);
+				row_item.put("book_id", bean.getId());
+				// Add a download icon if the book is available to download
+/*						if(!isFree && bean.getAvailableToDownload().equals("1")){
+					row_item.put("download_icon", R.drawable.download_icon);
 				}
-				catch(URISyntaxException use){
-					System.out.println(use);
+				else if(isFree && bean.getAvailableToDownload().equals("1") &&
+							bean.getFreelyAvailable().equals("1") ){
+					row_item.put("download_icon", R.drawable.download_icon);
+				}*/
+				if((isFree && bean.getAvailableToDownload().equals("1") &&
+						bean.getFreelyAvailable().equals("1")) ||
+						(!isFree && bean.getAvailableToDownload().equals("1"))){
+					row_item.put("download_icon", R.drawable.download_icon);
+				}
+				else{
+					row_item.put("download_icon", R.drawable.black_icon);
+				}
+				list.add(row_item);
+			}
+
+            if(current_result_page > 1 ){
+                createPageChanger("Previous Page", PREVIOUS_PAGE_BOOK_ID, R.drawable.arrow_left_blue);
+            }
+
+            if(current_result_page < total_pages_result ){
+                createPageChanger("Next Page", NEXT_PAGE_BOOK_ID, R.drawable.arrow_right_blue);
+            }
+		}
+
+		// Instantiate the custom SimpleAdapter for populating the ListView
+		// The bookId view in the layout file is used to store the id , but is not shown on screen
+		MySimpleAdapter simpleadapter = new MySimpleAdapter(
+				getApplicationContext(),list,
+				R.layout.bookshare_menu_item,
+				new String[]{"title","authors","icon","download_icon","book_id"},
+				new int[]{R.id.text1, R.id.text2,R.id.row_icon, R.id.bookshare_download_icon,R.id.bookId});
+
+		//Set the adapter for this view
+		setListAdapter(simpleadapter);
+
+		ListView lv = getListView();
+
+        View decorView = getWindow().getDecorView();
+        if (null != decorView) {
+            String resultsMessage;
+            if (vectorResults.isEmpty()) {
+                resultsMessage = resources.getString(R.string.search_complete_no_books);
+                setResult(InternalReturnCodes.NO_BOOKS_FOUND);
+                confirmAndClose("no books found", 3000);
+            } else {
+                resultsMessage = resources.getString(R.string.search_complete_with_books);
+            }
+            decorView.setContentDescription(resultsMessage);
+        }
+
+		lv.setOnItemClickListener(new OnItemClickListener(){
+
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				// Obtain the layout for selected row
+				LinearLayout row_view  = (LinearLayout)view;
+
+				//Obtain the book ID
+				TextView bookId = (TextView)row_view.findViewById(R.id.bookId);
+                if (null != bookId.getText().toString() ) {
+                    int numericId =  Integer.valueOf(bookId.getText().toString());
+                    if (numericId < 0) {
+                        pageChangeSelected(numericId);
+                        return;
+                    }
+                }
+
+				// Find the corresponding bean object for this row
+				for(Bookshare_Result_Bean bean : vectorResults){
+
+					// Since book ID is unique, that can serve as comparison parameter
+					// Retrieve the book ID from the entry that is clicked
+					if(bean.getId().equalsIgnoreCase(bookId.getText().toString())){
+						String bookshare_ID = bean.getId();
+						Intent intent = new Intent(getApplicationContext(),Bookshare_Book_Details.class);
+						String uri;
+						if(isFree)
+							uri = URI_BOOKSHARE_ID_SEARCH + bookshare_ID + "?api_key="+developerKey;
+						else
+							uri = URI_BOOKSHARE_ID_SEARCH + bookshare_ID +"/for/"+username+"?api_key="+developerKey;
+
+						if((isFree && bean.getAvailableToDownload().equals("1") &&
+								bean.getFreelyAvailable().equals("1")) ||
+								(!isFree && bean.getAvailableToDownload().equals("1"))){
+							intent.putExtra("isDownloadable", true);
+						}
+						else{
+							intent.putExtra("isDownloadable", false);
+						}
+						intent.putExtra("ID_SEARCH_URI", uri);
+						if(!isFree){
+							intent.putExtra("username", username);
+							intent.putExtra("password", password);
+						}
+
+						startActivityForResult(intent, START_BOOKSHARE_BOOK_DETAILS_ACTIVITY);
+						break;
+					}
 				}
 			}
-		}.start();
+		});
 	}
-	
+
 	public void pageChangeSelected(int selectorId){
 		if(selectorId == NEXT_PAGE_BOOK_ID){
 			current_result_page++;
@@ -179,173 +352,6 @@ public class Bookshare_Books_Listing extends ListActivity{
 		getListing(strBuilder.toString());
 	}
 
-	// Handler for dealing with the stream obtained as a result of search 
-	Handler handler = new Handler(){
-
-		@Override
-		public void handleMessage(Message msg){
-
-			// Message received that data has been fetched from the bookshare web services 
-			if(msg.what == DATA_FETCHED){
-
-				setContentView(R.layout.bookshare_menu_main);
-				
-				// Dismiss the progress dialog
-				pd_spinning.cancel();
-
-				String response_HTML = bws.convertStreamToString(inputStream);
-				
-				// Cleanup the HTML formatted tags
-				String response = response_HTML.replace("&apos;", "\'").replace("&quot;", "\"").replace("&amp;", "and").replace("&#xd;","").replace("&#x97;", "-");
-//				String response = response_HTML.replace("&apos;", "\'").replace("&quot;", "\"").replace("&#xd;","").replace("&#x97;", "-");
-				
-				System.out.println(response);
-				// Parse the response of search result
-				parseResponse(response);
-
-				if(responseType == METADATA_RESPONSE){
-					//Do nothing
-				}
-
-				// Returned response is of our use. Process it
-				if(responseType == LIST_RESPONSE){
-					list.clear();
-					
-					// For each bean object stored in the vector, create a row in the list
-					for(Bookshare_Result_Bean bean : vectorResults){
-						String authors = "";
-						TreeMap<String, Object> row_item = new TreeMap<String, Object>();
-						row_item.put("title", bean.getTitle());
-						for(int i = 0; i < bean.getAuthor().length; i++){
-							if(i==0){
-								authors = bean.getAuthor()[i];
-							}
-							else{
-								authors = authors +", "+ bean.getAuthor()[i];
-							}
-						}
-						row_item.put("authors", authors);
-						row_item.put("icon", R.drawable.titles);
-						row_item.put("book_id", bean.getId());
-						// Add a download icon if the book is available to download
-/*						if(!isFree && bean.getAvailableToDownload().equals("1")){
-							row_item.put("download_icon", R.drawable.download_icon);
-						}
-						else if(isFree && bean.getAvailableToDownload().equals("1") &&
-									bean.getFreelyAvailable().equals("1") ){
-							row_item.put("download_icon", R.drawable.download_icon);
-						}*/
-						if((isFree && bean.getAvailableToDownload().equals("1") &&
-								bean.getFreelyAvailable().equals("1")) ||
-								(!isFree && bean.getAvailableToDownload().equals("1"))){
-							row_item.put("download_icon", R.drawable.download_icon);
-						}
-						else{
-							row_item.put("download_icon", R.drawable.black_icon);
-						}
-						list.add(row_item);
-					}
-
-                    if(current_result_page > 1 ){
-                        createPageChanger("Previous Page", PREVIOUS_PAGE_BOOK_ID, R.drawable.arrow_left_blue);
-                    }
-
-                    if(current_result_page < total_pages_result ){
-                        createPageChanger("Next Page", NEXT_PAGE_BOOK_ID, R.drawable.arrow_right_blue);
-                    }
-				}
-				
-				// Instantiate the custom SimpleAdapter for populating the ListView
-				// The bookId view in the layout file is used to store the id , but is not shown on screen
-				MySimpleAdapter simpleadapter = new MySimpleAdapter(
-						getApplicationContext(),list,
-						R.layout.bookshare_menu_item,
-						new String[]{"title","authors","icon","download_icon","book_id"},
-						new int[]{R.id.text1, R.id.text2,R.id.row_icon, R.id.bookshare_download_icon,R.id.bookId});
-
-				//Set the adapter for this view
-				setListAdapter(simpleadapter);
-
-				ListView lv = getListView();
-
-                View decorView = getWindow().getDecorView();
-                if (null != decorView) {
-                    String resultsMessage;
-                    if (vectorResults.isEmpty()) {
-                        resultsMessage = resources.getString(R.string.search_complete_no_books);
-                        setResult(InternalReturnCodes.NO_BOOKS_FOUND);
-                        confirmAndClose("no books found", 3000);
-                    } else {
-                        resultsMessage = resources.getString(R.string.search_complete_with_books);
-                    }
-                    decorView.setContentDescription(resultsMessage);
-                }
-
-				lv.setOnItemClickListener(new OnItemClickListener(){
-
-					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-						// Obtain the layout for selected row
-						LinearLayout row_view  = (LinearLayout)view;
-
-						//Obtain the book ID
-						TextView bookId = (TextView)row_view.findViewById(R.id.bookId);
-                        if (null != bookId.getText().toString() ) {
-                            int numericId =  Integer.valueOf(bookId.getText().toString());
-                            if (numericId < 0) {
-                                pageChangeSelected(numericId);
-                                return;
-                            }
-                        }
-						
-						// Find the corresponding bean object for this row
-						for(Bookshare_Result_Bean bean : vectorResults){
-
-							// Since book ID is unique, that can serve as comparison parameter
-							// Retrieve the book ID from the entry that is clicked
-							if(bean.getId().equalsIgnoreCase(bookId.getText().toString())){
-								String bookshare_ID = bean.getId();
-								Intent intent = new Intent(getApplicationContext(),Bookshare_Book_Details.class);
-								String uri;
-								if(isFree)
-									uri = URI_BOOKSHARE_ID_SEARCH + bookshare_ID + "?api_key="+developerKey;
-								else
-									uri = URI_BOOKSHARE_ID_SEARCH + bookshare_ID +"/for/"+username+"?api_key="+developerKey;
-								
-								if((isFree && bean.getAvailableToDownload().equals("1") &&
-										bean.getFreelyAvailable().equals("1")) ||
-										(!isFree && bean.getAvailableToDownload().equals("1"))){
-									intent.putExtra("isDownloadable", true);
-								}
-								else{
-									intent.putExtra("isDownloadable", false);
-								}
-								intent.putExtra("ID_SEARCH_URI", uri);
-								if(!isFree){
-									intent.putExtra("username", username);
-									intent.putExtra("password", password);
-								}
-
-								startActivityForResult(intent, START_BOOKSHARE_BOOK_DETAILS_ACTIVITY);
-								break;
-							}
-						}
-					}
-				});
-			}
-		}
-
-        private void createPageChanger(String title, int id, int iconId) {
-            TreeMap<String, Object> row_item = new TreeMap<String, Object>();
-            row_item.put("title", title);
-            row_item.put("authors", "");
-            row_item.put("icon", iconId);
-            row_item.put("book_id", String.valueOf(id));
-            row_item.put("download_icon", iconId);
-            list.add(row_item);
-        }
-    };
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		if(requestCode == START_BOOKSHARE_BOOK_DETAILS_ACTIVITY){
@@ -359,11 +365,6 @@ public class Bookshare_Books_Listing extends ListActivity{
 		}
 	}
 
-	// Used for keeping the the screen from rotating
-	@Override
-	public void onConfigurationChanged(Configuration newConfig){
-		super.onConfigurationChanged(newConfig);
-	}
 
 	/**
 	 * Uses a SAX parser to parse the response

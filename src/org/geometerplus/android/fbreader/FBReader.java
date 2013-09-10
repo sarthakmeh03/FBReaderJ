@@ -140,6 +140,7 @@ public final class FBReader extends ZLAndroidActivity {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
+		BugSenseHandler.initAndStartSession(this, BookshareDeveloperKey.BUGSENSE_KEY);
 
         //todo:
 		//inputAccess.onCreate();
@@ -214,7 +215,7 @@ public final class FBReader extends ZLAndroidActivity {
         //Activating subscription download
         //activateSubscriptionDownload(prefs);
 
-        BugSenseHandler.setup(this, BookshareDeveloperKey.BUGSENSE_KEY);
+
 	}
 
     public void activateSubscriptionDownload(SharedPreferences prefs) {

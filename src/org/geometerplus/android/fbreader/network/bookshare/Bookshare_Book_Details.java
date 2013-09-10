@@ -8,12 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URISyntaxException;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -61,6 +58,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -68,7 +66,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 
 /**
@@ -154,21 +151,343 @@ public class Bookshare_Book_Details extends Activity implements OnClickListener 
 		final VoiceableDialog finishedDialog = new VoiceableDialog(this);
 		String msg = "Fetching book details. Please wait.";
 		finishedDialog.popup(msg, 2000);
-		new Thread() {
-			public void run() {
-				try {
-					inputStream = bws.getResponseStream(password, uri);
-					Message msg = Message.obtain(handler);
-					msg.what = DATA_FETCHED;
-					msg.sendToTarget();
-				} catch (IOException ioe) {
-					Log.e(LOG_TAG, ioe.toString(), ioe);
-				} catch (URISyntaxException use) {
-					Log.e(LOG_TAG, use.toString(), use);
-				}
-			}
-		}.start();
+
+		final AsyncTask<Object, Void, Integer> bookResultsFetcher = new BookDetailsTask(uri);
+		bookResultsFetcher.execute();
 	}
+
+	private class BookDetailsTask extends AsyncTask<Object, Void, Integer> {
+
+			String uri;
+
+			public BookDetailsTask(String requestUri) {
+				uri = requestUri;
+			}
+
+			@Override
+		    protected Integer doInBackground(Object... params) {
+
+				try{
+					inputStream = bws.getResponseStream(password, uri);
+					String response_HTML = bws.convertStreamToString(inputStream);
+
+					String response = response_HTML.replace("&apos;", "\'")
+							.replace("&quot;", "\"").replace("&amp;", "and")
+							.replace("&#xd;\n", "\n").replace("&#x97;", "-");
+
+					// Parse the response String
+					parseResponse(response);
+
+					Log.w(FBReader.LOG_LABEL, "done with parseResponse in task");
+
+				}
+				catch(Exception e){
+					Log.e(FBReader.LOG_LABEL, "problem getting results", e);
+				}
+
+			    return 0;
+			}
+
+			@Override
+		    protected void onPreExecute() {
+		        super.onPreExecute();
+		    }
+
+		    @Override
+		    protected void onPostExecute(Integer results) {
+		        super.onPostExecute(results);
+			    Log.w(FBReader.LOG_LABEL, "about to call on ResultsFetched");
+			    onResultsFetched();
+		    }
+
+		}
+
+	private void onResultsFetched() {
+			String temp = "";
+
+			if (metadata_bean == null) {
+				TextView txtView_msg = (TextView) findViewById(R.id.bookshare_blank_txtView_msg);
+				String noBookFoundMsg = "Book not found.";
+				txtView_msg.setText(noBookFoundMsg);
+				// todo : return book not found result code
+
+				View decorView = getWindow().getDecorView();
+				if (null != decorView) {
+					decorView.setContentDescription(noBookFoundMsg);
+				}
+
+				setResult(InternalReturnCodes.NO_BOOK_FOUND);
+				confirmAndClose(noBookFoundMsg, 3000);
+				return;
+			}
+			if (metadata_bean != null) {
+				setIsDownloadable(metadata_bean);
+				setImagesAvailable(metadata_bean);
+				setContentView(R.layout.bookshare_book_detail);
+				book_detail_view = (View) findViewById(R.id.book_detail_view);
+				bookshare_book_detail_title_text = (TextView) findViewById(R.id.bookshare_book_detail_title);
+				bookshare_book_detail_authors = (TextView) findViewById(R.id.bookshare_book_detail_authors);
+				bookshare_book_detail_isbn = (TextView) findViewById(R.id.bookshare_book_detail_isbn);
+				bookshare_book_detail_language = (TextView) findViewById(R.id.bookshare_book_detail_language);
+				bookshare_book_detail_category = (TextView) findViewById(R.id.bookshare_book_detail_category);
+				bookshare_book_detail_publish_date = (TextView) findViewById(R.id.bookshare_book_detail_publish_date);
+				bookshare_book_detail_publisher = (TextView) findViewById(R.id.bookshare_book_detail_publisher);
+				bookshare_book_detail_copyright = (TextView) findViewById(R.id.bookshare_book_detail_copyright);
+				bookshare_book_detail_synopsis_text = (TextView) findViewById(R.id.bookshare_book_detail_synopsis_text);
+
+				// We don't need subscription for books, needed only for
+				// periodicals
+				// So we hide it in the book details activity
+				chkbox_subscribe = (CheckBox) findViewById(R.id.bookshare_chkbx_subscribe_periodical);
+				chkbox_subscribe.setVisibility(View.GONE);
+				subscribe_described_text = (TextView) findViewById(R.id.bookshare_subscribe_explained);
+				subscribe_described_text.setVisibility(View.GONE);
+
+				btnDownload = (Button) findViewById(R.id.bookshare_btn_download);
+				btnDownloadWithImages = (Button) findViewById(R.id.bookshare_btn_download_images);
+				bookshare_download_not_available_text = (TextView) findViewById(R.id.bookshare_download_not_available_msg);
+
+				bookshare_book_detail_language
+						.setNextFocusDownId(R.id.bookshare_book_detail_category);
+				bookshare_book_detail_category
+						.setNextFocusDownId(R.id.bookshare_book_detail_publish_date);
+				bookshare_book_detail_publish_date
+						.setNextFocusUpId(R.id.bookshare_book_detail_category);
+				bookshare_book_detail_synopsis_text
+						.setNextFocusUpId(R.id.bookshare_book_detail_copyright);
+
+				book_detail_view.requestFocus();
+				// If the book is not downloadable, do not show the download
+				// button
+				if (!isDownloadable) {
+					btnDownload.setVisibility(View.GONE);
+					btnDownloadWithImages.setVisibility(View.GONE);
+					bookshare_book_detail_authors
+							.setNextFocusDownId(R.id.bookshare_download_not_available_msg);
+					bookshare_book_detail_isbn
+							.setNextFocusUpId(R.id.bookshare_download_not_available_msg);
+					bookshare_download_not_available_text
+							.setNextFocusUpId(R.id.bookshare_book_detail_authors);
+				} else {
+					bookshare_download_not_available_text
+							.setVisibility(View.GONE);
+					btnDownload
+							.setNextFocusDownId(R.id.bookshare_btn_download_images);
+					btnDownload
+							.setNextFocusUpId(R.id.bookshare_book_detail_authors);
+					btnDownloadWithImages
+							.setNextFocusDownId(R.id.bookshare_book_detail_isbn);
+					btnDownloadWithImages
+							.setNextFocusUpId(R.id.bookshare_btn_download);
+					bookshare_book_detail_authors
+							.setNextFocusDownId(R.id.bookshare_btn_download);
+
+					btnDownload
+							.setOnClickListener(Bookshare_Book_Details.this);
+					btnDownloadWithImages
+							.setOnClickListener(Bookshare_Book_Details.this);
+
+				}
+				if (!imagesAvailable) {
+					Log.d("checking images",
+							String.valueOf(imagesAvailable));
+					btnDownloadWithImages.setVisibility(View.GONE);
+				}
+				// Set the fields of the layout with book details
+				if (metadata_bean.getTitle() != null) {
+					for (int i = 0; i < metadata_bean.getTitle().length; i++) {
+						temp = temp + metadata_bean.getTitle()[i];
+					}
+					if (temp == null) {
+						temp = "";
+					}
+					bookshare_book_detail_title_text.append(temp);
+					temp = "";
+				}
+
+				if (metadata_bean.getAuthors() != null) {
+					for (int i = 0; i < metadata_bean.getAuthors().length; i++) {
+						if (i == 0) {
+							temp = metadata_bean.getAuthors()[i];
+						} else {
+							temp = temp + ", "
+									+ metadata_bean.getAuthors()[i];
+						}
+					}
+					if (temp == null) {
+						temp = "";
+					}
+					temp = temp.trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: temp;
+					bookshare_book_detail_authors.append(temp);
+					temp = "";
+				} else {
+					bookshare_book_detail_authors
+							.setText(getResources().getString(
+									R.string.book_details_not_available));
+				}
+
+				if (metadata_bean.getIsbn() != null) {
+					temp = metadata_bean.getIsbn().trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: metadata_bean.getIsbn();
+					bookshare_book_detail_isbn.append(temp);
+					temp = "";
+				} else {
+					bookshare_book_detail_isbn
+							.append(getResources().getString(
+									R.string.book_details_not_available));
+				}
+
+				if (metadata_bean.getLanguage() != null) {
+					temp = metadata_bean.getLanguage().trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: metadata_bean.getLanguage();
+					bookshare_book_detail_language.append(temp);
+					temp = "";
+				} else {
+					bookshare_book_detail_language
+							.append(getResources().getString(
+									R.string.book_details_not_available));
+				}
+
+				if (metadata_bean.getCategory() != null) {
+					for (int i = 0; i < metadata_bean.getCategory().length; i++) {
+						if (i == 0) {
+							temp = metadata_bean.getCategory()[i];
+						} else {
+							temp = temp + ", "
+									+ metadata_bean.getCategory()[i];
+						}
+					}
+
+					if (temp == null) {
+						temp = "";
+					}
+					temp = temp.trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: temp;
+					bookshare_book_detail_category.append(temp);
+					temp = "";
+				} else {
+					bookshare_book_detail_category
+							.append(getResources().getString(
+									R.string.book_details_not_available));
+				}
+
+				if (metadata_bean.getPublishDate() != null) {
+					StringBuilder str_date = new StringBuilder(
+							metadata_bean.getPublishDate());
+					String mm = str_date.substring(0, 2);
+					String month = "";
+					if (mm.equalsIgnoreCase("01")) {
+						month = "January";
+					} else if (mm.equals("02")) {
+						month = "February";
+					} else if (mm.equals("03")) {
+						month = "March";
+					} else if (mm.equals("04")) {
+						month = "April";
+					} else if (mm.equals("05")) {
+						month = "May";
+					} else if (mm.equals("06")) {
+						month = "June";
+					} else if (mm.equals("07")) {
+						month = "July";
+					} else if (mm.equals("08")) {
+						month = "August";
+					} else if (mm.equals("09")) {
+						month = "September";
+					} else if (mm.equals("10")) {
+						month = "October";
+					} else if (mm.equals("11")) {
+						month = "November";
+					} else if (mm.equals("12")) {
+						month = "December";
+					}
+
+					String publish_date = str_date.substring(2, 4) + " "
+							+ month + " " + str_date.substring(4);
+					temp = publish_date.trim().equals("") ? "Not available"
+							: publish_date;
+					bookshare_book_detail_publish_date.append(temp);
+					temp = "";
+				} else {
+					bookshare_book_detail_publish_date
+							.append(getResources().getString(
+									R.string.book_details_not_available));
+				}
+
+				if (metadata_bean.getPublisher() != null) {
+					temp = metadata_bean.getPublisher().trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: metadata_bean.getPublisher();
+					bookshare_book_detail_publisher.append(temp);
+					temp = "";
+				} else {
+					bookshare_book_detail_publisher
+							.append(getResources().getString(
+									R.string.book_details_not_available));
+				}
+
+				if (metadata_bean.getCopyright() != null) {
+					temp = metadata_bean.getCopyright().trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: metadata_bean.getCopyright();
+					bookshare_book_detail_copyright.append(temp);
+					temp = "";
+				} else {
+					bookshare_book_detail_copyright
+							.append(getResources().getString(
+									R.string.book_details_not_available));
+				}
+
+				if (metadata_bean.getBriefSynopsis() != null) {
+					for (int i = 0; i < metadata_bean.getBriefSynopsis().length; i++) {
+						if (i == 0) {
+							temp = metadata_bean.getBriefSynopsis()[i];
+						} else {
+							temp = temp + " "
+									+ metadata_bean.getBriefSynopsis()[i];
+						}
+					}
+					if (temp == null) {
+						temp = "";
+					}
+					temp = temp.trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: temp;
+					bookshare_book_detail_synopsis_text.append(temp.trim());
+				} else if (metadata_bean.getCompleteSynopsis() != null) {
+					for (int i = 0; i < metadata_bean.getCompleteSynopsis().length; i++) {
+						if (i == 0) {
+							temp = metadata_bean.getCompleteSynopsis()[i];
+						} else {
+							temp = temp
+									+ " "
+									+ metadata_bean.getCompleteSynopsis()[i];
+						}
+					}
+					if (temp == null) {
+						temp = "";
+					}
+					temp = temp.trim().equals("") ? getResources()
+							.getString(R.string.book_details_not_available)
+							: temp;
+
+					bookshare_book_detail_synopsis_text.append(temp.trim());
+				} else if (metadata_bean.getBriefSynopsis() == null
+						&& metadata_bean.getCompleteSynopsis() == null) {
+					bookshare_book_detail_synopsis_text
+							.append("No Synopsis available");
+				}
+
+				findViewById(R.id.bookshare_book_detail_title)
+						.requestFocus();
+			}
+
+		}
 
 	// Start downlading task if the OM download password has been received
 	@Override
@@ -198,306 +517,6 @@ public class Bookshare_Book_Details extends Activity implements OnClickListener 
 		super.onStop();
 		EasyTracker.getInstance().activityStop(this);
 	}
-
-	// Handler for processing the returned stream from book detail search
-	Handler handler = new Handler() {
-		public void handleMessage(Message msg) {
-			if (msg.what == DATA_FETCHED) {
-
-				String response_HTML = bws.convertStreamToString(inputStream);
-				String response = response_HTML.replace("&apos;", "\'")
-						.replace("&quot;", "\"").replace("&amp;", "and")
-						.replace("&#xd;\n", "\n").replace("&#x97;", "-");
-
-				// Parse the response String
-				parseResponse(response);
-				String temp = "";
-
-				if (metadata_bean == null) {
-					TextView txtView_msg = (TextView) findViewById(R.id.bookshare_blank_txtView_msg);
-					String noBookFoundMsg = "Book not found.";
-					txtView_msg.setText(noBookFoundMsg);
-					// todo : return book not found result code
-
-					View decorView = getWindow().getDecorView();
-					if (null != decorView) {
-						decorView.setContentDescription(noBookFoundMsg);
-					}
-
-					setResult(InternalReturnCodes.NO_BOOK_FOUND);
-					confirmAndClose(noBookFoundMsg, 3000);
-					return;
-				}
-				if (metadata_bean != null) {
-					setIsDownloadable(metadata_bean);
-					setImagesAvailable(metadata_bean);
-					setContentView(R.layout.bookshare_book_detail);
-					book_detail_view = (View) findViewById(R.id.book_detail_view);
-					bookshare_book_detail_title_text = (TextView) findViewById(R.id.bookshare_book_detail_title);
-					bookshare_book_detail_authors = (TextView) findViewById(R.id.bookshare_book_detail_authors);
-					bookshare_book_detail_isbn = (TextView) findViewById(R.id.bookshare_book_detail_isbn);
-					bookshare_book_detail_language = (TextView) findViewById(R.id.bookshare_book_detail_language);
-					bookshare_book_detail_category = (TextView) findViewById(R.id.bookshare_book_detail_category);
-					bookshare_book_detail_publish_date = (TextView) findViewById(R.id.bookshare_book_detail_publish_date);
-					bookshare_book_detail_publisher = (TextView) findViewById(R.id.bookshare_book_detail_publisher);
-					bookshare_book_detail_copyright = (TextView) findViewById(R.id.bookshare_book_detail_copyright);
-					bookshare_book_detail_synopsis_text = (TextView) findViewById(R.id.bookshare_book_detail_synopsis_text);
-
-					// We don't need subscription for books, needed only for
-					// periodicals
-					// So we hide it in the book details activity
-					chkbox_subscribe = (CheckBox) findViewById(R.id.bookshare_chkbx_subscribe_periodical);
-					chkbox_subscribe.setVisibility(View.GONE);
-					subscribe_described_text = (TextView) findViewById(R.id.bookshare_subscribe_explained);
-					subscribe_described_text.setVisibility(View.GONE);
-
-					btnDownload = (Button) findViewById(R.id.bookshare_btn_download);
-					btnDownloadWithImages = (Button) findViewById(R.id.bookshare_btn_download_images);
-					bookshare_download_not_available_text = (TextView) findViewById(R.id.bookshare_download_not_available_msg);
-
-					bookshare_book_detail_language
-							.setNextFocusDownId(R.id.bookshare_book_detail_category);
-					bookshare_book_detail_category
-							.setNextFocusDownId(R.id.bookshare_book_detail_publish_date);
-					bookshare_book_detail_publish_date
-							.setNextFocusUpId(R.id.bookshare_book_detail_category);
-					bookshare_book_detail_synopsis_text
-							.setNextFocusUpId(R.id.bookshare_book_detail_copyright);
-
-					book_detail_view.requestFocus();
-					// If the book is not downloadable, do not show the download
-					// button
-					if (!isDownloadable) {
-						btnDownload.setVisibility(View.GONE);
-						btnDownloadWithImages.setVisibility(View.GONE);
-						bookshare_book_detail_authors
-								.setNextFocusDownId(R.id.bookshare_download_not_available_msg);
-						bookshare_book_detail_isbn
-								.setNextFocusUpId(R.id.bookshare_download_not_available_msg);
-						bookshare_download_not_available_text
-								.setNextFocusUpId(R.id.bookshare_book_detail_authors);
-					} else {
-						bookshare_download_not_available_text
-								.setVisibility(View.GONE);
-						btnDownload
-								.setNextFocusDownId(R.id.bookshare_btn_download_images);
-						btnDownload
-								.setNextFocusUpId(R.id.bookshare_book_detail_authors);
-						btnDownloadWithImages
-								.setNextFocusDownId(R.id.bookshare_book_detail_isbn);
-						btnDownloadWithImages
-								.setNextFocusUpId(R.id.bookshare_btn_download);
-						bookshare_book_detail_authors
-								.setNextFocusDownId(R.id.bookshare_btn_download);
-
-						btnDownload
-								.setOnClickListener(Bookshare_Book_Details.this);
-						btnDownloadWithImages
-								.setOnClickListener(Bookshare_Book_Details.this);
-
-					}
-					if (!imagesAvailable) {
-						Log.i(LOG_TAG,
-								"images available"
-										+ String.valueOf(imagesAvailable));
-						btnDownloadWithImages.setVisibility(View.GONE);
-					}
-					// Set the fields of the layout with book details
-					if (metadata_bean.getTitle() != null) {
-						for (int i = 0; i < metadata_bean.getTitle().length; i++) {
-							temp = temp + metadata_bean.getTitle()[i];
-						}
-						if (temp == null) {
-							temp = "";
-						}
-						bookshare_book_detail_title_text.append(temp);
-						temp = "";
-					}
-
-					if (metadata_bean.getAuthors() != null) {
-						for (int i = 0; i < metadata_bean.getAuthors().length; i++) {
-							if (i == 0) {
-								temp = metadata_bean.getAuthors()[i];
-							} else {
-								temp = temp + ", "
-										+ metadata_bean.getAuthors()[i];
-							}
-						}
-						if (temp == null) {
-							temp = "";
-						}
-						temp = temp.trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: temp;
-						bookshare_book_detail_authors.append(temp);
-						temp = "";
-					} else {
-						bookshare_book_detail_authors
-								.setText(getResources().getString(
-										R.string.book_details_not_available));
-					}
-
-					if (metadata_bean.getIsbn() != null) {
-						temp = metadata_bean.getIsbn().trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: metadata_bean.getIsbn();
-						bookshare_book_detail_isbn.append(temp);
-						temp = "";
-					} else {
-						bookshare_book_detail_isbn
-								.append(getResources().getString(
-										R.string.book_details_not_available));
-					}
-
-					if (metadata_bean.getLanguage() != null) {
-						temp = metadata_bean.getLanguage().trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: metadata_bean.getLanguage();
-						bookshare_book_detail_language.append(temp);
-						temp = "";
-					} else {
-						bookshare_book_detail_language
-								.append(getResources().getString(
-										R.string.book_details_not_available));
-					}
-
-					if (metadata_bean.getCategory() != null) {
-						for (int i = 0; i < metadata_bean.getCategory().length; i++) {
-							if (i == 0) {
-								temp = metadata_bean.getCategory()[i];
-							} else {
-								temp = temp + ", "
-										+ metadata_bean.getCategory()[i];
-							}
-						}
-
-						if (temp == null) {
-							temp = "";
-						}
-						temp = temp.trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: temp;
-						bookshare_book_detail_category.append(temp);
-						temp = "";
-					} else {
-						bookshare_book_detail_category
-								.append(getResources().getString(
-										R.string.book_details_not_available));
-					}
-
-					if (metadata_bean.getPublishDate() != null) {
-						StringBuilder str_date = new StringBuilder(
-								metadata_bean.getPublishDate());
-						String mm = str_date.substring(0, 2);
-						String month = "";
-						if (mm.equalsIgnoreCase("01")) {
-							month = "January";
-						} else if (mm.equals("02")) {
-							month = "February";
-						} else if (mm.equals("03")) {
-							month = "March";
-						} else if (mm.equals("04")) {
-							month = "April";
-						} else if (mm.equals("05")) {
-							month = "May";
-						} else if (mm.equals("06")) {
-							month = "June";
-						} else if (mm.equals("07")) {
-							month = "July";
-						} else if (mm.equals("08")) {
-							month = "August";
-						} else if (mm.equals("09")) {
-							month = "September";
-						} else if (mm.equals("10")) {
-							month = "October";
-						} else if (mm.equals("11")) {
-							month = "November";
-						} else if (mm.equals("12")) {
-							month = "December";
-						}
-
-						String publish_date = str_date.substring(2, 4) + " "
-								+ month + " " + str_date.substring(4);
-						temp = publish_date.trim().equals("") ? "Not available"
-								: publish_date;
-						bookshare_book_detail_publish_date.append(temp);
-						temp = "";
-					} else {
-						bookshare_book_detail_publish_date
-								.append(getResources().getString(
-										R.string.book_details_not_available));
-					}
-
-					if (metadata_bean.getPublisher() != null) {
-						temp = metadata_bean.getPublisher().trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: metadata_bean.getPublisher();
-						bookshare_book_detail_publisher.append(temp);
-						temp = "";
-					} else {
-						bookshare_book_detail_publisher
-								.append(getResources().getString(
-										R.string.book_details_not_available));
-					}
-
-					if (metadata_bean.getCopyright() != null) {
-						temp = metadata_bean.getCopyright().trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: metadata_bean.getCopyright();
-						bookshare_book_detail_copyright.append(temp);
-						temp = "";
-					} else {
-						bookshare_book_detail_copyright
-								.append(getResources().getString(
-										R.string.book_details_not_available));
-					}
-
-					if (metadata_bean.getBriefSynopsis() != null) {
-						for (int i = 0; i < metadata_bean.getBriefSynopsis().length; i++) {
-							if (i == 0) {
-								temp = metadata_bean.getBriefSynopsis()[i];
-							} else {
-								temp = temp + " "
-										+ metadata_bean.getBriefSynopsis()[i];
-							}
-						}
-						if (temp == null) {
-							temp = "";
-						}
-						temp = temp.trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: temp;
-						bookshare_book_detail_synopsis_text.append(temp.trim());
-					} else if (metadata_bean.getCompleteSynopsis() != null) {
-						for (int i = 0; i < metadata_bean.getCompleteSynopsis().length; i++) {
-							if (i == 0) {
-								temp = metadata_bean.getCompleteSynopsis()[i];
-							} else {
-								temp = temp
-										+ " "
-										+ metadata_bean.getCompleteSynopsis()[i];
-							}
-						}
-						if (temp == null) {
-							temp = "";
-						}
-						temp = temp.trim().equals("") ? getResources()
-								.getString(R.string.book_details_not_available)
-								: temp;
-
-						bookshare_book_detail_synopsis_text.append(temp.trim());
-					} else if (metadata_bean.getBriefSynopsis() == null
-							&& metadata_bean.getCompleteSynopsis() == null) {
-						bookshare_book_detail_synopsis_text
-								.append("No Synopsis available");
-					}
-
-					findViewById(R.id.bookshare_book_detail_title)
-							.requestFocus();
-				}
-			}
-		}
-	};
 
 	private void showAlert(String msg) {
 		final VoiceableDialog downloadStartedDialog = new VoiceableDialog(
@@ -550,22 +569,20 @@ public class Bookshare_Book_Details extends Activity implements OnClickListener 
 	}
 
 	private Notification createDownloadProgressNotification(String title) {
-		final RemoteViews contentView = new RemoteViews(getPackageName(),
-				R.layout.download_notification);
-		contentView.setTextViewText(R.id.download_notification_title, title);
-		contentView.setTextViewText(R.id.download_notification_progress_text,
-				"");
-		contentView.setProgressBar(R.id.download_notification_progress_bar,
-				100, 0, true);
+
 
 		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
 				new Intent(), 0);
 
-		final Notification notification = new Notification();
-		notification.icon = android.R.drawable.stat_sys_download;
-		notification.flags |= Notification.FLAG_ONGOING_EVENT;
-		notification.contentView = contentView;
-		notification.contentIntent = contentIntent;
+
+		final Notification notification = new NotificationCompat.Builder(this)
+			.setContentTitle(title)
+			.setSmallIcon(android.R.drawable.stat_sys_download)
+			.setOngoing(true)
+			.setProgress(0, 0, true)
+			.setAutoCancel(true)
+			.setContentIntent(contentIntent)
+			.build();
 
 		return notification;
 	}
@@ -1258,12 +1275,12 @@ public class Bookshare_Book_Details extends Activity implements OnClickListener 
 			currentButton = (Button) findViewById(R.id.bookshare_btn_download);
 			break;
 		}
-		Downloadpressed();
+		downloadPressed();
 
 	}
 
 	// called after the download button is pressed, after onClick method
-	private void Downloadpressed() {
+	private void downloadPressed() {
 		// TODO Auto-generated method stub
 
 		final String downloadText = currentButton.getText().toString();

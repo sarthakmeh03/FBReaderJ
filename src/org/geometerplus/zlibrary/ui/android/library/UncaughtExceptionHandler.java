@@ -51,7 +51,7 @@ public class UncaughtExceptionHandler implements java.lang.Thread.UncaughtExcept
             SharedPreferences userInfo = PreferenceManager.getDefaultSharedPreferences(myContext);
             String user = userInfo.getString(Bookshare_Webservice_Login.USER, "");
 
-            Map<String, String> extraData = new HashMap<String,String>();
+            HashMap<String, String> extraData = new HashMap<String,String>();
             // only report email if user is logged into bookshare
             if (null != user && user.length() > 1) {
                 extraData.put("email", user);
@@ -60,7 +60,8 @@ public class UncaughtExceptionHandler implements java.lang.Thread.UncaughtExcept
             if (null != currentBook) {
                 extraData.put("book", currentBook.getTitle());
             }
-            BugSenseHandler.log("FBR", extraData, (Exception)exception);
+	        BugSenseHandler.addCrashExtraMap(extraData);
+            //BugSenseHandler.log("FBR", extraData, (Exception)exception);
             justShowAlert = true;
         }
         
