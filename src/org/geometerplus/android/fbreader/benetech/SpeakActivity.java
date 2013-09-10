@@ -519,20 +519,22 @@ public class SpeakActivity extends Activity implements TextToSpeech.OnInitListen
 
 		runOnUiThread(new Runnable() {
 			public void run() {
-                if (myIsActive != active) {
-                    ((Button)findViewById(R.id.speak_menu_pause)).setText(active ? R.string.on_press_pause : R.string.on_press_play);
-                    if(myIsActive){
-	                    WindowManager.LayoutParams params =
-	                            getWindow().getAttributes();
-	                            params.alpha=1;
-	                            getWindow().setAttributes(params);
-	                    } else {
-	                        WindowManager.LayoutParams params =
-	                                getWindow().getAttributes();
-	                                params.alpha=0.2f;
-	                                getWindow().setAttributes(params);
-	                    }
-                }
+				if(!accessibilityManager.isEnabled()){
+	                if (myIsActive != active) {
+	                    ((Button)findViewById(R.id.speak_menu_pause)).setText(active ? R.string.on_press_pause : R.string.on_press_play);
+	                    if(myIsActive){
+		                    WindowManager.LayoutParams params =
+		                            getWindow().getAttributes();
+		                            params.alpha=1;
+		                            getWindow().setAttributes(params);
+		                    } else {
+		                        WindowManager.LayoutParams params =
+		                                getWindow().getAttributes();
+		                                params.alpha=0.2f;
+		                                getWindow().setAttributes(params);
+		                    }
+	                }
+				}
 			}
 		});
 
