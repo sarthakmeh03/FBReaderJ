@@ -22,7 +22,7 @@ E.g., on my computer 'local.properties' consists of 2 lines:
   sdk.dir=/Users/geometer/android-sdk-mac_86
   ndk.dir=/Users/geometer/android-ndk-r4b
 
-2. Create 'developer.properties' file in the assets folder, that contains:
+2. Create a new folder 'developerSpecific' in assets folder.In that folder, Create 'developer.properties' file, that contains:
         developerKey='your bookshare developer key'
 	bugSenseKey='your bugsense key'
 	optOutGoogleAnalytics='your choice'
@@ -31,8 +31,8 @@ E.g., on my computer 'local.properties' consists of 2 lines:
   You can also optionally enter your Bugsense key to get crash reports.
  
  A sample file would be:
-    developerKey=589cywad8fbraeftqksbhusg
-	bugSenseKey=6974ab6c <don't enter this key>
+    developerKey=abcdefgh123456789abcdefg
+	bugSenseKey=abcd12
 	optOutGoogleAnalytics=false
 
 3. If you use Linux or MacOS, just run 'ant clean debug' to create an installable package that will provide debugging info.

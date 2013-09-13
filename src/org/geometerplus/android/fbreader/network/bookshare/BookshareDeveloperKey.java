@@ -18,14 +18,14 @@ public class BookshareDeveloperKey {
 	public static String BUGSENSE_KEY = "";
 	public static boolean OPT_OUT_GOOGLE_ANALYTICS = false;
 
-	public static void setContext(Context applicationContext) {
+	public static void initialize(Context applicationContext) {
 		// TODO Auto-generated method stub
 		final Context mcontext = applicationContext;
-		getproperties(mcontext);
+		getProperties(mcontext);
 
 	}
 
-	private static void getproperties(Context mcontext) {
+	private static void getProperties(Context mcontext) {
 		// TODO Auto-generated method stub
 		Resources resources = mcontext.getResources();
 		AssetManager assetManager = resources.getAssets();
