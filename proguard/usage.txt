@@ -1,0 +1,2823 @@
+android.support.v13.app.FragmentCompat
+android.support.v13.app.FragmentCompat$BaseFragmentCompatImpl
+android.support.v13.app.FragmentCompat$FragmentCompatImpl
+android.support.v13.app.FragmentCompat$ICSFragmentCompatImpl
+android.support.v13.app.FragmentCompat$ICSMR1FragmentCompatImpl
+android.support.v13.app.FragmentCompatICS
+android.support.v13.app.FragmentCompatICSMR1
+android.support.v13.app.FragmentPagerAdapter
+android.support.v13.app.FragmentStatePagerAdapter
+android.support.v13.dreams.BasicDream:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    112:112:protected android.view.View getContentView()
+    122:123:protected void invalidate()
+android.support.v13.dreams.BasicDream$BasicDreamView:
+    47:49:public BasicDream$BasicDreamView(android.support.v13.dreams.BasicDream,android.content.Context,android.util.AttributeSet)
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompatIcs
+android.support.v4.app.ActivityCompat
+android.support.v4.app.ActivityCompatHoneycomb:
+    27:27:ActivityCompatHoneycomb()
+    34:35:static void dump(android.app.Activity,java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+android.support.v4.app.BackStackRecord:
+    static final java.lang.String TAG
+    static final int OP_NULL
+    static final int OP_ADD
+    static final int OP_REPLACE
+    static final int OP_REMOVE
+    static final int OP_HIDE
+    static final int OP_SHOW
+    static final int OP_DETACH
+    static final int OP_ATTACH
+    296:296:public int getId()
+    300:300:public int getBreadCrumbTitleRes()
+    304:304:public int getBreadCrumbShortTitleRes()
+    308:311:public java.lang.CharSequence getBreadCrumbTitle()
+    315:318:public java.lang.CharSequence getBreadCrumbShortTitle()
+    337:338:public android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    342:343:public android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    347:348:public android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment,java.lang.String)
+    352:376:private void doAddOp(int,android.support.v4.app.Fragment,java.lang.String,int)
+    379:379:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    383:388:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    392:397:public android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    401:406:public android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    410:415:public android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    419:424:public android.support.v4.app.FragmentTransaction detach(android.support.v4.app.Fragment)
+    428:433:public android.support.v4.app.FragmentTransaction attach(android.support.v4.app.Fragment)
+    437:437:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    442:446:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    450:451:public android.support.v4.app.FragmentTransaction setTransition(int)
+    455:456:public android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    460:466:public android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    470:470:public boolean isAddToBackStackAllowed()
+    474:479:public android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    483:485:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    489:491:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    495:497:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    501:503:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    532:532:public int commit()
+    536:536:public int commitAllowingStateLoss()
+    540:549:int commitInternal(boolean)
+    727:727:public int getTransition()
+    731:731:public int getTransitionStyle()
+    735:735:public boolean isEmpty()
+android.support.v4.app.DialogFragment
+android.support.v4.app.Fragment:
+    static final int INITIALIZING
+    static final int CREATED
+    static final int ACTIVITY_CREATED
+    static final int STOPPED
+    static final int STARTED
+    static final int RESUMED
+    465:465:public final int getId()
+    472:472:public final java.lang.String getTag()
+    483:487:public void setArguments(android.os.Bundle)
+    494:494:public final android.os.Bundle getArguments()
+    506:511:public void setInitialSavedState(android.support.v4.app.Fragment$SavedState)
+    525:527:public void setTargetFragment(android.support.v4.app.Fragment,int)
+    533:533:public final android.support.v4.app.Fragment getTargetFragment()
+    540:540:public final int getTargetRequestCode()
+    554:557:public final android.content.res.Resources getResources()
+    567:567:public final java.lang.CharSequence getText(int)
+    577:577:public final java.lang.String getString(int)
+    590:590:public final varargs java.lang.String getString(int,java.lang.Object[])
+    601:601:public final android.support.v4.app.FragmentManager getFragmentManager()
+    608:608:public final boolean isAdded()
+    617:617:public final boolean isDetached()
+    626:626:public final boolean isRemoving()
+    637:637:public final boolean isInLayout()
+    645:645:public final boolean isResumed()
+    654:654:public final boolean isVisible()
+    666:666:public final boolean isHidden()
+    694:695:public void setRetainInstance(boolean)
+    698:698:public final boolean getRetainInstance()
+    709:715:public void setHasOptionsMenu(boolean)
+    727:733:public void setMenuVisibility(boolean)
+    749:754:public void setUserVisibleHint(boolean)
+    761:761:public boolean getUserVisibleHint()
+    768:776:public android.support.v4.app.LoaderManager getLoaderManager()
+    784:788:public void startActivity(android.content.Intent)
+    795:799:public void startActivityForResult(android.content.Intent,int)
+    950:950:public android.view.View getView()
+    1222:1223:public void registerForContextMenu(android.view.View)
+    1233:1234:public void unregisterForContextMenu(android.view.View)
+android.support.v4.app.Fragment$SavedState:
+    295:297:Fragment$SavedState(android.os.Bundle)
+android.support.v4.app.FragmentActivity:
+    private static final java.lang.String TAG
+    private static final java.lang.String FRAGMENTS_TAG
+    private static final int HONEYCOMB
+    static final int MSG_REALLY_STOPPED
+    static final int MSG_RESUME_PENDING
+    576:578:public java.lang.Object getLastCustomNonConfigurationInstance()
+    680:680:public android.support.v4.app.FragmentManager getSupportFragmentManager()
+    700:708:public void startActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int)
+    729:734:public android.support.v4.app.LoaderManager getSupportLoaderManager()
+android.support.v4.app.FragmentActivity$FragmentTag:
+    public static final int Fragment_id
+    public static final int Fragment_name
+    public static final int Fragment_tag
+    122:122:FragmentActivity$FragmentTag()
+android.support.v4.app.FragmentManager:
+    public static final int POP_BACK_STACK_INCLUSIVE
+    public abstract android.support.v4.app.FragmentTransaction beginTransaction()
+    139:139:public android.support.v4.app.FragmentTransaction openTransaction()
+    public abstract boolean executePendingTransactions()
+    public abstract android.support.v4.app.Fragment findFragmentById(int)
+    public abstract android.support.v4.app.Fragment findFragmentByTag(java.lang.String)
+    public abstract void popBackStack()
+    public abstract boolean popBackStackImmediate()
+    public abstract void popBackStack(java.lang.String,int)
+    public abstract boolean popBackStackImmediate(java.lang.String,int)
+    public abstract void popBackStack(int,int)
+    public abstract boolean popBackStackImmediate(int,int)
+    public abstract int getBackStackEntryCount()
+    public abstract android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    public abstract void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void putFragment(android.os.Bundle,java.lang.String,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.Fragment getFragment(android.os.Bundle,java.lang.String)
+    public abstract android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    334:335:public static void enableDebugLogging(boolean)
+android.support.v4.app.FragmentManager$BackStackEntry
+android.support.v4.app.FragmentManagerImpl:
+    static final java.lang.String TAG
+    static final java.lang.String TARGET_REQUEST_CODE_STATE_TAG
+    static final java.lang.String TARGET_STATE_TAG
+    static final java.lang.String VIEW_STATE_TAG
+    static final java.lang.String USER_VISIBLE_HINT_TAG
+    static final int ANIM_DUR
+    public static final int ANIM_STYLE_OPEN_ENTER
+    public static final int ANIM_STYLE_OPEN_EXIT
+    public static final int ANIM_STYLE_CLOSE_ENTER
+    public static final int ANIM_STYLE_CLOSE_EXIT
+    public static final int ANIM_STYLE_FADE_ENTER
+    public static final int ANIM_STYLE_FADE_EXIT
+    426:426:public android.support.v4.app.FragmentTransaction beginTransaction()
+    436:441:public void popBackStack()
+    452:457:public void popBackStack(java.lang.String,int)
+    461:463:public boolean popBackStackImmediate(java.lang.String,int)
+    468:476:public void popBackStack(int,int)
+    480:485:public boolean popBackStackImmediate(int,int)
+    490:490:public int getBackStackEntryCount()
+    495:495:public android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    500:504:public void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    508:511:public void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    542:550:public android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    1301:1309:public android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
+    1324:1340:public void enqueueAction(java.lang.Runnable,boolean)
+    1343:1359:public int allocBackStackIndex(android.support.v4.app.BackStackRecord)
+android.support.v4.app.FragmentManagerImpl$2
+android.support.v4.app.FragmentManagerImpl$3
+android.support.v4.app.FragmentManagerImpl$4
+android.support.v4.app.FragmentPagerAdapter
+android.support.v4.app.FragmentStatePagerAdapter
+android.support.v4.app.FragmentTransaction:
+    public static final int TRANSIT_ENTER_MASK
+    public static final int TRANSIT_EXIT_MASK
+    public static final int TRANSIT_UNSET
+    public static final int TRANSIT_NONE
+    public static final int TRANSIT_FRAGMENT_OPEN
+    public static final int TRANSIT_FRAGMENT_CLOSE
+    public static final int TRANSIT_FRAGMENT_FADE
+    public abstract android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction detach(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction attach(android.support.v4.app.Fragment)
+    public abstract boolean isEmpty()
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    public abstract android.support.v4.app.FragmentTransaction setTransition(int)
+    public abstract android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    public abstract android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    public abstract boolean isAddToBackStackAllowed()
+    public abstract android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    public abstract int commit()
+    public abstract int commitAllowingStateLoss()
+android.support.v4.app.ListFragment
+android.support.v4.app.ListFragment$1
+android.support.v4.app.ListFragment$2
+android.support.v4.app.LoaderManager:
+    public abstract android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract void destroyLoader(int)
+    public abstract android.support.v4.content.Loader getLoader(int)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    177:178:public static void enableDebugLogging(boolean)
+android.support.v4.app.LoaderManagerImpl:
+    static final java.lang.String TAG
+    boolean mRetainingStarted
+    boolean mCreatingLoader
+    486:489:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    495:500:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createAndInstallLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    505:512:void installLoader(android.support.v4.app.LoaderManagerImpl$LoaderInfo)
+    540:562:public android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    590:644:public android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    655:675:public void destroyLoader(int)
+    683:694:public android.support.v4.content.Loader getLoader(int)
+android.support.v4.app.LoaderManagerImpl$LoaderInfo:
+    226:230:public LoaderManagerImpl$LoaderInfo(android.support.v4.app.LoaderManagerImpl,int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    360:413:public void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.app.NavUtils
+android.support.v4.app.NavUtils$NavUtilsImpl
+android.support.v4.app.NavUtils$NavUtilsImplBase
+android.support.v4.app.NavUtils$NavUtilsImplJB
+android.support.v4.app.NavUtilsJB
+android.support.v4.app.NotificationCompat:
+    public static final int FLAG_HIGH_PRIORITY
+    public static final int PRIORITY_DEFAULT
+    public static final int PRIORITY_LOW
+    public static final int PRIORITY_MIN
+    public static final int PRIORITY_HIGH
+    public static final int PRIORITY_MAX
+    30:747:public NotificationCompat()
+android.support.v4.app.NotificationCompat$Action:
+    752:756:public NotificationCompat$Action(int,java.lang.CharSequence,android.app.PendingIntent)
+android.support.v4.app.NotificationCompat$BigPictureStyle:
+    614:616:public NotificationCompat$BigPictureStyle(android.support.v4.app.NotificationCompat$Builder)
+    623:624:public android.support.v4.app.NotificationCompat$BigPictureStyle setBigContentTitle(java.lang.CharSequence)
+    631:633:public android.support.v4.app.NotificationCompat$BigPictureStyle setSummaryText(java.lang.CharSequence)
+    637:638:public android.support.v4.app.NotificationCompat$BigPictureStyle bigPicture(android.graphics.Bitmap)
+android.support.v4.app.NotificationCompat$BigTextStyle:
+    665:667:public NotificationCompat$BigTextStyle(android.support.v4.app.NotificationCompat$Builder)
+    674:675:public android.support.v4.app.NotificationCompat$BigTextStyle setBigContentTitle(java.lang.CharSequence)
+    682:684:public android.support.v4.app.NotificationCompat$BigTextStyle setSummaryText(java.lang.CharSequence)
+    688:689:public android.support.v4.app.NotificationCompat$BigTextStyle bigText(java.lang.CharSequence)
+android.support.v4.app.NotificationCompat$Builder:
+    209:210:public android.support.v4.app.NotificationCompat$Builder setWhen(long)
+    225:226:public android.support.v4.app.NotificationCompat$Builder setUsesChronometer(boolean)
+    252:254:public android.support.v4.app.NotificationCompat$Builder setSmallIcon(int,int)
+    269:270:public android.support.v4.app.NotificationCompat$Builder setContentText(java.lang.CharSequence)
+    279:280:public android.support.v4.app.NotificationCompat$Builder setSubText(java.lang.CharSequence)
+    289:290:public android.support.v4.app.NotificationCompat$Builder setNumber(int)
+    297:298:public android.support.v4.app.NotificationCompat$Builder setContentInfo(java.lang.CharSequence)
+    316:317:public android.support.v4.app.NotificationCompat$Builder setContent(android.widget.RemoteViews)
+    341:342:public android.support.v4.app.NotificationCompat$Builder setDeleteIntent(android.app.PendingIntent)
+    359:361:public android.support.v4.app.NotificationCompat$Builder setFullScreenIntent(android.app.PendingIntent,boolean)
+    369:370:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence)
+    379:381:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence,android.widget.RemoteViews)
+    388:389:public android.support.v4.app.NotificationCompat$Builder setLargeIcon(android.graphics.Bitmap)
+    396:398:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri)
+    408:410:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri,int)
+    420:421:public android.support.v4.app.NotificationCompat$Builder setVibrate(long[])
+    430:436:public android.support.v4.app.NotificationCompat$Builder setLights(int,int,int)
+    460:461:public android.support.v4.app.NotificationCompat$Builder setOnlyAlertOnce(boolean)
+    486:490:public android.support.v4.app.NotificationCompat$Builder setDefaults(int)
+    513:514:public android.support.v4.app.NotificationCompat$Builder setPriority(int)
+    526:527:public android.support.v4.app.NotificationCompat$Builder addAction(int,java.lang.CharSequence,android.app.PendingIntent)
+    536:542:public android.support.v4.app.NotificationCompat$Builder setStyle(android.support.v4.app.NotificationCompat$Style)
+    550:550:public android.app.Notification getNotification()
+android.support.v4.app.NotificationCompat$InboxStyle:
+    719:721:public NotificationCompat$InboxStyle(android.support.v4.app.NotificationCompat$Builder)
+    728:729:public android.support.v4.app.NotificationCompat$InboxStyle setBigContentTitle(java.lang.CharSequence)
+    736:738:public android.support.v4.app.NotificationCompat$InboxStyle setSummaryText(java.lang.CharSequence)
+    742:743:public android.support.v4.app.NotificationCompat$InboxStyle addLine(java.lang.CharSequence)
+android.support.v4.app.NotificationCompat$Style:
+    android.support.v4.app.NotificationCompat$Builder mBuilder
+    574:580:public void setBuilder(android.support.v4.app.NotificationCompat$Builder)
+    583:587:public android.app.Notification build()
+android.support.v4.app.NotificationCompatHoneycomb:
+    25:25:NotificationCompatHoneycomb()
+android.support.v4.app.NotificationCompatIceCreamSandwich:
+    25:25:NotificationCompatIceCreamSandwich()
+android.support.v4.app.ServiceCompat
+android.support.v4.app.ShareCompat
+android.support.v4.app.ShareCompat$IntentBuilder
+android.support.v4.app.ShareCompat$IntentReader
+android.support.v4.app.ShareCompat$ShareCompatImpl
+android.support.v4.app.ShareCompat$ShareCompatImplBase
+android.support.v4.app.ShareCompat$ShareCompatImplICS
+android.support.v4.app.ShareCompat$ShareCompatImplJB
+android.support.v4.app.ShareCompatICS
+android.support.v4.app.ShareCompatJB
+android.support.v4.app.TaskStackBuilder
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImpl
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplBase
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplHoneycomb
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplJellybean
+android.support.v4.app.TaskStackBuilderHoneycomb
+android.support.v4.app.TaskStackBuilderJellybean
+android.support.v4.content.AsyncTaskLoader
+android.support.v4.content.AsyncTaskLoader$LoadTask
+android.support.v4.content.ContextCompat
+android.support.v4.content.ContextCompatHoneycomb
+android.support.v4.content.ContextCompatJellybean
+android.support.v4.content.CursorLoader
+android.support.v4.content.IntentCompat
+android.support.v4.content.Loader:
+    android.content.Context mContext
+    90:92:public Loader(android.content.Context)
+    102:105:public void deliverResult(java.lang.Object)
+    111:111:public android.content.Context getContext()
+    118:118:public int getId()
+    157:157:public boolean isStarted()
+    166:166:public boolean isAbandoned()
+    175:175:public boolean isReset()
+    217:218:public void forceLoad()
+    225:225:protected void onForceLoad()
+    261:263:public void abandon()
+    275:275:protected void onAbandon()
+    312:314:public boolean takeContentChanged()
+    326:334:public void onContentChanged()
+android.support.v4.content.Loader$ForceLoadContentObserver
+android.support.v4.content.Loader$OnLoadCompleteListener:
+    public abstract void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.content.LocalBroadcastManager
+android.support.v4.content.LocalBroadcastManager$1
+android.support.v4.content.LocalBroadcastManager$BroadcastRecord
+android.support.v4.content.LocalBroadcastManager$ReceiverRecord
+android.support.v4.content.ModernAsyncTask
+android.support.v4.content.ModernAsyncTask$1
+android.support.v4.content.ModernAsyncTask$2
+android.support.v4.content.ModernAsyncTask$3
+android.support.v4.content.ModernAsyncTask$4
+android.support.v4.content.ModernAsyncTask$AsyncTaskResult
+android.support.v4.content.ModernAsyncTask$InternalHandler
+android.support.v4.content.ModernAsyncTask$Status
+android.support.v4.content.ModernAsyncTask$WorkerRunnable
+android.support.v4.content.pm.ActivityInfoCompat
+android.support.v4.database.DatabaseUtilsCompat
+android.support.v4.net.ConnectivityManagerCompat
+android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompatGingerbread
+android.support.v4.net.ConnectivityManagerCompatHoneycombMR2
+android.support.v4.net.ConnectivityManagerCompatJellyBean
+android.support.v4.net.TrafficStatsCompat
+android.support.v4.net.TrafficStatsCompat$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$SocketTags
+android.support.v4.net.TrafficStatsCompat$IcsTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$TrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompatIcs
+android.support.v4.os.ParcelableCompat:
+    26:42:public ParcelableCompat()
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2Stub:
+    22:22:ParcelableCompatCreatorHoneycombMR2Stub()
+android.support.v4.util.DebugUtils:
+    25:25:public DebugUtils()
+android.support.v4.util.LongSparseArray
+android.support.v4.util.LruCache
+android.support.v4.util.SparseArrayCompat:
+    107:111:public void removeAtRange(int,int)
+    236:241:public void setValueAt(int,java.lang.Object)
+    249:253:public int indexOfKey(int)
+    265:273:public int indexOfValue(java.lang.Object)
+    296:323:public void append(int,java.lang.Object)
+android.support.v4.util.TimeUtils
+android.support.v4.view.AccessibilityDelegateCompat
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl$1
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl$1
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateStubImpl
+android.support.v4.view.AccessibilityDelegateCompatIcs
+android.support.v4.view.AccessibilityDelegateCompatIcs$1
+android.support.v4.view.AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge
+android.support.v4.view.AccessibilityDelegateCompatJellyBean
+android.support.v4.view.AccessibilityDelegateCompatJellyBean$1
+android.support.v4.view.AccessibilityDelegateCompatJellyBean$AccessibilityDelegateBridgeJellyBean
+android.support.v4.view.KeyEventCompat:
+    25:95:public KeyEventCompat()
+    127:127:public static int normalizeMetaState(int)
+    131:131:public static boolean metaStateHasModifiers(int,int)
+    135:135:public static boolean metaStateHasNoModifiers(int)
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl:
+    private static final int META_MODIFIER_MASK
+    private static final int META_ALL_MASK
+android.support.v4.view.KeyEventCompat$HoneycombKeyEventVersionImpl:
+    98:98:public int normalizeMetaState(int)
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl:
+    public abstract int normalizeMetaState(int)
+android.support.v4.view.KeyEventCompatHoneycomb:
+    24:24:KeyEventCompatHoneycomb()
+    26:26:public static int normalizeMetaState(int)
+android.support.v4.view.MenuCompat
+android.support.v4.view.MenuCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompat
+android.support.v4.view.MenuItemCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuItemCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuItemCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompatHoneycomb
+android.support.v4.view.MotionEventCompat:
+    public static final int ACTION_MASK
+    public static final int ACTION_POINTER_DOWN
+    public static final int ACTION_POINTER_UP
+    public static final int ACTION_HOVER_MOVE
+    public static final int ACTION_SCROLL
+    public static final int ACTION_POINTER_INDEX_MASK
+    public static final int ACTION_POINTER_INDEX_SHIFT
+    public static final int ACTION_HOVER_ENTER
+    public static final int ACTION_HOVER_EXIT
+    25:75:public MotionEventCompat()
+    174:174:public static int getActionMasked(android.view.MotionEvent)
+android.support.v4.view.MotionEventCompatEclair:
+    24:24:MotionEventCompatEclair()
+android.support.v4.view.PagerAdapter:
+    private android.database.DataSetObservable mObservable
+    public static final int POSITION_UNCHANGED
+    public static final int POSITION_NONE
+    78:79:public PagerAdapter()
+    268:268:public int getItemPosition(java.lang.Object)
+    276:277:public void notifyDataSetChanged()
+    280:281:void registerDataSetObserver(android.database.DataSetObserver)
+    284:285:void unregisterDataSetObserver(android.database.DataSetObserver)
+    297:297:public java.lang.CharSequence getPageTitle(int)
+android.support.v4.view.PagerTabStrip
+android.support.v4.view.PagerTabStrip$1
+android.support.v4.view.PagerTabStrip$2
+android.support.v4.view.PagerTitleStrip
+android.support.v4.view.PagerTitleStrip$1
+android.support.v4.view.PagerTitleStrip$PageListener
+android.support.v4.view.PagerTitleStrip$PagerTitleStripImpl
+android.support.v4.view.PagerTitleStrip$PagerTitleStripImplBase
+android.support.v4.view.PagerTitleStrip$PagerTitleStripImplIcs
+android.support.v4.view.PagerTitleStripIcs
+android.support.v4.view.PagerTitleStripIcs$SingleLineAllCapsTransform
+android.support.v4.view.VelocityTrackerCompat:
+    25:51:public VelocityTrackerCompat()
+    91:91:public static float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$BaseVelocityTrackerVersionImpl:
+    44:44:public float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl:
+    58:58:public float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl:
+    public abstract float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompatHoneycomb:
+    24:24:VelocityTrackerCompatHoneycomb()
+    29:29:public static float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.ViewCompat:
+    public static final int OVER_SCROLL_ALWAYS
+    public static final int OVER_SCROLL_IF_CONTENT_SCROLLS
+    public static final int OVER_SCROLL_NEVER
+    private static final long FAKE_FRAME_TIME
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_AUTO
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_YES
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_NO
+    29:186:public ViewCompat()
+    264:264:public static boolean canScrollVertically(android.view.View,int)
+    293:294:public static void setOverScrollMode(android.view.View,int)
+    330:331:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    363:364:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    399:400:public static void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    414:415:public static void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+    426:426:public static boolean hasTransientState(android.view.View)
+    437:438:public static void setHasTransientState(android.view.View,boolean)
+    468:469:public static void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    482:483:public static void postOnAnimation(android.view.View,java.lang.Runnable)
+    499:500:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    515:515:public static int getImportantForAccessibility(android.view.View)
+    531:532:public static void setImportantForAccessibility(android.view.View,int)
+    558:558:public static android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompat$BaseViewCompatImpl:
+    89:89:public boolean canScrollVertically(android.view.View,int)
+    96:96:public void setOverScrollMode(android.view.View,int)
+    99:99:public void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+    102:102:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    105:105:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    108:108:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    111:111:public boolean hasTransientState(android.view.View)
+    115:115:public void setHasTransientState(android.view.View,boolean)
+    120:121:public void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    123:124:public void postOnAnimation(android.view.View,java.lang.Runnable)
+    126:127:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    132:132:public int getImportantForAccessibility(android.view.View)
+    136:136:public void setImportantForAccessibility(android.view.View,int)
+    138:138:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompat$GBViewCompatImpl:
+    149:150:public void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompat$ICSViewCompatImpl:
+    166:166:public boolean canScrollVertically(android.view.View,int)
+    170:171:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    174:175:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    178:179:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    182:183:public void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+android.support.v4.view.ViewCompat$JBViewCompatImpl:
+    189:189:public boolean hasTransientState(android.view.View)
+    193:194:public void setHasTransientState(android.view.View,boolean)
+    201:202:public void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    205:206:public void postOnAnimation(android.view.View,java.lang.Runnable)
+    209:210:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    213:213:public int getImportantForAccessibility(android.view.View)
+    217:218:public void setImportantForAccessibility(android.view.View,int)
+    221:225:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompat$ViewCompatImpl:
+    public abstract boolean canScrollVertically(android.view.View,int)
+    public abstract void setOverScrollMode(android.view.View,int)
+    public abstract void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    public abstract void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+    public abstract boolean hasTransientState(android.view.View)
+    public abstract void setHasTransientState(android.view.View,boolean)
+    public abstract void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    public abstract void postOnAnimation(android.view.View,java.lang.Runnable)
+    public abstract void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    public abstract int getImportantForAccessibility(android.view.View)
+    public abstract void setImportantForAccessibility(android.view.View,int)
+    public abstract android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompatGingerbread:
+    21:21:ViewCompatGingerbread()
+    27:28:public static void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompatHC:
+    21:21:ViewCompatHC()
+android.support.v4.view.ViewCompatICS:
+    27:27:ViewCompatICS()
+    34:34:public static boolean canScrollVertically(android.view.View,int)
+    38:39:public static void setAccessibilityDelegate(android.view.View,java.lang.Object)
+    42:43:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    46:47:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    50:51:public static void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object)
+android.support.v4.view.ViewCompatJB:
+    24:24:public ViewCompatJB()
+    27:27:public static boolean hasTransientState(android.view.View)
+    31:32:public static void setHasTransientState(android.view.View,boolean)
+    40:41:public static void postInvalidateOnAnimation(android.view.View,int,int,int,int)
+    44:45:public static void postOnAnimation(android.view.View,java.lang.Runnable)
+    48:49:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    52:52:public static int getImportantForAccessibility(android.view.View)
+    56:57:public static void setImportantForAccessibility(android.view.View,int)
+    60:60:public static java.lang.Object getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewConfigurationCompat
+android.support.v4.view.ViewConfigurationCompat$BaseViewConfigurationVersionImpl
+android.support.v4.view.ViewConfigurationCompat$FroyoViewConfigurationVersionImpl
+android.support.v4.view.ViewConfigurationCompat$ViewConfigurationVersionImpl
+android.support.v4.view.ViewConfigurationCompatFroyo
+android.support.v4.view.ViewGroupCompat
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatIcsImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatStubImpl
+android.support.v4.view.ViewGroupCompatIcs
+android.support.v4.view.ViewPager:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    private static final boolean USE_CACHE
+    private static final int DEFAULT_OFFSCREEN_PAGES
+    private static final int MAX_SETTLE_DURATION
+    private static final int MIN_DISTANCE_FOR_FLING
+    private static final int DEFAULT_GUTTER_SIZE
+    private android.support.v4.view.ViewPager$PagerObserver mObserver
+    private boolean mIgnoreGutter
+    private static final int INVALID_POINTER
+    private static final int CLOSE_ENOUGH
+    private long mFakeDragBeginTime
+    private android.support.v4.view.ViewPager$OnAdapterChangeListener mAdapterChangeListener
+    public static final int SCROLL_STATE_IDLE
+    public static final int SCROLL_STATE_DRAGGING
+    public static final int SCROLL_STATE_SETTLING
+    296:298:public ViewPager(android.content.Context)
+    301:303:public ViewPager(android.content.Context,android.util.AttributeSet)
+    306:330:void initViewPager()
+    349:387:public void setAdapter(android.support.v4.view.PagerAdapter)
+    390:398:private void removeNonDecorViews()
+    406:406:public android.support.v4.view.PagerAdapter getAdapter()
+    410:411:void setOnAdapterChangeListener(android.support.v4.view.ViewPager$OnAdapterChangeListener)
+    421:423:public void setCurrentItem(int)
+    437:437:public int getCurrentItem()
+    504:505:public void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+    514:516:android.support.v4.view.ViewPager$OnPageChangeListener setInternalPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+    527:527:public int getOffscreenPageLimit()
+    548:557:public void setOffscreenPageLimit(int)
+    568:575:public void setPageMargin(int)
+    583:583:public int getPageMargin()
+    592:596:public void setPageMarginDrawable(android.graphics.drawable.Drawable)
+    604:605:public void setPageMarginDrawable(int)
+    638:639:void smoothScrollTo(int,int)
+    705:769:void dataSetChanged()
+    2025:2041:public boolean beginFakeDrag()
+    2051:2072:public void endFakeDrag()
+    2082:2120:public void fakeDragBy(float)
+    2132:2132:public boolean isFakeDragging()
+    82:82:static synthetic android.support.v4.view.PagerAdapter access$100(android.support.v4.view.ViewPager)
+    82:82:static synthetic int access$200(android.support.v4.view.ViewPager)
+android.support.v4.view.ViewPager$MyAccessibilityDelegate
+android.support.v4.view.ViewPager$OnAdapterChangeListener
+android.support.v4.view.ViewPager$PagerObserver
+android.support.v4.view.ViewPager$SimpleOnPageChangeListener
+android.support.v4.view.accessibility.AccessibilityEventCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventIcsImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventStubImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventVersionImpl
+android.support.v4.view.accessibility.AccessibilityEventCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl$1
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerStubImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerVersionImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$1
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoIcsImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoStubImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatIcs
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatJellyBean
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderImpl
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$1
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$AccessibilityNodeInfoBridge
+android.support.v4.view.accessibility.AccessibilityRecordCompat
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsMr1Impl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordJellyBeanImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordStubImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcs
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcsMr1
+android.support.v4.view.accessibility.AccessibilityRecordCompatJellyBean
+android.support.v4.widget.CursorAdapter
+android.support.v4.widget.CursorAdapter$1
+android.support.v4.widget.CursorAdapter$ChangeObserver
+android.support.v4.widget.CursorAdapter$MyDataSetObserver
+android.support.v4.widget.CursorFilter
+android.support.v4.widget.CursorFilter$CursorFilterClient
+android.support.v4.widget.EdgeEffectCompat:
+    132:134:public EdgeEffectCompat(android.content.Context)
+    204:204:public boolean onAbsorb(int)
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl:
+    60:60:public java.lang.Object newEdgeEffect(android.content.Context)
+    82:82:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl:
+    92:92:public java.lang.Object newEdgeEffect(android.content.Context)
+    116:116:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl:
+    public abstract java.lang.Object newEdgeEffect(android.content.Context)
+    public abstract boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompatIcs:
+    28:28:EdgeEffectCompatIcs()
+    30:30:public static java.lang.Object newEdgeEffect(android.content.Context)
+    57:58:public static boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.ResourceCursorAdapter
+android.support.v4.widget.ScrollerCompat
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplIcs
+android.support.v4.widget.ScrollerCompatIcs
+android.support.v4.widget.SearchViewCompat
+android.support.v4.widget.SearchViewCompat$OnQueryTextListenerCompat
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl$1
+android.support.v4.widget.SearchViewCompat$SearchViewCompatImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatStubImpl
+android.support.v4.widget.SearchViewCompatHoneycomb
+android.support.v4.widget.SearchViewCompatHoneycomb$1
+android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBridge
+android.support.v4.widget.SimpleCursorAdapter
+android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
+android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+biz.source_code.base64Coder.Base64Coder:
+    public static java.lang.String encodeString(java.lang.String)
+    public static java.lang.String encodeLines(byte[])
+    public static java.lang.String encodeLines(byte[],int,int,int,java.lang.String)
+    public static char[] encode(byte[])
+    public static char[] encode(byte[],int)
+    public static char[] encode(byte[],int,int)
+    public static java.lang.String decodeString(java.lang.String)
+    public static byte[] decodeLines(java.lang.String)
+    private Base64Coder()
+com.bugsense.trace.BugProfiler
+com.bugsense.trace.BugProfiler$1
+com.bugsense.trace.BugSense:
+    public BugSense()
+com.bugsense.trace.BugSenseHandler:
+    public BugSenseHandler()
+    public static void sendDataOverWiFiOnly()
+    public static void setExceptionCallback(com.bugsense.trace.ExceptionCallback)
+    public static void leaveBreadcrumb(java.lang.String)
+    public static void closeSession(android.content.Context)
+    public static void sendEvent(java.lang.String)
+    public static void setUserIdentifier(java.lang.String)
+    public static void sendExceptionMap(java.util.HashMap,java.lang.Exception)
+    public static void sendException(java.lang.Exception)
+    public static void sendExceptionMessage(java.lang.String,java.lang.String,java.lang.Exception)
+    public static void setLogging(boolean)
+    public static void setLogging(int)
+    public static void setLogging(java.lang.String)
+    public static void setLogging(int,java.lang.String)
+    public static void setLocalizedNotification(java.lang.String,java.lang.String,java.lang.String)
+    public static void addCrashExtraData(java.lang.String,java.lang.String)
+    public static void removeCrashExtraData(java.lang.String)
+    public static void clearCrashExtraData()
+    public static void useProxy(boolean)
+com.bugsense.trace.CrashMechanism:
+    private static final int MAX_CRASHES
+    private static final int MAX_EXCEPTIONS
+    public static final int HANDLEDEXCEPTION
+    protected static final int CRASH
+    static final java.lang.String fixfilename
+com.bugsense.trace.CryptoHttpClient:
+    private static final java.lang.String BASE64KEYANALYTICS
+    private static final java.lang.String BASE64KEYERRORS
+    protected static final int ANALYTICS
+    protected static final int ERRORS
+com.bugsense.trace.EventsMechanism:
+    private static final int MAX_EVENTS_SIZE
+    private static final int MAX_BYTES
+    protected static java.lang.String getFlatLine(java.lang.String)
+    protected static void saveEvent(java.lang.String)
+com.bugsense.trace.EventsMechanism$2
+com.bugsense.trace.G:
+    protected static final java.lang.String BUGSENSE_VERSION
+    protected static final int MAX_BREADCRUMBS
+    protected static final java.lang.String CRASH_READ_COMPLETED
+    protected static final java.lang.String PINGS_READ_COMPLETED
+    public G()
+com.bugsense.trace.PingsMechanism:
+    private static final int MAX_PINGS_SIZE
+    private static final int MAX_GNIPS_SIZE
+    private static final int MAX_PERFS_SIZE
+    protected static final int PING
+    protected static final int GNIP
+    protected static final int TRANS_START
+    protected static final int TRANS_END
+com.bugsense.trace.Utils:
+    public static final int STATE_OFF
+    public static final int STATE_ON
+    public static final int STATE_DONT_KNOW
+    public Utils()
+    public static java.lang.String MD5(java.lang.String)
+    public static boolean isOnWifi(android.content.Context)
+com.google.analytics.tracking.android.AdHitIdGenerator:
+    22:24:AdHitIdGenerator(boolean)
+com.google.analytics.tracking.android.AdMobInfo:
+    49:49:java.util.Map getJoinIds()
+    60:61:void setAdHitId(int)
+    64:64:int getAdHitId()
+com.google.analytics.tracking.android.AdMobInfo$AdMobKey
+com.google.analytics.tracking.android.Analytics:
+    public abstract boolean debugEnabled()
+    public abstract com.google.analytics.tracking.android.Tracker getDefaultTracker()
+    public abstract void setDefaultTracker(com.google.analytics.tracking.android.Tracker)
+    public abstract void setAppOptOut(boolean)
+    public abstract void requestAppOptOut(com.google.analytics.tracking.android.Analytics$AppOptOutCallback)
+com.google.analytics.tracking.android.AnalyticsConstants
+com.google.analytics.tracking.android.AnalyticsGmsCoreClient:
+    public static final int BIND_FAILED
+    public static final int REMOTE_EXECUTION_FAILED
+    private static final java.lang.String SERVICE_DESCRIPTOR
+    static final java.lang.String SERVICE_ACTION
+    private static final int BIND_ADJUST_WITH_ACTIVITY
+    public static final java.lang.String KEY_APP_PACKAGE_NAME
+com.google.analytics.tracking.android.AnalyticsReceiver:
+    static final java.lang.String INSTALL_ACTION
+    static final java.lang.String CAMPAIGN_KEY
+com.google.analytics.tracking.android.AnalyticsStore:
+    public abstract void setDispatch(boolean)
+    public abstract void close()
+    public abstract void setThrottlingEnabled(boolean)
+com.google.analytics.tracking.android.EasyTracker:
+    static final int NUM_MILLISECONDS_TO_WAIT_FOR_OPEN_ACTIVITY
+    292:293:void setUncaughtExceptionHandler(java.lang.Thread$UncaughtExceptionHandler)
+    404:407:public void dispatch()
+    443:444:static void clearTracker()
+    450:451:void setClock(com.google.analytics.tracking.android.Clock)
+    457:457:int getActivitiesActive()
+com.google.analytics.tracking.android.EasyTracker$NoopTracker:
+    private java.lang.String appId
+    private java.lang.String appInstallerId
+    private boolean useSecure
+    private com.google.analytics.tracking.android.ExceptionParser exceptionParser
+    485:485:public void setAppScreen(java.lang.String)
+    489:489:public void trackView()
+    501:501:public void trackTransaction(com.google.analytics.tracking.android.Transaction)
+    509:509:public void trackException(java.lang.String,java.lang.Throwable,boolean)
+    514:514:public void trackTiming(java.lang.String,long,java.lang.String,java.lang.String)
+    518:518:public void trackSocial(java.lang.String,java.lang.String,java.lang.String)
+    522:522:public void close()
+    526:526:public void send(java.lang.String,java.util.Map)
+    530:530:public java.lang.String get(java.lang.String)
+    535:535:public void set(java.lang.String,java.lang.String)
+    539:539:public java.lang.String getTrackingId()
+    549:549:public boolean anonymizeIpEnabled()
+    559:559:public double getSampleRate()
+    564:565:public void setUseSecure(boolean)
+    569:569:public boolean getUseSecure()
+    574:574:public void setReferrer(java.lang.String)
+    578:578:public void setCampaign(java.lang.String)
+    582:583:public void setAppId(java.lang.String)
+    587:587:public java.lang.String getAppId()
+    592:593:public void setAppInstallerId(java.lang.String)
+    597:597:public java.lang.String getAppInstallerId()
+    602:603:public void setExceptionParser(com.google.analytics.tracking.android.ExceptionParser)
+    607:607:public com.google.analytics.tracking.android.ExceptionParser getExceptionParser()
+    613:613:public java.util.Map constructEvent(java.lang.String,java.lang.String,java.lang.String,java.lang.Long)
+    618:618:public java.util.Map constructTransaction(com.google.analytics.tracking.android.Transaction)
+    624:624:public java.util.Map constructException(java.lang.String,boolean)
+    630:630:public java.util.Map constructRawException(java.lang.String,java.lang.Throwable,boolean)
+    636:636:public java.util.Map constructTiming(java.lang.String,long,java.lang.String,java.lang.String)
+    641:641:public java.util.Map constructSocial(java.lang.String,java.lang.String,java.lang.String)
+    646:646:public void setCustomDimension(int,java.lang.String)
+    650:650:public void setCustomMetric(int,java.lang.Long)
+    655:655:public void setCustomDimensionsAndMetrics(java.util.Map,java.util.Map)
+com.google.analytics.tracking.android.ExceptionReporter:
+    54:54:public com.google.analytics.tracking.android.ExceptionParser getExceptionParser()
+    58:59:public void setExceptionParser(com.google.analytics.tracking.android.ExceptionParser)
+com.google.analytics.tracking.android.FutureApis:
+    17:18:private FutureApis()
+com.google.analytics.tracking.android.GAServiceManager:
+    private static final int MSG_KEY
+    69:73:GAServiceManager(android.content.Context,com.google.analytics.tracking.android.AnalyticsThread,com.google.analytics.tracking.android.AnalyticsStore)
+    126:127:void setThrottlingEnabled(boolean)
+    133:133:com.google.analytics.tracking.android.AnalyticsStoreStateListener getListener()
+com.google.analytics.tracking.android.GAServiceProxy:
+    private static final int MAX_TRIES
+    private static final long SERVICE_CONNECTION_TIMEOUT
+    private static final long RECONNECT_WAIT_TIME
+    private static final long FAILED_CONNECT_WAIT_TIME
+    89:90:void setClock(com.google.analytics.tracking.android.Clock)
+    170:175:void createService(com.google.analytics.tracking.android.AnalyticsClient)
+    182:183:public void setIdleTimeout(long)
+com.google.analytics.tracking.android.GAThread:
+    private static final java.lang.String CLIENT_VERSION
+    private static final int MAX_SAMPLE_RATE
+    private static final int SAMPLE_RATE_MULTIPLIER
+    private static final int SAMPLE_RATE_MODULO
+    static final java.lang.String API_VERSION
+    81:85:GAThread(android.content.Context,com.google.analytics.tracking.android.ServiceProxy)
+    527:529:void close()
+    532:532:boolean isDisabled()
+com.google.analytics.tracking.android.GAUsage:
+    private static final java.lang.String BASE_64_CHARS
+    102:102:static com.google.analytics.tracking.android.GAUsage getPrivateInstance()
+com.google.analytics.tracking.android.GoogleAnalytics:
+    103:103:static synchronized com.google.analytics.tracking.android.GoogleAnalytics getInstance()
+    114:118:static synchronized com.google.analytics.tracking.android.GoogleAnalytics getNewInstance(android.content.Context,com.google.analytics.tracking.android.AnalyticsThread)
+    125:126:static synchronized void clearInstance()
+    137:138:public boolean debugEnabled()
+    162:163:public synchronized com.google.analytics.tracking.android.Tracker getDefaultTracker()
+    168:170:public synchronized void setDefaultTracker(com.google.analytics.tracking.android.Tracker)
+    174:178:public synchronized void closeTracker(com.google.analytics.tracking.android.Tracker)
+    206:206:void close()
+    212:212:java.lang.String getTrackingIdForAds()
+    219:222:java.lang.String getClientIdForAds()
+    236:236:java.lang.Boolean getAppOptOut()
+    241:247:public void requestAppOptOut(com.google.analytics.tracking.android.Analytics$AppOptOutCallback)
+com.google.analytics.tracking.android.GoogleTracker:
+    private volatile com.google.analytics.tracking.android.ExceptionParser exceptionParser
+    66:69:public void send(java.lang.String,java.util.Map)
+    91:94:public void setAppScreen(java.lang.String)
+    98:104:public void trackView()
+    128:137:public void trackTransaction(com.google.analytics.tracking.android.Transaction)
+    150:169:public void trackException(java.lang.String,java.lang.Throwable,boolean)
+    174:180:public void trackTiming(java.lang.String,long,java.lang.String,java.lang.String)
+    184:189:public void trackSocial(java.lang.String,java.lang.String,java.lang.String)
+    207:207:private static java.lang.String microsToCurrencyString(long)
+    212:223:public java.util.Map constructTransaction(com.google.analytics.tracking.android.Transaction)
+    227:237:java.util.Map constructItem(com.google.analytics.tracking.android.Item,com.google.analytics.tracking.android.Transaction)
+    254:266:public java.util.Map constructRawException(java.lang.String,java.lang.Throwable,boolean)
+    272:279:public java.util.Map constructTiming(java.lang.String,long,java.lang.String,java.lang.String)
+    284:290:public java.util.Map constructSocial(java.lang.String,java.lang.String,java.lang.String)
+    295:297:public void close()
+    301:302:public java.lang.String getTrackingId()
+    319:320:public boolean anonymizeIpEnabled()
+    325:326:public double getSampleRate()
+    331:333:public void setReferrer(java.lang.String)
+    337:339:public void setCampaign(java.lang.String)
+    343:344:public java.lang.String get(java.lang.String)
+    349:351:public void set(java.lang.String,java.lang.String)
+    386:388:public void setAppId(java.lang.String)
+    392:393:public java.lang.String getAppId()
+    398:400:public void setAppInstallerId(java.lang.String)
+    404:405:public java.lang.String getAppInstallerId()
+    410:412:public void setExceptionParser(com.google.analytics.tracking.android.ExceptionParser)
+    416:417:public com.google.analytics.tracking.android.ExceptionParser getExceptionParser()
+    422:424:public void setUseSecure(boolean)
+    428:429:public boolean getUseSecure()
+    434:439:public void setCustomDimension(int,java.lang.String)
+    443:453:public void setCustomMetric(int,java.lang.Long)
+    458:468:public void setCustomDimensionsAndMetrics(java.util.Map,java.util.Map)
+com.google.analytics.tracking.android.GoogleTracker$SimpleModel:
+    487:491:public synchronized java.lang.String get(java.lang.String)
+com.google.analytics.tracking.android.HitBuilder:
+    15:15:HitBuilder()
+com.google.analytics.tracking.android.Item
+com.google.analytics.tracking.android.Item$1
+com.google.analytics.tracking.android.Item$Builder
+com.google.analytics.tracking.android.Log:
+    static final java.lang.String LOG_TAG
+    17:18:private Log()
+    82:85:static int eDebug(java.lang.String)
+com.google.analytics.tracking.android.MetaModelInitializer:
+    29:30:private MetaModelInitializer()
+com.google.analytics.tracking.android.ModelFields
+com.google.analytics.tracking.android.NoopDispatcher
+com.google.analytics.tracking.android.ParameterLoader:
+    public abstract boolean isBooleanKeyPresent(java.lang.String)
+com.google.analytics.tracking.android.ParameterLoaderImpl:
+    79:79:public boolean isBooleanKeyPresent(java.lang.String)
+com.google.analytics.tracking.android.PersistentAnalyticsStore:
+    static final java.lang.String BACKEND_LIBRARY_VERSION
+    static final long TIME_PER_TOKEN_MILLIS
+    static final long MAX_TOKENS
+    private static final java.lang.String HIT_ID
+    private static final java.lang.String HIT_STRING
+    private static final java.lang.String HIT_TIME
+    private static final java.lang.String HIT_URL
+    private static final java.lang.String HITS_TABLE
+    private static final java.lang.String DATABASE_FILENAME
+    135:138:public void setDispatch(boolean)
+    146:147:void setDispatcher(com.google.analytics.tracking.android.Dispatcher)
+    382:383:void setLastDeleteStaleHitsTime(long)
+    492:497:public void close()
+    501:502:void setLastTrackTime(long)
+    506:507:void setTokens(long)
+    544:545:public void setThrottlingEnabled(boolean)
+    553:553:com.google.analytics.tracking.android.PersistentAnalyticsStore$AnalyticsDatabaseHelper getHelper()
+com.google.analytics.tracking.android.PersistentAnalyticsStore$AnalyticsDatabaseHelper:
+    584:584:boolean isBadDatabase()
+com.google.analytics.tracking.android.SimpleNetworkDispatcher:
+    private static final java.lang.String USER_AGENT_TEMPLATE
+com.google.analytics.tracking.android.Tracker:
+    public abstract void setAppScreen(java.lang.String)
+    public abstract void trackView()
+    public abstract void trackTransaction(com.google.analytics.tracking.android.Transaction)
+    public abstract void trackException(java.lang.String,java.lang.Throwable,boolean)
+    public abstract void trackTiming(java.lang.String,long,java.lang.String,java.lang.String)
+    public abstract void trackSocial(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void close()
+    public abstract void send(java.lang.String,java.util.Map)
+    public abstract java.lang.String get(java.lang.String)
+    public abstract void set(java.lang.String,java.lang.String)
+    public abstract java.lang.String getTrackingId()
+    public abstract boolean anonymizeIpEnabled()
+    public abstract double getSampleRate()
+    public abstract void setUseSecure(boolean)
+    public abstract boolean getUseSecure()
+    public abstract void setReferrer(java.lang.String)
+    public abstract void setCampaign(java.lang.String)
+    public abstract void setAppId(java.lang.String)
+    public abstract java.lang.String getAppId()
+    public abstract void setAppInstallerId(java.lang.String)
+    public abstract java.lang.String getAppInstallerId()
+    public abstract void setExceptionParser(com.google.analytics.tracking.android.ExceptionParser)
+    public abstract com.google.analytics.tracking.android.ExceptionParser getExceptionParser()
+    public abstract void setCustomDimension(int,java.lang.String)
+    public abstract void setCustomMetric(int,java.lang.Long)
+    public abstract void setCustomDimensionsAndMetrics(java.util.Map,java.util.Map)
+    public abstract java.util.Map constructEvent(java.lang.String,java.lang.String,java.lang.String,java.lang.Long)
+    public abstract java.util.Map constructTransaction(com.google.analytics.tracking.android.Transaction)
+    public abstract java.util.Map constructException(java.lang.String,boolean)
+    public abstract java.util.Map constructRawException(java.lang.String,java.lang.Throwable,boolean)
+    public abstract java.util.Map constructTiming(java.lang.String,long,java.lang.String,java.lang.String)
+    public abstract java.util.Map constructSocial(java.lang.String,java.lang.String,java.lang.String)
+com.google.analytics.tracking.android.TrackerHandler:
+    public abstract void closeTracker(com.google.analytics.tracking.android.Tracker)
+com.google.analytics.tracking.android.Transaction
+com.google.analytics.tracking.android.Transaction$1
+com.google.analytics.tracking.android.Transaction$Builder
+com.google.analytics.tracking.android.Utils:
+    18:18:Utils()
+    51:57:public static long safeParseLong(java.lang.String)
+    153:159:static java.lang.String hexEncode(byte[])
+    182:182:static java.lang.String getSlottedModelField(java.lang.String,int)
+com.google.android.gms.analytics.internal.Command:
+    public static final java.lang.String APPEND_VERSION
+    public static final java.lang.String APPEND_QUEUE_TIME
+    public static final java.lang.String APPEND_CACHE_BUSTER
+com.google.android.gms.analytics.internal.IAnalyticsService$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_sendHit
+    static final int TRANSACTION_clearHits
+    17:19:public IAnalyticsService$Stub()
+    37:37:public android.os.IBinder asBinder()
+com.google.android.gms.analytics.internal.IAnalyticsService$Stub$Proxy:
+    87:87:public java.lang.String getInterfaceDescriptor()
+com.hyperionics.fbreader.plugin.tts_plus.TtsSentenceExtractor:
+    26:26:private TtsSentenceExtractor()
+    39:56:public static com.hyperionics.fbreader.plugin.tts_plus.TtsSentenceExtractor$SentenceIndex[] extract(java.lang.String,java.util.Locale)
+    156:188:private static java.lang.String paragraphReplaceEngAbbreviations(java.lang.String,java.util.Locale)
+javax.jmdns.JmDNS:
+    public static final java.lang.String VERSION
+    60:60:public static javax.jmdns.JmDNS create()
+    81:81:public static javax.jmdns.JmDNS create(java.net.InetAddress)
+    102:102:public static javax.jmdns.JmDNS create(java.lang.String)
+    public abstract java.lang.String getName()
+    public abstract java.lang.String getHostName()
+    public abstract java.net.InetAddress getInetAddress()
+    public abstract java.net.InetAddress getInterface()
+    public abstract javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String)
+    public abstract javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String,long)
+    public abstract javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String,boolean)
+    public abstract javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String,boolean,long)
+    public abstract void requestServiceInfo(java.lang.String,java.lang.String)
+    public abstract void requestServiceInfo(java.lang.String,java.lang.String,boolean)
+    public abstract void requestServiceInfo(java.lang.String,java.lang.String,long)
+    public abstract void requestServiceInfo(java.lang.String,java.lang.String,boolean,long)
+    public abstract void addServiceTypeListener(javax.jmdns.ServiceTypeListener)
+    public abstract void removeServiceTypeListener(javax.jmdns.ServiceTypeListener)
+    public abstract void addServiceListener(java.lang.String,javax.jmdns.ServiceListener)
+    public abstract void removeServiceListener(java.lang.String,javax.jmdns.ServiceListener)
+    public abstract void registerService(javax.jmdns.ServiceInfo)
+    public abstract void unregisterService(javax.jmdns.ServiceInfo)
+    public abstract void unregisterAllServices()
+    public abstract boolean registerServiceType(java.lang.String)
+    public abstract void printServices()
+    public abstract javax.jmdns.ServiceInfo[] list(java.lang.String,long)
+    public abstract java.util.Map listBySubtype(java.lang.String)
+    public abstract java.util.Map listBySubtype(java.lang.String,long)
+    public abstract javax.jmdns.JmDNS$Delegate getDelegate()
+    public abstract javax.jmdns.JmDNS$Delegate setDelegate(javax.jmdns.JmDNS$Delegate)
+javax.jmdns.JmmDNS
+javax.jmdns.JmmDNS$Factory
+javax.jmdns.JmmDNS$Factory$ClassDelegate
+javax.jmdns.NetworkTopologyDiscovery:
+    public abstract boolean useInetAddress(java.net.NetworkInterface,java.net.InetAddress)
+    public abstract void lockInetAddress(java.net.InetAddress)
+    public abstract void unlockInetAddress(java.net.InetAddress)
+javax.jmdns.NetworkTopologyDiscovery$Factory:
+    89:90:public static void setClassDelegate(javax.jmdns.NetworkTopologyDiscovery$Factory$ClassDelegate)
+    100:100:public static javax.jmdns.NetworkTopologyDiscovery$Factory$ClassDelegate classDelegate()
+javax.jmdns.NetworkTopologyEvent
+javax.jmdns.NetworkTopologyListener
+javax.jmdns.ServiceEvent:
+    private static final long serialVersionUID
+javax.jmdns.ServiceInfo:
+    80:80:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,int,java.lang.String)
+    99:99:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,java.lang.String,int,java.lang.String)
+    120:120:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,int,int,int,java.lang.String)
+    143:143:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,java.lang.String,int,int,int,java.lang.String)
+    164:164:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,int,int,int,java.util.Map)
+    187:187:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,java.lang.String,int,int,int,java.util.Map)
+    208:208:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,int,int,int,byte[])
+    231:231:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,java.lang.String,int,int,int,byte[])
+    254:254:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,int,int,int,boolean,java.lang.String)
+    279:279:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,java.lang.String,int,int,int,boolean,java.lang.String)
+    302:302:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,int,int,int,boolean,java.util.Map)
+    327:327:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,java.lang.String,int,int,int,boolean,java.util.Map)
+    350:350:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,int,int,int,boolean,byte[])
+    375:375:public static javax.jmdns.ServiceInfo create(java.lang.String,java.lang.String,java.lang.String,int,int,int,boolean,byte[])
+    396:396:public static javax.jmdns.ServiceInfo create(java.util.Map,int,int,int,boolean,java.util.Map)
+    public abstract java.lang.String getTypeWithSubtype()
+    public abstract java.lang.String getKey()
+    public abstract java.lang.String getHostAddress()
+    public abstract java.lang.String[] getHostAddresses()
+    public abstract java.net.InetAddress getAddress()
+    public abstract java.net.InetAddress getInetAddress()
+    public abstract java.net.Inet4Address getInet4Address()
+    public abstract java.net.Inet6Address getInet6Address()
+    public abstract java.net.InetAddress[] getInetAddresses()
+    public abstract java.lang.String getTextString()
+    public abstract java.lang.String getURL()
+    public abstract java.lang.String getURL(java.lang.String)
+    public abstract java.lang.String[] getURLs(java.lang.String)
+    public abstract byte[] getPropertyBytes(java.lang.String)
+    public abstract java.lang.String getPropertyString(java.lang.String)
+    public abstract java.util.Enumeration getPropertyNames()
+    public abstract java.lang.String getNiceTextString()
+    public abstract void setText(byte[])
+    public abstract void setText(java.util.Map)
+    public abstract java.util.Map getQualifiedNameMap()
+javax.jmdns.impl.DNSCache$_CacheEntry:
+    171:176:protected DNSCache$_CacheEntry(java.util.Map$Entry)
+    210:210:public boolean isEmpty()
+javax.jmdns.impl.DNSEntry:
+    public abstract boolean isStale(long)
+javax.jmdns.impl.DNSIncoming$MessageInputStream:
+    55:55:public int readByte()
+    111:111:protected synchronized int peek()
+javax.jmdns.impl.DNSMessage:
+    public static final boolean MULTICAST
+    public static final boolean UNICAST
+javax.jmdns.impl.DNSOutgoing:
+    private static final int HEADER_SIZE
+    206:207:public DNSOutgoing(int,boolean)
+    316:325:public void addAdditionalAnswer(javax.jmdns.impl.DNSIncoming,javax.jmdns.impl.DNSRecord)
+    362:367:java.lang.String print(boolean)
+javax.jmdns.impl.DNSOutgoing$MessageOutputStream:
+    50:53:void writeBytes(java.lang.String,int,int)
+    56:59:void writeBytes(byte[])
+javax.jmdns.impl.DNSQuestion:
+    296:296:public boolean isStale(long)
+javax.jmdns.impl.DNSRecord:
+    abstract javax.jmdns.impl.DNSOutgoing addAnswer(javax.jmdns.impl.JmDNSImpl,javax.jmdns.impl.DNSIncoming,java.net.InetAddress,int,javax.jmdns.impl.DNSOutgoing)
+    1019:1020:public void setTTL(int)
+javax.jmdns.impl.DNSRecord$Address:
+    283:286:boolean same(javax.jmdns.impl.DNSRecord)
+    385:385:javax.jmdns.impl.DNSOutgoing addAnswer(javax.jmdns.impl.JmDNSImpl,javax.jmdns.impl.DNSIncoming,java.net.InetAddress,int,javax.jmdns.impl.DNSOutgoing)
+javax.jmdns.impl.DNSRecord$HostInformation:
+    872:872:javax.jmdns.impl.DNSOutgoing addAnswer(javax.jmdns.impl.JmDNSImpl,javax.jmdns.impl.DNSIncoming,java.net.InetAddress,int,javax.jmdns.impl.DNSOutgoing)
+javax.jmdns.impl.DNSRecord$Pointer:
+    485:485:javax.jmdns.impl.DNSOutgoing addAnswer(javax.jmdns.impl.JmDNSImpl,javax.jmdns.impl.DNSIncoming,java.net.InetAddress,int,javax.jmdns.impl.DNSOutgoing)
+javax.jmdns.impl.DNSRecord$Service:
+    795:802:javax.jmdns.impl.DNSOutgoing addAnswer(javax.jmdns.impl.JmDNSImpl,javax.jmdns.impl.DNSIncoming,java.net.InetAddress,int,javax.jmdns.impl.DNSOutgoing)
+javax.jmdns.impl.DNSRecord$Text:
+    601:601:javax.jmdns.impl.DNSOutgoing addAnswer(javax.jmdns.impl.JmDNSImpl,javax.jmdns.impl.DNSIncoming,java.net.InetAddress,int,javax.jmdns.impl.DNSOutgoing)
+javax.jmdns.impl.DNSStatefulObject:
+    public abstract javax.jmdns.impl.JmDNSImpl getDns()
+    public abstract void associateWithTask(javax.jmdns.impl.tasks.DNSTask,javax.jmdns.impl.constants.DNSState)
+    public abstract void removeAssociationWithTask(javax.jmdns.impl.tasks.DNSTask)
+    public abstract boolean isAssociatedWithTask(javax.jmdns.impl.tasks.DNSTask,javax.jmdns.impl.constants.DNSState)
+    public abstract boolean revertState()
+    public abstract boolean cancelState()
+    public abstract boolean closeState()
+    public abstract boolean recoverState()
+    public abstract boolean isProbing()
+    public abstract boolean isAnnouncing()
+    public abstract boolean isAnnounced()
+    public abstract boolean isCanceling()
+    public abstract boolean isCanceled()
+    public abstract boolean isClosing()
+    public abstract boolean isClosed()
+    public abstract boolean waitForAnnounced(long)
+    public abstract boolean waitForCanceled(long)
+javax.jmdns.impl.DNSStatefulObject$DefaultImplementation:
+    private static final long serialVersionUID
+javax.jmdns.impl.DNSTaskStarter:
+    public abstract void startTypeResolver()
+javax.jmdns.impl.DNSTaskStarter$DNSTaskStarterImpl:
+    366:367:public void startTypeResolver()
+javax.jmdns.impl.DNSTaskStarter$DNSTaskStarterImpl$StarterTimer:
+    169:171:public DNSTaskStarter$DNSTaskStarterImpl$StarterTimer(boolean)
+    186:188:public DNSTaskStarter$DNSTaskStarterImpl$StarterTimer(java.lang.String)
+javax.jmdns.impl.DNSTaskStarter$Factory:
+    74:75:public static void setClassDelegate(javax.jmdns.impl.DNSTaskStarter$Factory$ClassDelegate)
+    85:85:public static javax.jmdns.impl.DNSTaskStarter$Factory$ClassDelegate classDelegate()
+javax.jmdns.impl.HostInfo:
+    310:310:public javax.jmdns.impl.JmDNSImpl getDns()
+    390:390:public boolean isAnnouncing()
+javax.jmdns.impl.HostInfo$HostInfoState:
+    private static final long serialVersionUID
+javax.jmdns.impl.JmDNSImpl:
+    365:381:public static void main(java.lang.String[])
+    596:596:public boolean isAnnouncing()
+    677:677:public java.lang.String getHostName()
+    703:703:public java.net.InetAddress getInterface()
+    711:711:public javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String)
+    719:719:public javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String,long)
+    727:727:public javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String,boolean)
+    735:737:public javax.jmdns.ServiceInfo getServiceInfo(java.lang.String,java.lang.String,boolean,long)
+    816:832:private void waitForInfoData(javax.jmdns.ServiceInfo,long)
+    839:840:public void requestServiceInfo(java.lang.String,java.lang.String)
+    847:848:public void requestServiceInfo(java.lang.String,java.lang.String,boolean)
+    855:856:public void requestServiceInfo(java.lang.String,java.lang.String,long)
+    863:865:public void requestServiceInfo(java.lang.String,java.lang.String,boolean,long)
+    894:903:public void addServiceTypeListener(javax.jmdns.ServiceTypeListener)
+    910:912:public void removeServiceTypeListener(javax.jmdns.ServiceTypeListener)
+    919:920:public void addServiceListener(java.lang.String,javax.jmdns.ServiceListener)
+    1028:1042:public void unregisterService(javax.jmdns.ServiceInfo)
+    1505:1519:public javax.jmdns.impl.DNSOutgoing addAnswer(javax.jmdns.impl.DNSIncoming,java.net.InetAddress,int,javax.jmdns.impl.DNSOutgoing,javax.jmdns.impl.DNSRecord)
+    1646:1647:public void startTypeResolver()
+    1854:1855:public void printServices()
+    1954:1954:public java.util.Map listBySubtype(java.lang.String)
+    1962:1977:public java.util.Map listBySubtype(java.lang.String,long)
+    2190:2191:public void setPlannedAnswer(javax.jmdns.impl.DNSIncoming)
+    2194:2194:public javax.jmdns.impl.DNSIncoming getPlannedAnswer()
+    2198:2199:void setLocalHost(javax.jmdns.impl.HostInfo)
+    2220:2222:public javax.jmdns.JmDNS$Delegate setDelegate(javax.jmdns.JmDNS$Delegate)
+javax.jmdns.impl.JmDNSImpl$ServiceTypeEntry:
+    258:258:public java.util.Iterator iterator()
+javax.jmdns.impl.JmDNSImpl$ServiceTypeEntry$SubTypeEntry:
+    private static final long serialVersionUID
+javax.jmdns.impl.JmDNSImpl$Shutdown
+javax.jmdns.impl.JmmDNSImpl
+javax.jmdns.impl.JmmDNSImpl$1
+javax.jmdns.impl.JmmDNSImpl$2
+javax.jmdns.impl.JmmDNSImpl$3
+javax.jmdns.impl.JmmDNSImpl$4
+javax.jmdns.impl.JmmDNSImpl$5
+javax.jmdns.impl.JmmDNSImpl$6
+javax.jmdns.impl.JmmDNSImpl$7
+javax.jmdns.impl.JmmDNSImpl$NetworkChecker
+javax.jmdns.impl.ListenerStatus:
+    public static final boolean SYNCHONEOUS
+    public static final boolean ASYNCHONEOUS
+javax.jmdns.impl.ListenerStatus$ServiceTypeListenerStatus:
+    165:167:public ListenerStatus$ServiceTypeListenerStatus(javax.jmdns.ServiceTypeListener,boolean)
+javax.jmdns.impl.NameRegister
+javax.jmdns.impl.NameRegister$Factory
+javax.jmdns.impl.NameRegister$NameType
+javax.jmdns.impl.NameRegister$UniqueNameAcrossInterface
+javax.jmdns.impl.NameRegister$UniqueNamePerInterface
+javax.jmdns.impl.NetworkTopologyDiscoveryImpl:
+    121:121:public void lockInetAddress(java.net.InetAddress)
+    130:130:public void unlockInetAddress(java.net.InetAddress)
+javax.jmdns.impl.NetworkTopologyEventImpl
+javax.jmdns.impl.ServiceEventImpl:
+    private static final long serialVersionUID
+javax.jmdns.impl.ServiceInfoImpl:
+    private javax.jmdns.impl.ServiceInfoImpl$Delegate _delegate
+    128:137:public ServiceInfoImpl(java.lang.String,java.lang.String,java.lang.String,int,int,int,boolean,java.lang.String)
+    151:152:public ServiceInfoImpl(java.lang.String,java.lang.String,java.lang.String,int,int,int,boolean,java.util.Map)
+    465:466:public java.lang.String getHostAddress()
+    474:483:public java.lang.String[] getHostAddresses()
+    508:508:public java.net.InetAddress getAddress()
+    517:518:public java.net.InetAddress getInetAddress()
+    527:528:public java.net.Inet4Address getInet4Address()
+    537:538:public java.net.Inet6Address getInet6Address()
+    609:617:public java.lang.String getTextString()
+    627:627:public java.lang.String getURL()
+    646:647:public java.lang.String getURL(java.lang.String)
+    678:678:public synchronized byte[] getPropertyBytes(java.lang.String)
+    701:703:public java.util.Enumeration getPropertyNames()
+    988:988:public boolean closeState()
+    1052:1052:public boolean isCanceling()
+    1060:1060:public boolean isCanceled()
+    1068:1068:public boolean isClosing()
+    1076:1076:public boolean isClosed()
+    1116:1130:public java.lang.String getNiceTextString()
+    1225:1230:public void setText(byte[])
+    1237:1238:public void setText(java.util.Map)
+    1332:1332:javax.jmdns.impl.ServiceInfoImpl$Delegate getDelegate()
+    1340:1341:void setDelegate(javax.jmdns.impl.ServiceInfoImpl$Delegate)
+javax.jmdns.impl.ServiceInfoImpl$Delegate
+javax.jmdns.impl.ServiceInfoImpl$ServiceInfoState:
+    private static final long serialVersionUID
+javax.jmdns.impl.SocketListener:
+    84:84:public javax.jmdns.impl.JmDNSImpl getDns()
+javax.jmdns.impl.constants.DNSConstants:
+    public static final java.lang.String MDNS_GROUP
+    public static final java.lang.String MDNS_GROUP_IPV6
+    public static final int DNS_PORT
+    public static final int DNS_TTL
+    public static final int MAX_MSG_TYPICAL
+    public static final int MAX_MSG_ABSOLUTE
+    public static final int FLAGS_QR_MASK
+    public static final int FLAGS_QR_QUERY
+    public static final int FLAGS_QR_RESPONSE
+    public static final int FLAGS_OPCODE
+    public static final int FLAGS_AA
+    public static final int FLAGS_TC
+    public static final int FLAGS_RD
+    public static final int FLAGS_RA
+    public static final int FLAGS_Z
+    public static final int FLAGS_AD
+    public static final int FLAGS_CD
+    public static final int FLAGS_RCODE
+    public static final int SHARED_QUERY_TIME
+    public static final int QUERY_WAIT_INTERVAL
+    public static final int PROBE_WAIT_INTERVAL
+    public static final int RESPONSE_MIN_WAIT_INTERVAL
+    public static final int RESPONSE_MAX_WAIT_INTERVAL
+    public static final int PROBE_CONFLICT_INTERVAL
+    public static final int PROBE_THROTTLE_COUNT
+    public static final int PROBE_THROTTLE_COUNT_INTERVAL
+    public static final int ANNOUNCE_WAIT_INTERVAL
+    public static final int RECORD_REAPER_INTERVAL
+    public static final int RECORD_EXPIRY_DELAY
+    public static final int KNOWN_ANSWER_TTL
+    public static final int ANNOUNCED_RENEWAL_TTL_INTERVAL
+    public static final long CLOSE_TIMEOUT
+    public static final long SERVICE_INFO_TIMEOUT
+    public static final int NETWORK_CHECK_INTERVAL
+    12:12:public DNSConstants()
+javax.jmdns.impl.constants.DNSLabel:
+    static final int LABEL_MASK
+    static final int LABEL_NOT_MASK
+    50:50:public java.lang.String externalName()
+javax.jmdns.impl.constants.DNSOperationCode
+javax.jmdns.impl.constants.DNSOptionCode:
+    49:49:public java.lang.String externalName()
+javax.jmdns.impl.constants.DNSRecordClass:
+    public static final int CLASS_MASK
+    public static final int CLASS_UNIQUE
+    public static final boolean UNIQUE
+    public static final boolean NOT_UNIQUE
+    83:83:public java.lang.String externalName()
+    110:117:public static javax.jmdns.impl.constants.DNSRecordClass classForName(java.lang.String)
+javax.jmdns.impl.constants.DNSRecordType:
+    268:268:public java.lang.String externalName()
+    285:292:public static javax.jmdns.impl.constants.DNSRecordType typeForName(java.lang.String)
+javax.jmdns.impl.constants.DNSResultCode:
+    static final int RCode_MASK
+    static final int ExtendedRCode_MASK
+    112:112:public java.lang.String externalName()
+    129:133:public static javax.jmdns.impl.constants.DNSResultCode resultCodeForFlags(int)
+javax.jmdns.impl.constants.package-info
+javax.jmdns.impl.package-info
+javax.jmdns.impl.tasks.DNSTask:
+    public abstract void start(java.util.Timer)
+    204:220:public javax.jmdns.impl.DNSOutgoing addAdditionalAnswer(javax.jmdns.impl.DNSOutgoing,javax.jmdns.impl.DNSIncoming,javax.jmdns.impl.DNSRecord)
+javax.jmdns.impl.tasks.package-info
+javax.jmdns.impl.tasks.resolver.TypeResolver
+javax.jmdns.impl.tasks.resolver.package-info
+javax.jmdns.impl.tasks.state.DNSStateTask:
+    51:52:public static void setDefaultTTL(int)
+javax.jmdns.impl.tasks.state.package-info
+javax.jmdns.package-info
+net.lingala.zip4j.core.HeaderWriter
+net.lingala.zip4j.core.NestedZipFileReader
+net.lingala.zip4j.core.ZipFile:
+    111:114:public void createZipFile(java.io.File,net.lingala.zip4j.model.ZipParameters)
+    132:135:public void createZipFile(java.io.File,net.lingala.zip4j.model.ZipParameters,boolean,long)
+    147:148:public void createZipFile(java.util.ArrayList,net.lingala.zip4j.model.ZipParameters)
+    166:187:public void createZipFile(java.util.ArrayList,net.lingala.zip4j.model.ZipParameters,boolean,long)
+    205:211:public void createZipFileFromFolder(java.lang.String,net.lingala.zip4j.model.ZipParameters,boolean,long)
+    229:248:public void createZipFileFromFolder(java.io.File,net.lingala.zip4j.model.ZipParameters,boolean,long)
+    259:262:public void addFile(java.io.File,net.lingala.zip4j.model.ZipParameters)
+    274:298:public void addFiles(java.util.ArrayList,net.lingala.zip4j.model.ZipParameters)
+    310:315:public void addFolder(java.lang.String,net.lingala.zip4j.model.ZipParameters)
+    327:336:public void addFolder(java.io.File,net.lingala.zip4j.model.ZipParameters)
+    348:363:private void addFolder(java.io.File,net.lingala.zip4j.model.ZipParameters,boolean)
+    420:422:public void extractAll(java.lang.String)
+    435:459:public void extractAll(java.lang.String,net.lingala.zip4j.model.UnzipParameters)
+    535:536:public void extractFile(java.lang.String,java.lang.String)
+    556:557:public void extractFile(java.lang.String,java.lang.String,net.lingala.zip4j.model.UnzipParameters)
+    583:605:public void extractFile(java.lang.String,java.lang.String,net.lingala.zip4j.model.UnzipParameters,java.lang.String)
+    655:664:public net.lingala.zip4j.model.FileHeader getFileHeader(java.lang.String)
+    705:712:public boolean isSplitArchive()
+    727:743:public void removeFile(java.lang.String)
+    753:766:public void removeFile(net.lingala.zip4j.model.FileHeader)
+    775:792:public void mergeSplitFiles(java.io.File)
+    800:820:public void setComment(java.lang.String)
+    828:828:public java.lang.String getComment()
+    838:864:public java.lang.String getComment(java.lang.String)
+    894:902:private void checkZipModel()
+    911:926:public void setFileNameCharset(java.lang.String)
+    929:940:public net.lingala.zip4j.io.ZipInputStream getInputStream(net.lingala.zip4j.model.FileHeader)
+    952:953:public java.util.ArrayList getSplitZipFiles()
+    957:957:public net.lingala.zip4j.progress.ProgressMonitor getProgressMonitor()
+    961:961:public boolean isRunInThread()
+    965:966:public void setRunInThread(boolean)
+net.lingala.zip4j.crypto.AESDecrypter:
+    177:177:public int decryptData(byte[])
+net.lingala.zip4j.crypto.AESEncrpyter
+net.lingala.zip4j.crypto.IDecrypter:
+    public abstract int decryptData(byte[])
+net.lingala.zip4j.crypto.IEncrypter
+net.lingala.zip4j.crypto.PBKDF2.BinTools
+net.lingala.zip4j.crypto.PBKDF2.MacBasedPRF:
+    53:69:public MacBasedPRF(java.lang.String,java.lang.String)
+net.lingala.zip4j.crypto.PBKDF2.PBKDF2Engine:
+    44:48:public PBKDF2Engine(net.lingala.zip4j.crypto.PBKDF2.PBKDF2Parameters,net.lingala.zip4j.crypto.PBKDF2.PRF)
+    52:52:public byte[] deriveKey(java.lang.String)
+    91:109:public boolean verifyKey(java.lang.String)
+    123:123:public net.lingala.zip4j.crypto.PBKDF2.PRF getPseudoRandomFunction()
+    199:199:public net.lingala.zip4j.crypto.PBKDF2.PBKDF2Parameters getParameters()
+    204:205:public void setParameters(net.lingala.zip4j.crypto.PBKDF2.PBKDF2Parameters)
+    209:210:public void setPseudoRandomFunction(net.lingala.zip4j.crypto.PBKDF2.PRF)
+net.lingala.zip4j.crypto.PBKDF2.PBKDF2HexFormatter
+net.lingala.zip4j.crypto.PBKDF2.PBKDF2Parameters:
+    53:61:public PBKDF2Parameters(java.lang.String,java.lang.String,byte[],int,byte[])
+    70:71:public void setIterationCount(int)
+    80:81:public void setSalt(byte[])
+    85:85:public byte[] getDerivedKey()
+    90:91:public void setDerivedKey(byte[])
+    100:101:public void setHashAlgorithm(java.lang.String)
+    110:111:public void setHashCharset(java.lang.String)
+net.lingala.zip4j.crypto.StandardDecrypter:
+    43:43:public int decryptData(byte[])
+net.lingala.zip4j.crypto.StandardEncrypter
+net.lingala.zip4j.exception.ZipException:
+    private static final long serialVersionUID
+    51:53:public ZipException(java.lang.Throwable,int)
+    56:56:public int getCode()
+net.lingala.zip4j.exception.ZipExceptionConstants
+net.lingala.zip4j.io.BaseInputStream:
+    15:15:public void seek(long)
+net.lingala.zip4j.io.InflaterInputStream:
+    136:137:public void seek(long)
+net.lingala.zip4j.io.PartInputStream:
+    151:152:public void seek(long)
+net.lingala.zip4j.io.Zip4jInputRAF
+net.lingala.zip4j.io.Zip4jOutputStream
+net.lingala.zip4j.model.AESExtraDataRecord:
+    39:39:public long getSignature()
+    49:49:public int getDataSize()
+    59:59:public int getVersionNumber()
+    69:69:public java.lang.String getVendorID()
+net.lingala.zip4j.model.ArchiveExtraDataRecord
+net.lingala.zip4j.model.CentralDirectory:
+    private net.lingala.zip4j.model.DigitalSignature digitalSignature
+    36:36:public net.lingala.zip4j.model.DigitalSignature getDigitalSignature()
+    40:41:public void setDigitalSignature(net.lingala.zip4j.model.DigitalSignature)
+net.lingala.zip4j.model.DataDescriptor
+net.lingala.zip4j.model.DigitalSignature:
+    28:28:public int getHeaderSignature()
+    36:36:public int getSizeOfData()
+    44:44:public java.lang.String getSignatureData()
+net.lingala.zip4j.model.EndCentralDirRecord:
+    42:42:public long getSignature()
+    58:58:public int getNoOfThisDiskStartOfCentralDir()
+    66:66:public int getTotNoOfEntriesInCentralDirOnThisDisk()
+    83:83:public int getSizeOfCentralDir()
+    99:99:public int getCommentLength()
+    107:107:public java.lang.String getComment()
+    115:115:public byte[] getCommentBytes()
+net.lingala.zip4j.model.FileHeader:
+    private int fileCommentLength
+    89:89:public int getSignature()
+    97:97:public int getVersionMadeBy()
+    105:105:public int getVersionNeededToExtract()
+    113:113:public byte[] getGeneralPurposeFlag()
+    161:161:public int getFileNameLength()
+    177:177:public int getFileCommentLength()
+    181:182:public void setFileCommentLength(int)
+    193:193:public byte[] getInternalFileAttr()
+    225:225:public java.lang.String getFileComment()
+    248:249:public void extractFile(net.lingala.zip4j.model.ZipModel,java.lang.String,net.lingala.zip4j.progress.ProgressMonitor,boolean)
+    261:262:public void extractFile(net.lingala.zip4j.model.ZipModel,java.lang.String,net.lingala.zip4j.model.UnzipParameters,net.lingala.zip4j.progress.ProgressMonitor,boolean)
+    334:334:public boolean isDataDescriptorExists()
+net.lingala.zip4j.model.InternalZipEngineParameters
+net.lingala.zip4j.model.LocalFileHeader:
+    private byte[] extraField
+    75:75:public int getSignature()
+    83:83:public int getVersionNeededToExtract()
+    91:91:public byte[] getGeneralPurposeFlag()
+    107:107:public int getLastModFileTime()
+    139:139:public int getFileNameLength()
+    163:163:public byte[] getExtraField()
+    167:168:public void setExtraField(byte[])
+    195:195:public byte[] getCrcBuff()
+    219:219:public boolean isDataDescriptorExists()
+    227:227:public net.lingala.zip4j.model.Zip64ExtendedInfo getZip64ExtendedInfo()
+    243:243:public boolean isWriteComprSizeInZip64ExtraRecord()
+    248:249:public void setWriteComprSizeInZip64ExtraRecord(boolean)
+net.lingala.zip4j.model.UnzipEngineParameters
+net.lingala.zip4j.model.UnzipParameters:
+    19:19:public UnzipParameters()
+    33:34:public void setIgnoreReadOnlyFileAttribute(boolean)
+    41:42:public void setIgnoreHiddenFileAttribute(boolean)
+    49:50:public void setIgnoreArchiveFileAttribute(boolean)
+    57:58:public void setIgnoreSystemFileAttribute(boolean)
+    65:66:public void setIgnoreAllFileAttributes(boolean)
+    73:74:public void setIgnoreDateTimeAttributes(boolean)
+net.lingala.zip4j.model.Zip64EndCentralDirLocator:
+    30:30:public long getSignature()
+    38:38:public int getNoOfDiskStartOfZip64EndOfCentralDirRec()
+    55:55:public int getTotNumberOfDiscs()
+net.lingala.zip4j.model.Zip64EndCentralDirRecord:
+    44:44:public long getSignature()
+    60:60:public int getVersionMadeBy()
+    68:68:public int getVersionNeededToExtract()
+    76:76:public int getNoOfThisDisk()
+    84:84:public int getNoOfThisDiskStartOfCentralDir()
+    92:92:public long getTotNoOfEntriesInCentralDirOnThisDisk()
+    109:109:public long getSizeOfCentralDir()
+    126:126:public byte[] getExtensibleDataSector()
+net.lingala.zip4j.model.Zip64ExtendedInfo:
+    private int header
+    private int size
+    41:41:public int getHeader()
+    45:46:public void setHeader(int)
+    49:49:public int getSize()
+    53:54:public void setSize(int)
+net.lingala.zip4j.model.ZipModel:
+    private java.util.List localFileHeaderList
+    private java.util.List dataDescriptorList
+    private net.lingala.zip4j.model.ArchiveExtraDataRecord archiveExtraDataRecord
+    private long splitLength
+    private boolean isNestedZipFile
+    private long start
+    private long end
+    54:54:public java.util.List getLocalFileHeaderList()
+    58:59:public void setLocalFileHeaderList(java.util.List)
+    62:62:public java.util.List getDataDescriptorList()
+    66:67:public void setDataDescriptorList(java.util.List)
+    86:86:public net.lingala.zip4j.model.ArchiveExtraDataRecord getArchiveExtraDataRecord()
+    91:92:public void setArchiveExtraDataRecord(net.lingala.zip4j.model.ArchiveExtraDataRecord)
+    137:137:public boolean isNestedZipFile()
+    141:142:public void setNestedZipFile(boolean)
+    145:145:public long getStart()
+    149:150:public void setStart(long)
+    153:153:public long getEnd()
+    157:158:public void setEnd(long)
+    161:161:public long getSplitLength()
+    165:166:public void setSplitLength(long)
+    177:178:public void setFileNameCharset(java.lang.String)
+net.lingala.zip4j.model.ZipParameters
+net.lingala.zip4j.progress.ProgressMonitor:
+    public static final int STATE_READY
+    public static final int STATE_BUSY
+    public static final int RESULT_SUCCESS
+    public static final int RESULT_WORKING
+    public static final int RESULT_ERROR
+    public static final int OPERATION_NONE
+    public static final int OPERATION_ADD
+    public static final int OPERATION_EXTRACT
+    public static final int OPERATION_REMOVE
+    public static final int OPERATION_CALC_CRC
+    public static final int OPERATION_MERGE
+    63:64:public void setState(int)
+    67:67:public long getTotalWork()
+    75:75:public long getWorkCompleted()
+    87:87:public int getPercentDone()
+    91:92:public void setPercentDone(int)
+    95:95:public int getResult()
+    99:100:public void setResult(int)
+    103:103:public java.lang.String getFileName()
+    111:111:public int getCurrentOperation()
+    115:116:public void setCurrentOperation(int)
+    119:119:public java.lang.Throwable getException()
+    123:124:public void setException(java.lang.Throwable)
+    127:129:public void endProgressMonitorSuccess()
+    146:150:public void fullReset()
+net.lingala.zip4j.unzip.Unzip:
+    48:76:public void extractAll(net.lingala.zip4j.model.UnzipParameters,java.lang.String,net.lingala.zip4j.progress.ProgressMonitor,boolean)
+    81:85:private void initExtractAll(java.util.ArrayList,net.lingala.zip4j.model.UnzipParameters,net.lingala.zip4j.progress.ProgressMonitor,java.lang.String)
+    165:166:public net.lingala.zip4j.io.ZipInputStream getInputStream(net.lingala.zip4j.model.FileHeader)
+    200:217:private long calculateTotalWork(java.util.ArrayList)
+    78:78:static void access$0(net.lingala.zip4j.unzip.Unzip,java.util.ArrayList,net.lingala.zip4j.model.UnzipParameters,net.lingala.zip4j.progress.ProgressMonitor,java.lang.String)
+net.lingala.zip4j.unzip.Unzip$1
+net.lingala.zip4j.unzip.UnzipUtil:
+    12:12:public UnzipUtil()
+    17:18:public static void applyFileAttributes(net.lingala.zip4j.model.FileHeader,java.io.File)
+net.lingala.zip4j.util.ArchiveMaintainer
+net.lingala.zip4j.util.ArchiveMaintainer$1
+net.lingala.zip4j.util.ArchiveMaintainer$2
+net.lingala.zip4j.util.CRCUtil
+net.lingala.zip4j.util.InternalZipConstants:
+    public static final long LOCSIG
+    public static final long EXTSIG
+    public static final long CENSIG
+    public static final long ENDSIG
+    public static final long DIGSIG
+    public static final long ARCEXTDATREC
+    public static final long SPLITSIG
+    public static final long ZIP64ENDCENDIRLOC
+    public static final long ZIP64ENDCENDIRREC
+    public static final int EXTRAFIELDZIP64LENGTH
+    public static final int AESSIG
+    public static final int LOCHDR
+    public static final int EXTHDR
+    public static final int CENHDR
+    public static final int ENDHDR
+    public static final int LOCVER
+    public static final int LOCFLG
+    public static final int LOCHOW
+    public static final int LOCTIM
+    public static final int LOCCRC
+    public static final int LOCSIZ
+    public static final int LOCLEN
+    public static final int LOCNAM
+    public static final int LOCEXT
+    public static final int EXTCRC
+    public static final int EXTSIZ
+    public static final int EXTLEN
+    public static final int CENVEM
+    public static final int CENVER
+    public static final int CENFLG
+    public static final int CENHOW
+    public static final int CENTIM
+    public static final int CENCRC
+    public static final int CENSIZ
+    public static final int CENLEN
+    public static final int CENNAM
+    public static final int CENEXT
+    public static final int CENCOM
+    public static final int CENDSK
+    public static final int CENATT
+    public static final int CENATX
+    public static final int CENOFF
+    public static final int ENDSUB
+    public static final int ENDTOT
+    public static final int ENDSIZ
+    public static final int ENDOFF
+    public static final int ENDCOM
+    public static final int STD_DEC_HDR_SIZE
+    public static final int AES_AUTH_LENGTH
+    public static final int AES_BLOCK_SIZE
+    public static final int MIN_SPLIT_LENGTH
+    public static final long ZIP_64_LIMIT
+    public static final java.lang.String OFFSET_CENTRAL_DIR
+    public static final java.lang.String VERSION
+    public static final int MODE_ZIP
+    public static final int MODE_UNZIP
+    public static final java.lang.String WRITE_MODE
+    public static final java.lang.String READ_MODE
+    public static final int BUFF_SIZE
+    public static final int FILE_MODE_NONE
+    public static final int FILE_MODE_READ_ONLY
+    public static final int FILE_MODE_HIDDEN
+    public static final int FILE_MODE_ARCHIVE
+    public static final int FILE_MODE_READ_ONLY_HIDDEN
+    public static final int FILE_MODE_READ_ONLY_ARCHIVE
+    public static final int FILE_MODE_HIDDEN_ARCHIVE
+    public static final int FILE_MODE_READ_ONLY_HIDDEN_ARCHIVE
+    public static final int FILE_MODE_SYSTEM
+    public static final int FOLDER_MODE_NONE
+    public static final int FOLDER_MODE_HIDDEN
+    public static final int FOLDER_MODE_ARCHIVE
+    public static final int FOLDER_MODE_HIDDEN_ARCHIVE
+    public static final int UPDATE_LFH_CRC
+    public static final int UPDATE_LFH_COMP_SIZE
+    public static final int LIST_TYPE_FILE
+    public static final int LIST_TYPE_STRING
+    public static final int UFT8_NAMES_FLAG
+    public static final java.lang.String CHARSET_UTF8
+    public static final java.lang.String CHARSET_CP850
+    public static final java.lang.String THREAD_NAME
+net.lingala.zip4j.util.Raw:
+    24:24:public Raw()
+    87:90:public static final void writeShortLittleEndian(byte[],int,short)
+    93:98:public static final void writeIntLittleEndian(byte[],int,int)
+    101:109:public static void writeLongLittleEndian(byte[],int,long)
+    112:129:public static byte bitArrayToByte(int[])
+    133:138:private static boolean checkBits(int[])
+net.lingala.zip4j.util.Zip4jConstants
+net.lingala.zip4j.util.Zip4jUtil:
+    33:33:public Zip4jUtil()
+    103:115:public static boolean checkFileWriteAccess(java.lang.String)
+    213:221:public static long getLastModifiedFileTime(java.io.File,java.util.TimeZone)
+    226:238:private static long getDayLightSavingsTime(java.util.TimeZone,long)
+    259:267:public static java.lang.String getFileNameFromFilePath(java.io.File)
+    271:279:public static long getFileLengh(java.io.File)
+    289:296:public static long javaToDosTime(long)
+    320:341:public static net.lingala.zip4j.model.FileHeader getFileHeader(net.lingala.zip4j.model.ZipModel,java.lang.String)
+    345:377:public static net.lingala.zip4j.model.FileHeader getFileHeaderWithExactMatch(net.lingala.zip4j.model.ZipModel,java.lang.String)
+    383:416:public static int getIndexOfFileHeader(net.lingala.zip4j.model.ZipModel,net.lingala.zip4j.model.FileHeader)
+    422:445:public static java.util.ArrayList getFilesInDirectoryRec(java.io.File,boolean)
+    449:460:public static java.lang.String getZipFileNameWithoutExt(java.lang.String)
+    465:479:public static byte[] convertCharset(java.lang.String)
+    525:530:public static java.lang.String getAbsoluteFilePath(java.lang.String)
+    541:571:public static boolean checkArrayListTypes(java.util.ArrayList,int)
+    582:605:public static java.lang.String detectCharSet(java.lang.String)
+    618:623:public static int getEncodedStringLength(java.lang.String)
+    634:658:public static int getEncodedStringLength(java.lang.String,java.lang.String)
+    668:678:public static boolean isSupportedCharset(java.lang.String)
+    683:723:public static java.util.ArrayList getSplitZipFiles(net.lingala.zip4j.model.ZipModel)
+net.lingala.zip4j.zip.DeflateZip
+net.lingala.zip4j.zip.IZipEngine
+net.lingala.zip4j.zip.StoreZip
+net.lingala.zip4j.zip.ZipEngine
+net.lingala.zip4j.zip.ZipEngine$1
+org.accessibility.AccessibilityInformation
+org.accessibility.BenetechAccessibilityService:
+    private static android.speech.tts.TextToSpeech tts
+    private static java.lang.String information
+    20:33:public static void setActivity(android.app.Activity)
+    37:41:private static void checkHeld()
+    51:52:public static void onReceiveAccessibilityEvent(java.lang.Object)
+    56:60:private static void process(java.lang.Object)
+    64:70:private static boolean isReady()
+    87:88:private static void noConversionSpeak(java.lang.String)
+    92:93:public static void speak()
+    14:14:static synthetic void access$0(boolean)
+    85:85:static synthetic void access$1(java.lang.String)
+    35:35:static synthetic void access$2()
+org.accessibility.BenetechAccessibilityService$1
+org.accessibility.SimpleGestureFilter:
+    public static final int SWIPE_UP
+    public static final int SWIPE_DOWN
+    public static final int SWIPE_LEFT
+    public static final int SWIPE_RIGHT
+    public static final int MODE_TRANSPARENT
+    public static final int MODE_SOLID
+    public static final int MODE_DYNAMIC
+    private static final int ACTION_FAKE
+    68:69:public void setMode(int)
+    72:72:public int getMode()
+    76:77:public void setEnabled(boolean)
+    80:81:public void setSwipeMaxDistance(int)
+    84:85:public void setSwipeMinDistance(int)
+    88:89:public void setSwipeMinVelocity(int)
+    92:92:public int getSwipeMaxDistance()
+    96:96:public int getSwipeMinDistance()
+    100:100:public int getSwipeMinVelocity()
+org.accessibility.Speech
+org.accessibility.Speech$1
+org.amse.ys.zip.Decompressor:
+    7:8:public Decompressor(org.amse.ys.zip.MyBufferedInputStream,org.amse.ys.zip.LocalFileHeader)
+org.amse.ys.zip.DeflatingDecompressor:
+    private static final int IN_BUFFER_SIZE
+    private static final int OUT_BUFFER_SIZE
+org.amse.ys.zip.LocalFileHeader:
+    static final int FILE_HEADER_SIGNATURE
+    static final int FOLDER_HEADER_SIGNATURE
+    static final int END_OF_CENTRAL_DIRECTORY_SIGNATURE
+    static final int DATA_DESCRIPTOR_SIGNATURE
+org.amse.ys.zip.ZipFile:
+    41:42:public ZipFile(java.lang.String)
+org.amse.ys.zip.ZipFile$1:
+    private static final long serialVersionUID
+org.amse.ys.zip.ZipFile$FileInputStreamHolder
+org.apache.commons.codec.BinaryDecoder
+org.apache.commons.codec.BinaryEncoder
+org.apache.commons.codec.CharEncoding
+org.apache.commons.codec.Decoder
+org.apache.commons.codec.DecoderException:
+    private static final long serialVersionUID
+    53:54:public DecoderException(java.lang.String)
+    72:73:public DecoderException(java.lang.String,java.lang.Throwable)
+    86:87:public DecoderException(java.lang.Throwable)
+org.apache.commons.codec.Encoder
+org.apache.commons.codec.EncoderException:
+    private static final long serialVersionUID
+    55:56:public EncoderException(java.lang.String)
+    74:75:public EncoderException(java.lang.String,java.lang.Throwable)
+    88:89:public EncoderException(java.lang.Throwable)
+org.apache.commons.codec.StringDecoder
+org.apache.commons.codec.StringEncoder
+org.apache.commons.codec.StringEncoderComparator
+org.apache.commons.codec.binary.Base64
+org.apache.commons.codec.binary.Base64InputStream
+org.apache.commons.codec.binary.Base64OutputStream
+org.apache.commons.codec.binary.BinaryCodec
+org.apache.commons.codec.binary.Hex
+org.apache.commons.codec.binary.StringUtils
+org.apache.commons.codec.digest.DigestUtils
+org.apache.commons.codec.language.Caverphone
+org.apache.commons.codec.language.DoubleMetaphone
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult
+org.apache.commons.codec.language.Metaphone
+org.apache.commons.codec.language.RefinedSoundex
+org.apache.commons.codec.language.Soundex
+org.apache.commons.codec.language.SoundexUtils
+org.apache.commons.codec.net.BCodec
+org.apache.commons.codec.net.QCodec
+org.apache.commons.codec.net.QuotedPrintableCodec
+org.apache.commons.codec.net.RFC1522Codec
+org.apache.commons.codec.net.URLCodec
+org.apache.commons.codec.net.Utils
+org.benetech.android.BuildConfig
+org.benetech.android.R
+org.benetech.android.R$attr
+org.benetech.android.R$bool
+org.benetech.android.R$drawable
+org.benetech.android.R$id
+org.benetech.android.R$layout
+org.benetech.android.R$raw
+org.benetech.android.R$string
+org.benetech.android.R$style
+org.benetech.android.R$xml
+org.geometerplus.android.fbreader.BookmarksActivity:
+    private static final int OPEN_ITEM_ID
+    private static final int EDIT_ITEM_ID
+    private static final int DELETE_ITEM_ID
+org.geometerplus.android.fbreader.CancelActivity:
+    static final java.lang.String LIST_SIZE
+    static final java.lang.String ITEM_TITLE
+    static final java.lang.String ITEM_SUMMARY
+org.geometerplus.android.fbreader.DictionaryUtil:
+    44:44:public DictionaryUtil()
+org.geometerplus.android.fbreader.DictionaryUtil$ColorDict3
+org.geometerplus.android.fbreader.FBReader:
+    public static final java.lang.String BOOK_PATH_KEY
+    public static final java.lang.String PREFS_USER_MANUAL_VERSION
+    public static final java.lang.String USER_GUIDE_FILE
+    public static final java.lang.String LOG_LABEL
+    static final int REPAINT_CODE
+    static final int CANCEL_CODE
+    static final int AUTO_SPEAK_CODE
+    private static final java.lang.String PLUGIN_ACTION_PREFIX
+    private org.geometerplus.android.fbreader.network.bookshare.subscription.BooksharePeriodicalDataSource dataSource
+    public static final java.lang.String SUBSCRIBED_PERIODICAL_IDS_KEY
+    public static final java.lang.String AUTOMATIC_DOWNLOAD_TYPE_KEY
+    227:246:public void activateSubscriptionDownload(android.content.SharedPreferences)
+    249:256:private java.util.ArrayList getSubscribedPeriodicalIds(android.database.sqlite.SQLiteDatabase)
+org.geometerplus.android.fbreader.NavigationPopup:
+    static final java.lang.String ID
+org.geometerplus.android.fbreader.SearchActivity
+org.geometerplus.android.fbreader.SearchActivity$1
+org.geometerplus.android.fbreader.SearchActivity$2
+org.geometerplus.android.fbreader.SearchActivity$3
+org.geometerplus.android.fbreader.SelectionPopup:
+    static final java.lang.String ID
+org.geometerplus.android.fbreader.ShowSubscriptionFeatureAction
+org.geometerplus.android.fbreader.TOCActivity:
+    public static final int BACK_PRESSED
+    private static final int PROCESS_TREE_ITEM_ID
+    private static final int READ_BOOK_ITEM_ID
+org.geometerplus.android.fbreader.TextSearchPopup:
+    static final java.lang.String ID
+org.geometerplus.android.fbreader.ZLTreeAdapter:
+    164:171:protected void resetTree(org.geometerplus.zlibrary.core.tree.ZLTree)
+    174:178:public void resetTree()
+    public abstract android.view.View getView(int,android.view.View,android.view.ViewGroup)
+org.geometerplus.android.fbreader.api.Api
+org.geometerplus.android.fbreader.api.ApiClientImplementation
+org.geometerplus.android.fbreader.api.ApiClientImplementation$1
+org.geometerplus.android.fbreader.api.ApiClientImplementation$ConnectionListener
+org.geometerplus.android.fbreader.api.ApiException:
+    private static final long serialVersionUID
+    11:12:ApiException(java.lang.String)
+    15:16:ApiException(java.lang.Exception)
+org.geometerplus.android.fbreader.api.ApiInterface$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_request
+    static final int TRANSACTION_requestList
+    static final int TRANSACTION_requestMap
+    23:30:public static org.geometerplus.android.fbreader.api.ApiInterface asInterface(android.os.IBinder)
+org.geometerplus.android.fbreader.api.ApiInterface$Stub$Proxy
+org.geometerplus.android.fbreader.api.ApiListener
+org.geometerplus.android.fbreader.api.ApiMethods
+org.geometerplus.android.fbreader.api.ApiObject$Type
+org.geometerplus.android.fbreader.api.ApiServerImplementation:
+    142:150:private java.util.List requestStringList(int,org.geometerplus.android.fbreader.api.ApiObject[])
+    154:162:private java.util.ArrayList requestIntegerList(int,org.geometerplus.android.fbreader.api.ApiObject[])
+    166:166:private static org.geometerplus.android.fbreader.api.ApiObject[] envelope(java.lang.String)
+    170:170:private static org.geometerplus.android.fbreader.api.ApiObject[] envelope(int)
+org.geometerplus.android.fbreader.api.PluginApi:
+    public static final java.lang.String ACTION_REGISTER
+    public static final java.lang.String ACTION_RUN
+    13:13:public PluginApi()
+org.geometerplus.android.fbreader.api.PluginApi$ActionInfo:
+    protected static final int TYPE_MENU_OBSOLETE
+    protected static final int TYPE_MENU
+org.geometerplus.android.fbreader.api.PluginApi$PluginInfo:
+    public static final java.lang.String KEY
+    21:31:public void onReceive(android.content.Context,android.content.Intent)
+    protected abstract java.util.List implementedActions(android.content.Context)
+org.geometerplus.android.fbreader.benetech.Analytics
+org.geometerplus.android.fbreader.benetech.LastReadPageOfCurrentBook
+org.geometerplus.android.fbreader.benetech.SpeakActivity:
+    private static final int PLAY_AFTER_TOC
+    private static final int CHECK_TTS_INSTALLED
+    public static final int SPEAK_BACK_PRESSED
+    public static final java.lang.String CONTENTS_EARCON
+    public static final java.lang.String MENU_EARCON
+    public static final java.lang.String FORWARD_EARCON
+    public static final java.lang.String BACK_EARCON
+    public static final java.lang.String START_READING_EARCON
+    private static final java.lang.String UTTERANCE_ID
+    private static final int TTS_INITIALIZED
+    private static final int FULLY_INITIALIZED
+    148:149:private void setTouchFocusEnabled(int)
+org.geometerplus.android.fbreader.image.ImageViewActivity:
+    public static final java.lang.String BACKGROUND_COLOR_KEY
+org.geometerplus.android.fbreader.library.BookInfoActivity:
+    private static final boolean ENABLE_EXTENDED_FILE_INFO
+    public static final java.lang.String CURRENT_BOOK_PATH_KEY
+    public static final java.lang.String FROM_READING_MODE_KEY
+    306:319:private java.lang.String formatSize(long)
+    323:326:private java.lang.String formatDate(long)
+org.geometerplus.android.fbreader.library.LibraryActivity:
+    public static final java.lang.String SELECTED_BOOK_PATH_KEY
+    private static final int BOOK_INFO_REQUEST
+    private static final int OPEN_BOOK_ITEM_ID
+    private static final int SHOW_BOOK_INFO_ITEM_ID
+    private static final int ADD_TO_FAVORITES_ITEM_ID
+    private static final int REMOVE_FROM_FAVORITES_ITEM_ID
+    private static final int DELETE_BOOK_ITEM_ID
+org.geometerplus.android.fbreader.library.SQLiteBooksDatabase:
+    private android.database.sqlite.SQLiteStatement myCheckBookListStatement
+    884:890:protected boolean checkBookList(long)
+org.geometerplus.android.fbreader.network.AuthenticationActivity:
+    private static final java.lang.String AREA_KEY
+    private static final java.lang.String HOST_KEY
+    private static final java.lang.String RUNNABLE_KEY
+    static final java.lang.String SCHEME_KEY
+    static final java.lang.String USERNAME_KEY
+    static final java.lang.String PASSWORD_KEY
+    static final java.lang.String ERROR_KEY
+    static final java.lang.String CUSTOM_AUTH_KEY
+org.geometerplus.android.fbreader.network.BookDownloaderInterface$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_isBeingDownloaded
+org.geometerplus.android.fbreader.network.BookDownloaderInterface$Stub$Proxy:
+    71:71:public java.lang.String getInterfaceDescriptor()
+org.geometerplus.android.fbreader.network.BookDownloaderService:
+    public static final java.lang.String BOOK_FORMAT_KEY
+    public static final java.lang.String REFERENCE_TYPE_KEY
+    public static final java.lang.String CLEAN_URL_KEY
+    public static final java.lang.String TITLE_KEY
+    public static final java.lang.String SSL_CERTIFICATE_KEY
+    public static final java.lang.String SHOW_NOTIFICATIONS_KEY
+    198:202:private void showMessage(java.lang.String)
+org.geometerplus.android.fbreader.network.BookDownloaderService$Notifications
+org.geometerplus.android.fbreader.network.NetworkBookInfoActivity:
+    156:156:android.view.View getMainView()
+org.geometerplus.android.fbreader.network.NetworkLibraryActivity:
+    static final java.lang.String OPEN_CATALOG_ACTION
+org.geometerplus.android.fbreader.network.NetworkNotifications:
+    private static final int BOOK_DOWNLOADING_START
+    private static final int BOOK_DOWNLOADING_END
+org.geometerplus.android.fbreader.network.SQLiteNetworkDatabase:
+    237:246:protected synchronized java.util.Map getLinkExtras(org.geometerplus.fbreader.network.INetworkLink)
+    251:265:protected synchronized void setLinkExtras(org.geometerplus.fbreader.network.INetworkLink,java.util.Map)
+org.geometerplus.android.fbreader.network.SQLiteNetworkDatabase$3
+org.geometerplus.android.fbreader.network.TopupMenuActivity:
+    private static final java.lang.String AMOUNT_KEY
+    private static final java.lang.String CURRENCY_KEY
+org.geometerplus.android.fbreader.network.UserRegistrationConstants
+org.geometerplus.android.fbreader.network.Util:
+    static final java.lang.String AUTHORIZATION_ACTION
+    static final java.lang.String SIGNIN_ACTION
+    public static final java.lang.String ADD_CATALOG_ACTION
+    public static final java.lang.String EDIT_CATALOG_ACTION
+    39:39:public Util()
+org.geometerplus.android.fbreader.network.action.ActionCode
+org.geometerplus.android.fbreader.network.action.NetworkBookActions:
+    46:46:public NetworkBookActions()
+org.geometerplus.android.fbreader.network.bookshare.BookshareDeveloperKey:
+    15:15:public BookshareDeveloperKey()
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Book_Details:
+    private java.lang.String verifier
+    private android.content.SharedPreferences mTwtrSharedPref
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Books_Listing:
+    private static final int LIST_RESPONSE
+    private static final int METADATA_RESPONSE
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Edition_Metadata_Bean:
+    43:43:public java.lang.String getDaisy()
+    51:51:public java.lang.String getBrf()
+    67:67:public java.lang.String getImages()
+    99:99:public java.lang.String getRevisionTime()
+    115:115:public java.lang.String getFreelyAvailable()
+    119:120:public void setFreelyAvailable(java.lang.String)
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Error_Bean:
+    44:44:public java.lang.String getStatusCode()
+    51:51:public java.util.List getMessages()
+    58:58:public java.lang.String getVersion()
+    67:73:public java.lang.String getMessagesFormatted()
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Menu:
+    protected static final java.lang.String REQUEST_TYPE
+    protected static final java.lang.String REQUEST_URI
+    protected static final int TITLE_SEARCH_REQUEST
+    protected static final int AUTHOR_SEARCH_REQUEST
+    protected static final int ISBN_SEARCH_REQUEST
+    protected static final int LATEST_REQUEST
+    protected static final int POPULAR_REQUEST
+    protected static final int ALL_PERIODICAL_REQUEST
+    protected static final int PERIODICAL_EDITION_REQUEST
+    306:332:private android.app.AlertDialog createLoginDialogBox()
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Menu$4
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Menu$5
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Metadata_Bean:
+    45:45:public java.lang.String getDaisy()
+    52:52:public java.lang.String getBrf()
+    136:136:public java.lang.String getQuality()
+    150:150:public java.lang.String getBookshareId()
+    157:157:public java.lang.String getFreelyAvailable()
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_OM_Download_Password
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_OM_Download_Password$SAXHandler
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_OM_List:
+    private java.lang.String omDownloadPassword
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_OM_Member_Bean:
+    public static final java.lang.String MEMBER_ID
+    public static final java.lang.String FIRST_NAME
+    public static final java.lang.String LAST_NAME
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_PackagingStatus_Bean:
+    51:51:public java.util.List getMessages()
+    67:73:public java.lang.String getMessagesFormatted()
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_PackagingStatus_Bean$PackagingStatusHander:
+    private boolean inStatusCode
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Periodical_Edition_Listing:
+    protected static final int EDITION_LIST_RESPONSE
+    protected static final int EDITION_METADATA_RESPONSE
+    protected static final java.lang.String URI_BOOKSHARE_PERIODICAL_EDITION_SEARCH
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Periodical_Listing:
+    private static final int LIST_RESPONSE
+    private static final int METADATA_RESPONSE
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Result_Bean:
+    52:52:public java.lang.String[] getDownloadFormats()
+    59:59:public java.lang.String getImages()
+org.geometerplus.android.fbreader.network.bookshare.Bookshare_Webservice_Login:
+    public static final java.lang.String USER
+    public static final java.lang.String PASSWORD
+    public static final java.lang.String BOOKSHARE_API_PROTOCOL
+    public static final java.lang.String BOOKSHARE_API_HOST
+    private static final int LOGIN_SUCCESSFUL
+    private static final int STATUS_NOT_SET
+    private static final int LOGIN_FAILED
+    private static final int NETWORK_ERROR
+org.geometerplus.android.fbreader.network.bookshare.IDownloadAPI
+org.geometerplus.android.fbreader.network.bookshare.InternalReturnCodes
+org.geometerplus.android.fbreader.network.bookshare.PeriodicalEditionSAXHandler:
+    39:39:public boolean isTotal_pages_count_known()
+org.geometerplus.android.fbreader.network.bookshare.subscription.AllDbPeriodicalEntity:
+    14:15:public AllDbPeriodicalEntity(java.lang.String,java.lang.String)
+org.geometerplus.android.fbreader.network.bookshare.subscription.BooksharePeriodicalDataSource:
+    245:266:public java.util.List getAllEntities(android.database.sqlite.SQLiteDatabase,java.lang.String)
+    279:305:public org.geometerplus.android.fbreader.network.bookshare.subscription.AllDbPeriodicalEntity getMostRecentEdition(android.database.sqlite.SQLiteDatabase,java.lang.String,java.lang.String)
+org.geometerplus.android.fbreader.network.bookshare.subscription.IPeriodicalDownloadAPI
+org.geometerplus.android.fbreader.network.bookshare.subscription.MainPeriodicalDownloadService:
+    236:243:public org.geometerplus.android.fbreader.network.bookshare.Bookshare_Edition_Metadata_Bean getDetails(org.geometerplus.android.fbreader.network.bookshare.Bookshare_Periodical_Edition_Bean)
+org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalDBUtils:
+    13:13:public PeriodicalDBUtils()
+org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEditionListFetcher:
+    private static org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEditionListFetcher singleton
+org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEditionMetadataFetcher:
+    private static org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEditionMetadataFetcher singleton
+org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalFromCursorFactory:
+    14:15:private PeriodicalFromCursorFactory()
+org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalsDatabase:
+    public abstract void insertEntity(android.database.sqlite.SQLiteDatabase,java.lang.String,org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEntity)
+    public abstract org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEntity getEntity(android.database.sqlite.SQLiteDatabase,java.lang.String,org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEntity)
+    public abstract java.util.List getAllEntities(android.database.sqlite.SQLiteDatabase,java.lang.String)
+    public abstract org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEntity deleteEntity(android.database.sqlite.SQLiteDatabase,java.lang.String,org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalEntity)
+org.geometerplus.android.fbreader.network.bookshare.subscription.PeriodicalsSQLiteHelper:
+    private static final int DATABASE_VERSION
+    public static final java.lang.String DATABASE_NAME
+    public static final java.lang.String COLUMN_ID
+    public static final java.lang.String COLUMN_TITLE
+    public static final java.lang.String TABLE_ALL_PERIODICALS
+    public static final java.lang.String ALL_P_COLUMN_EDITION
+    public static final java.lang.String ALL_P_COLUMN_REVISION
+    public static final java.lang.String ALL_P_COLUMN_DOWNLOADED_TIME
+    public static final java.lang.String ALL_P_COLUMN_DOWNLOADED_DATE
+    public static final java.lang.String TABLE_SUBSCRIBED_PERIODICALS
+    public static final java.lang.String SUBSCRIBED_COLUMN_LATEST_EDITION
+    public static final java.lang.String SUBSCRIBED_COLUMN_LATEST_REVISION
+    private static final java.lang.String CREATE_ALL_PERIODICALS_TABLE
+    private static final java.lang.String CREATE_SUBSCRIBED_PERIODICALS_TABLE
+org.geometerplus.android.fbreader.preferences.EditBookInfoActivity:
+    1:1:public bridge synthetic android.preference.Preference addOption(org.geometerplus.zlibrary.core.options.ZLBooleanOption,java.lang.String)
+org.geometerplus.android.fbreader.preferences.PreferenceActivity:
+    1:1:public bridge synthetic android.preference.Preference addOption(org.geometerplus.zlibrary.core.options.ZLBooleanOption,java.lang.String)
+org.geometerplus.android.fbreader.preferences.ZLBoolean3Preference:
+    private static final java.lang.String ON
+    private static final java.lang.String OFF
+    private static final java.lang.String UNCHANGED
+org.geometerplus.android.fbreader.preferences.ZLPreferenceActivity:
+    109:111:public android.preference.Preference addOption(org.geometerplus.zlibrary.core.options.ZLBooleanOption,java.lang.String)
+org.geometerplus.android.fbreader.preferences.ZLPreferenceActivity$Screen:
+    49:50:public void setSummary(java.lang.CharSequence)
+org.geometerplus.android.fbreader.preferences.ZLStringPreference:
+    44:44:protected final java.lang.String getValue()
+org.geometerplus.android.fbreader.tips.TipsActivity:
+    public static final java.lang.String INITIALIZE_ACTION
+    public static final java.lang.String SHOW_TIP_ACTION
+org.geometerplus.android.fbreader.tree.TreeActivity:
+    private static final java.lang.String OPEN_TREE_ACTION
+    public static final java.lang.String TREE_KEY_KEY
+    public static final java.lang.String SELECTED_TREE_KEY_KEY
+    public static final java.lang.String HISTORY_KEY
+org.geometerplus.android.fbreader.tree.TreeAdapter:
+    52:58:public void add(org.geometerplus.fbreader.tree.FBTree)
+    61:67:public void add(int,org.geometerplus.fbreader.tree.FBTree)
+org.geometerplus.android.fbreader.tree.TreeAdapter$2
+org.geometerplus.android.fbreader.tree.TreeAdapter$3
+org.geometerplus.android.util.PackageUtil:
+    42:42:public PackageUtil()
+org.geometerplus.android.util.SQLiteUtil:
+    27:27:public SQLiteUtil()
+org.geometerplus.android.util.UIUtil:
+    33:33:public UIUtil()
+org.geometerplus.fbreader.Paths:
+    27:27:public Paths()
+org.geometerplus.fbreader.bookmodel.BookReader:
+    364:365:public final void setReference(int,int)
+    368:374:public final void setReference(int,org.geometerplus.zlibrary.text.model.ZLTextWritableModel,int)
+    385:385:public final boolean contentsParagraphIsOpen()
+org.geometerplus.fbreader.bookmodel.FBHyperlinkType
+org.geometerplus.fbreader.bookmodel.FBTextKind
+org.geometerplus.fbreader.fbreader.ActionCode
+org.geometerplus.fbreader.fbreader.ColorProfile:
+    public static final java.lang.String DAY
+    public static final java.lang.String NIGHT
+    35:44:public static java.util.List names()
+    67:76:private ColorProfile(java.lang.String,org.geometerplus.fbreader.fbreader.ColorProfile)
+org.geometerplus.fbreader.fbreader.FBView:
+    public static final int SCROLLBAR_SHOW_AS_FOOTER
+org.geometerplus.fbreader.fbreader.TapZoneMap:
+    40:43:TapZoneMap(int,int)
+org.geometerplus.fbreader.fbreader.TextBuildTraverser:
+    39:39:protected void processControlElement(org.geometerplus.zlibrary.text.view.ZLTextControlElement)
+org.geometerplus.fbreader.fbreader.WallpapersUtil:
+    28:28:public WallpapersUtil()
+org.geometerplus.fbreader.fbreader.WordCountTraverser:
+    39:39:protected void processControlElement(org.geometerplus.zlibrary.text.view.ZLTextControlElement)
+org.geometerplus.fbreader.formats.PluginCollection:
+    62:65:public static void deleteInstance()
+org.geometerplus.fbreader.formats.daisy3.Daisy3MetaInfoReader:
+    private static final int READ_NONE
+    private static final int READ_AUTHOR
+    private static final int READ_AUTHOR2
+    private static final int READ_TITLE
+    private static final int READ_SUBJECT
+    private static final int READ_LANGUAGE
+org.geometerplus.fbreader.formats.daisy3.Daisy3Plugin:
+    77:79:public org.geometerplus.zlibrary.core.image.ZLImage readCover(org.geometerplus.fbreader.library.Book)
+org.geometerplus.fbreader.formats.daisy3.NCXReader:
+    private static final int READ_NONE
+    private static final int READ_MAP
+    private static final int READ_POINT
+    private static final int READ_LABEL
+    private static final int READ_TEXT
+    private static final int READ_PAGE_LIST
+    private static final int READ_PAGE_TARGET
+    private static final int READ_PAGE_LABEL
+    private static final int READ_PAGE_TEXT
+    private static final java.lang.String TAG_NAVMAP
+    private static final java.lang.String TAG_NAVPOINT
+    private static final java.lang.String TAG_NAVLABEL
+    private static final java.lang.String TAG_CONTENT
+    private static final java.lang.String TAG_TEXT
+    private static final java.lang.String ATTRIBUTE_ID
+    private static final java.lang.String ATTRIBUTE_PLAYORDER
+    private static final java.lang.String TAG_PAGE_LIST
+    private static final java.lang.String TAG_PAGE_TARGET
+org.geometerplus.fbreader.formats.daisy3.NCXReader$NavPoint:
+    int para
+org.geometerplus.fbreader.formats.fb2.FB2AnnotationReader:
+    private static final int READ_NOTHING
+    private static final int READ_ANNOTATION
+org.geometerplus.fbreader.formats.fb2.FB2MetaInfoReader:
+    private static final int READ_NOTHING
+    private static final int READ_SOMETHING
+    private static final int READ_TITLE
+    private static final int READ_AUTHOR
+    private static final int READ_AUTHOR_NAME_0
+    private static final int READ_AUTHOR_NAME_1
+    private static final int READ_AUTHOR_NAME_2
+    private static final int READ_LANGUAGE
+    private static final int READ_GENRE
+org.geometerplus.fbreader.formats.fb2.FB2Tag:
+    public static final byte UNKNOWN
+    public static final byte P
+    public static final byte V
+    public static final byte SUBTITLE
+    public static final byte TEXT_AUTHOR
+    public static final byte DATE
+    public static final byte CITE
+    public static final byte SECTION
+    public static final byte POEM
+    public static final byte STANZA
+    public static final byte EPIGRAPH
+    public static final byte ANNOTATION
+    public static final byte COVERPAGE
+    public static final byte A
+    public static final byte EMPTY_LINE
+    public static final byte SUP
+    public static final byte SUB
+    public static final byte EMPHASIS
+    public static final byte STRONG
+    public static final byte CODE
+    public static final byte STRIKETHROUGH
+    public static final byte TITLE
+    public static final byte BODY
+    public static final byte IMAGE
+    public static final byte BINARY
+    public static final byte FICTIONBOOK
+    public static final byte TITLE_INFO
+    public static final byte BOOK_TITLE
+    public static final byte AUTHOR
+    public static final byte LANG
+    public static final byte FIRST_NAME
+    public static final byte MIDDLE_NAME
+    public static final byte LAST_NAME
+    public static final byte SEQUENCE
+    public static final byte GENRE
+    public static final byte DESCRIPTION
+    124:125:private FB2Tag()
+org.geometerplus.fbreader.formats.fb2.FB2TagManager:
+    41:42:private FB2TagManager()
+org.geometerplus.fbreader.formats.html.HtmlMetaInfoReader
+org.geometerplus.fbreader.formats.html.HtmlPlugin
+org.geometerplus.fbreader.formats.html.HtmlTag:
+    public static final byte UNKNOWN
+    public static final byte HTML
+    public static final byte HEAD
+    public static final byte BODY
+    public static final byte TITLE
+    public static final byte P
+    public static final byte H1
+    public static final byte H2
+    public static final byte H3
+    public static final byte H4
+    public static final byte H5
+    public static final byte H6
+    public static final byte A
+    public static final byte B
+    public static final byte I
+    public static final byte BR
+    public static final byte STRONG
+    public static final byte IMG
+    public static final byte SCRIPT
+    public static final byte OL
+    public static final byte UL
+    public static final byte LI
+    public static final byte SELECT
+    public static final byte DIV
+    public static final byte TR
+    public static final byte STYLE
+    public static final byte S
+    public static final byte SUB
+    public static final byte SUP
+    public static final byte PRE
+    public static final byte CODE
+    public static final byte EM
+    public static final byte DFN
+    public static final byte CITE
+    public static final byte HR
+    public static final byte REFERENCE
+    public static final byte GUIDE
+    public static final byte TAG_NUMBER
+    24:24:public HtmlTag()
+org.geometerplus.fbreader.formats.oeb.NCXReader:
+    private static final int READ_NONE
+    private static final int READ_MAP
+    private static final int READ_POINT
+    private static final int READ_LABEL
+    private static final int READ_TEXT
+    private static final java.lang.String TAG_NAVMAP
+    private static final java.lang.String TAG_NAVPOINT
+    private static final java.lang.String TAG_NAVLABEL
+    private static final java.lang.String TAG_CONTENT
+    private static final java.lang.String TAG_TEXT
+    private static final java.lang.String ATTRIBUTE_PLAYORDER
+org.geometerplus.fbreader.formats.oeb.OEBAnnotationReader:
+    private static final int READ_NONE
+    private static final int READ_DESCRIPTION
+org.geometerplus.fbreader.formats.oeb.OEBBookReader:
+    private static final java.lang.String MANIFEST
+    private static final java.lang.String SPINE
+    private static final java.lang.String GUIDE
+    private static final java.lang.String TOUR
+    private static final java.lang.String SITE
+    private static final java.lang.String REFERENCE
+    private static final java.lang.String ITEMREF
+    private static final java.lang.String ITEM
+    private static final java.lang.String COVER
+    private static final java.lang.String COVER_IMAGE
+    private static final int READ_NONE
+    private static final int READ_MANIFEST
+    private static final int READ_SPINE
+    private static final int READ_GUIDE
+    private static final int READ_TOUR
+org.geometerplus.fbreader.formats.oeb.OEBCoverBackgroundReader:
+    private static final java.lang.String GUIDE
+    private static final java.lang.String REFERENCE
+    private static final java.lang.String COVER
+    private static final java.lang.String COVER_IMAGE
+org.geometerplus.fbreader.formats.oeb.OEBMetaInfoReader:
+    private static final int READ_NONE
+    private static final int READ_AUTHOR
+    private static final int READ_AUTHOR2
+    private static final int READ_TITLE
+    private static final int READ_SUBJECT
+    private static final int READ_LANGUAGE
+org.geometerplus.fbreader.formats.pdb.DocDecompressor:
+    24:24:public DocDecompressor()
+org.geometerplus.fbreader.formats.pdb.HuffdicDecompressor
+org.geometerplus.fbreader.formats.pdb.PalmDocLikeStream$CompressionType
+org.geometerplus.fbreader.formats.pdb.PdbStream:
+    82:87:public void skip(int)
+org.geometerplus.fbreader.formats.pdb.PdbUtil:
+    24:24:public PdbUtil()
+org.geometerplus.fbreader.formats.plucker.DocCompressedFileImage
+org.geometerplus.fbreader.formats.plucker.PluckerBookReader
+org.geometerplus.fbreader.formats.plucker.PluckerBookReader$FontType
+org.geometerplus.fbreader.formats.plucker.PluckerBookReader$Pair
+org.geometerplus.fbreader.formats.plucker.PluckerFileImage
+org.geometerplus.fbreader.formats.plucker.PluckerPlugin
+org.geometerplus.fbreader.formats.plucker.PluckerTextStream
+org.geometerplus.fbreader.formats.plucker.ZCompressedFileImage
+org.geometerplus.fbreader.formats.util.MiscUtil:
+    24:24:public MiscUtil()
+org.geometerplus.fbreader.library.Author:
+    32:32:public static int hashCode(org.geometerplus.fbreader.library.Author)
+org.geometerplus.fbreader.library.Bookmark:
+    public static final int CREATION
+    public static final int MODIFICATION
+    public static final int ACCESS
+    public static final int LATEST
+    159:165:public void setText(java.lang.String)
+org.geometerplus.fbreader.library.BooksDatabase:
+    protected abstract boolean checkBookList(long)
+org.geometerplus.fbreader.library.Library:
+    public static final java.lang.String ROOT_FOUND
+    public static final java.lang.String ROOT_FAVORITES
+    public static final java.lang.String ROOT_RECENT
+    public static final java.lang.String ROOT_BY_AUTHOR
+    public static final java.lang.String ROOT_BY_TITLE
+    public static final java.lang.String ROOT_BY_SERIES
+    public static final java.lang.String ROOT_BY_TAG
+    public static final java.lang.String ROOT_FILE_TREE
+    public static final java.lang.String ROOT_SEARCH
+    private static final int STATUS_LOADING
+    private static final int STATUS_SEARCHING
+    public static final int REMOVE_DONT_REMOVE
+    public static final int REMOVE_FROM_LIBRARY
+    public static final int REMOVE_FROM_DISK
+    public static final int REMOVE_FROM_LIBRARY_AND_DISK
+    208:211:private org.geometerplus.fbreader.library.LibraryTree getTagTree(org.geometerplus.fbreader.library.Tag)
+org.geometerplus.fbreader.library.LibraryTree:
+    52:57:org.geometerplus.fbreader.library.TagTree getTagSubTree(org.geometerplus.fbreader.library.Tag)
+org.geometerplus.fbreader.library.RootTree:
+    30:30:org.geometerplus.fbreader.library.Library getLibrary()
+org.geometerplus.fbreader.library.TagTree:
+    25:27:TagTree(org.geometerplus.fbreader.library.Tag)
+    30:32:TagTree(org.geometerplus.fbreader.library.LibraryTree,org.geometerplus.fbreader.library.Tag,int)
+org.geometerplus.fbreader.network.AbstractNetworkLink:
+    82:82:public final org.geometerplus.fbreader.network.urlInfo.UrlInfoCollection urlInfoMap()
+    107:107:public org.geometerplus.zlibrary.core.network.ZLNetworkRequest bookListRequest(java.util.List,org.geometerplus.fbreader.network.NetworkOperationData)
+org.geometerplus.fbreader.network.Base64EncodedImage:
+    private static final java.lang.String ENCODED_SUFFIX
+org.geometerplus.fbreader.network.HtmlUtil:
+    25:25:public HtmlUtil()
+org.geometerplus.fbreader.network.ICustomNetworkLink:
+    public abstract void setSiteName(java.lang.String)
+    public abstract org.geometerplus.fbreader.network.urlInfo.UrlInfoCollection urlInfoMap()
+    public abstract void removeUrl(org.geometerplus.fbreader.network.urlInfo.UrlInfo$Type)
+    public abstract void resetChanges()
+org.geometerplus.fbreader.network.INetworkLink:
+    public static final int INVALID_ID
+org.geometerplus.fbreader.network.INetworkLink$AccountStatus
+org.geometerplus.fbreader.network.NetworkCatalogItem:
+    public static final int FLAG_SHOW_AUTHOR
+    public static final int FLAG_GROUP_BY_AUTHOR
+    public static final int FLAG_GROUP_BY_SERIES
+    public static final int FLAG_GROUP_MORE_THAN_1_BOOK_BY_SERIES
+    public static final int FLAG_ADD_SEARCH_ITEM
+    public static final int FLAGS_DEFAULT
+    public static final int FLAGS_GROUP
+org.geometerplus.fbreader.network.NetworkDatabase:
+    protected abstract void executeAsATransaction(java.lang.Runnable)
+    protected abstract java.util.Map getLinkExtras(org.geometerplus.fbreader.network.INetworkLink)
+    protected abstract void setLinkExtras(org.geometerplus.fbreader.network.INetworkLink,java.util.Map)
+org.geometerplus.fbreader.network.NetworkException:
+    private static final long serialVersionUID
+    public static final java.lang.String ERROR_INTERNAL
+    public static final java.lang.String ERROR_PURCHASE_NOT_ENOUGH_MONEY
+    public static final java.lang.String ERROR_PURCHASE_MISSING_BOOK
+    public static final java.lang.String ERROR_PURCHASE_ALREADY_PURCHASED
+    public static final java.lang.String ERROR_BOOK_NOT_PURCHASED
+    public static final java.lang.String ERROR_DOWNLOAD_LIMIT_EXCEEDED
+    public static final java.lang.String ERROR_EMAIL_WAS_NOT_SPECIFIED
+    public static final java.lang.String ERROR_NO_USER_EMAIL
+    public static final java.lang.String ERROR_UNSUPPORTED_OPERATION
+    public static final java.lang.String ERROR_NOT_AN_OPDS
+    public static final java.lang.String ERROR_NO_REQUIRED_INFORMATION
+    public static final java.lang.String ERROR_CACHE_DIRECTORY_ERROR
+org.geometerplus.fbreader.network.NetworkImage:
+    private static final java.lang.String TOESCAPE
+org.geometerplus.fbreader.network.NetworkLibrary$OnNewLinkListener
+org.geometerplus.fbreader.network.NetworkTree:
+    private static final java.lang.String DATA_PREFIX
+org.geometerplus.fbreader.network.atom.ATOMCategory:
+    public static final java.lang.String TERM
+    public static final java.lang.String SCHEME
+    public static final java.lang.String LABEL
+    41:41:public final java.lang.String getScheme()
+org.geometerplus.fbreader.network.atom.ATOMCommonAttributes:
+    public static final java.lang.String XML_BASE
+    public static final java.lang.String XML_LANG
+    56:56:public final java.lang.String getLang()
+    60:60:public final java.lang.String getBase()
+org.geometerplus.fbreader.network.atom.ATOMConstants
+org.geometerplus.fbreader.network.atom.ATOMContributor
+org.geometerplus.fbreader.network.atom.ATOMGenerator
+org.geometerplus.fbreader.network.atom.ATOMLink:
+    public static final java.lang.String HREF
+    public static final java.lang.String REL
+    public static final java.lang.String TYPE
+    public static final java.lang.String HREFLANG
+    public static final java.lang.String TITLE
+    public static final java.lang.String LENGTH
+    55:55:public final java.lang.String getHrefLang()
+    63:63:public final java.lang.String getLength()
+org.geometerplus.fbreader.network.atom.ATOMLogo
+org.geometerplus.fbreader.network.atom.ATOMXMLReader:
+    private static final int START
+    protected static final int FEED
+    protected static final int F_ENTRY
+    private static final int F_ID
+    private static final int F_LINK
+    private static final int F_CATEGORY
+    private static final int F_TITLE
+    private static final int F_UPDATED
+    private static final int F_AUTHOR
+    private static final int F_SUBTITLE
+    private static final int F_ICON
+    private static final int FA_NAME
+    private static final int FA_URI
+    private static final int FA_EMAIL
+    private static final int FE_AUTHOR
+    private static final int FE_ID
+    private static final int FE_CATEGORY
+    protected static final int FE_LINK
+    private static final int FE_PUBLISHED
+    private static final int FE_SUMMARY
+    protected static final int FE_CONTENT
+    private static final int FE_TITLE
+    private static final int FE_UPDATED
+    private static final int FEA_NAME
+    private static final int FEA_URI
+    private static final int FEA_EMAIL
+    protected static final int ATOM_STATE_FIRST_UNUSED
+    protected static final java.lang.String TAG_FEED
+    protected static final java.lang.String TAG_ENTRY
+    protected static final java.lang.String TAG_AUTHOR
+    protected static final java.lang.String TAG_NAME
+    protected static final java.lang.String TAG_URI
+    protected static final java.lang.String TAG_EMAIL
+    protected static final java.lang.String TAG_ID
+    protected static final java.lang.String TAG_CATEGORY
+    protected static final java.lang.String TAG_LINK
+    protected static final java.lang.String TAG_PUBLISHED
+    protected static final java.lang.String TAG_SUMMARY
+    protected static final java.lang.String TAG_CONTENT
+    protected static final java.lang.String TAG_TITLE
+    protected static final java.lang.String TAG_UPDATED
+    protected static final java.lang.String TAG_SUBTITLE
+    protected static final java.lang.String TAG_ICON
+    31:34:public static java.lang.String intern(java.lang.String)
+org.geometerplus.fbreader.network.atom.FormattedBuffer:
+    51:52:public void appendText(char[],int,int)
+org.geometerplus.fbreader.network.authentication.NetworkAuthenticationManager:
+    124:124:public boolean passwordRecoverySupported()
+    128:128:public void recoverPassword(java.lang.String)
+org.geometerplus.fbreader.network.authentication.litres.LitResAuthenticationManager:
+    433:433:public boolean passwordRecoverySupported()
+    438:446:public void recoverPassword(java.lang.String)
+org.geometerplus.fbreader.network.authentication.litres.LitResGenre
+org.geometerplus.fbreader.network.authentication.litres.LitResLoginXMLReader:
+    private static final java.lang.String TAG_AUTHORIZATION_OK
+    private static final java.lang.String TAG_AUTHORIZATION_FAILED
+org.geometerplus.fbreader.network.authentication.litres.LitResPasswordRecoveryXMLReader
+org.geometerplus.fbreader.network.authentication.litres.LitResPurchaseXMLReader:
+    private static final java.lang.String TAG_AUTHORIZATION_FAILED
+    private static final java.lang.String TAG_PURCHASE_OK
+    private static final java.lang.String TAG_PURCHASE_FAILED
+org.geometerplus.fbreader.network.authentication.litres.LitResUtil:
+    27:27:LitResUtil()
+org.geometerplus.fbreader.network.authentication.litres.LitResXMLReader:
+    private static final int START
+    private static final int CATALOG
+    private static final int BOOK
+    private static final int BOOK_DESCRIPTION
+    private static final int HIDDEN
+    private static final int TITLE_INFO
+    private static final int GENRE
+    private static final int AUTHOR
+    private static final int FIRST_NAME
+    private static final int MIDDLE_NAME
+    private static final int LAST_NAME
+    private static final int BOOK_TITLE
+    private static final int ANNOTATION
+    private static final int DATE
+    private static final int LANGUAGE
+    private static final java.lang.String TAG_CATALOG
+    private static final java.lang.String TAG_BOOK
+    private static final java.lang.String TAG_TEXT_DESCRIPTION
+    private static final java.lang.String TAG_HIDDEN
+    private static final java.lang.String TAG_TITLE_INFO
+    private static final java.lang.String TAG_GENRE
+    private static final java.lang.String TAG_AUTHOR
+    private static final java.lang.String TAG_FIRST_NAME
+    private static final java.lang.String TAG_MIDDLE_NAME
+    private static final java.lang.String TAG_LAST_NAME
+    private static final java.lang.String TAG_BOOK_TITLE
+    private static final java.lang.String TAG_ANNOTATION
+    private static final java.lang.String TAG_DATE
+    private static final java.lang.String TAG_SEQUENCE
+    private static final java.lang.String TAG_LANGUAGE
+org.geometerplus.fbreader.network.opds.OPDSConstants
+org.geometerplus.fbreader.network.opds.OPDSCustomNetworkLink:
+    54:55:public void resetChanges()
+    58:60:public final void setSiteName(java.lang.String)
+    79:81:public final void removeUrl(org.geometerplus.fbreader.network.urlInfo.UrlInfo$Type)
+org.geometerplus.fbreader.network.opds.OPDSLinkReader:
+    static final java.lang.String CATALOGS_URL
+    32:32:public OPDSLinkReader()
+org.geometerplus.fbreader.network.opds.OPDSLinkXMLReader:
+    private static final java.lang.String FBREADER_ADVANCED_SEARCH
+    private static final java.lang.String FBREADER_AUTHENTICATION
+    private static final java.lang.String FBREADER_REWRITING_RULE
+    private static final java.lang.String FBREADER_RELATION_ALIAS
+    private static final java.lang.String FBREADER_EXTRA
+org.geometerplus.fbreader.network.opds.OPDSLinkXMLReader$FeedHandler:
+    private static final java.lang.String ENTRY_ID_PREFIX
+org.geometerplus.fbreader.network.opds.OPDSXMLReader:
+    public static final java.lang.String KEY_PRICE
+    private static final int FE_DC_LANGUAGE
+    private static final int FE_DC_ISSUED
+    private static final int FE_DC_PUBLISHER
+    private static final int FE_CALIBRE_SERIES
+    private static final int FE_CALIBRE_SERIES_INDEX
+    private static final int FEL_PRICE
+    private static final int FEL_FORMAT
+    private static final int OPENSEARCH_TOTALRESULTS
+    private static final int OPENSEARCH_ITEMSPERPAGE
+    private static final int OPENSEARCH_STARTINDEX
+    private static final int FEC_HACK_SPAN
+    private static final int FBREADER_VIEW
+    private static final java.lang.String TAG_PRICE
+    private static final java.lang.String TAG_HACK_SPAN
+    private static final java.lang.String DC_TAG_LANGUAGE
+    private static final java.lang.String DC_TAG_ISSUED
+    private static final java.lang.String DC_TAG_PUBLISHER
+    private static final java.lang.String DC_TAG_FORMAT
+    private static final java.lang.String CALIBRE_TAG_SERIES
+    private static final java.lang.String CALIBRE_TAG_SERIES_INDEX
+    private static final java.lang.String OPENSEARCH_TAG_TOTALRESULTS
+    private static final java.lang.String OPENSEARCH_TAG_ITEMSPERPAGE
+    private static final java.lang.String OPENSEARCH_TAG_STARTINDEX
+    private static final java.lang.String FBREADER_TAG_VIEW
+org.geometerplus.fbreader.network.opds.OpenSearchXMLReader:
+    private static final int START
+    private static final int DESCRIPTION
+    private static final java.lang.String TAG_DESCRIPTION
+    private static final java.lang.String TAG_URL
+org.geometerplus.fbreader.network.opds.URLRewritingRule:
+    public static final int ADD_URL_PARAMETER
+    public static final int REWRITE
+    public static final int UNKNOWN
+    public static final int APPLY_EXTERNAL
+    public static final int APPLY_INTERNAL
+    public static final int APPLY_ALWAYS
+org.geometerplus.fbreader.network.tree.NetworkAuthorTree:
+    private int myBooksNumber
+    private java.util.HashMap mySeriesMap
+    51:58:private int getSeriesIndex(java.lang.String)
+    62:66:private void setSeriesIndex(java.lang.String,int)
+    69:118:public void updateSubTrees(java.util.LinkedList)
+org.geometerplus.fbreader.network.tree.NetworkTreeFactory:
+    26:26:NetworkTreeFactory()
+org.geometerplus.fbreader.network.urlInfo.BookBuyUrlInfo:
+    private static final long serialVersionUID
+org.geometerplus.fbreader.network.urlInfo.BookUrlInfo:
+    private static final long serialVersionUID
+    private static final java.lang.String TOESCAPE
+org.geometerplus.fbreader.network.urlInfo.BookUrlInfo$Format
+org.geometerplus.fbreader.network.urlInfo.DecoratedBookUrlInfo:
+    private static final long serialVersionUID
+org.geometerplus.fbreader.network.urlInfo.RelatedUrlInfo:
+    private static final long serialVersionUID
+org.geometerplus.fbreader.network.urlInfo.UrlInfo:
+    private static final long serialVersionUID
+org.geometerplus.fbreader.network.urlInfo.UrlInfoCollection:
+    private static final long serialVersionUID
+org.geometerplus.fbreader.network.urlInfo.UrlInfoWithDate:
+    private static final long serialVersionUID
+org.geometerplus.fbreader.tree.FBTree$Key:
+    private static final long serialVersionUID
+org.geometerplus.zlibrary.core.application.ZLApplication:
+    public static final java.lang.String NoAction
+org.geometerplus.zlibrary.core.application.ZLKeyBindings:
+    private static final java.lang.String ACTION
+    private static final java.lang.String LONG_PRESS_ACTION
+org.geometerplus.zlibrary.core.constants.XMLNamespaces
+org.geometerplus.zlibrary.core.encoding.ZLEncodingCollection:
+    47:48:public java.lang.String getEncodingName(java.lang.String)
+org.geometerplus.zlibrary.core.encoding.ZLEncodingCollection$ZLEncodingCollectionReader:
+    private static final java.lang.String ENCODING
+    private static final java.lang.String NAME
+    private static final java.lang.String ALIAS
+    private static final java.lang.String CODE
+    private static final java.lang.String NUMBER
+org.geometerplus.zlibrary.core.filesystem.ZLFile:
+    140:140:public final boolean isCompressed()
+org.geometerplus.zlibrary.core.filesystem.ZLFile$ArchiveType
+org.geometerplus.zlibrary.core.html.ZLHtmlAttributeMap:
+    73:73:public int getSize()
+    77:77:public org.geometerplus.zlibrary.core.html.ZLByteBuffer getKey(int)
+org.geometerplus.zlibrary.core.html.ZLHtmlParser:
+    private static final byte START_DOCUMENT
+    private static final byte START_TAG
+    private static final byte END_TAG
+    private static final byte TEXT
+    private static final byte COMMENT
+    private static final byte LANGLE
+    private static final byte WS_AFTER_START_TAG_NAME
+    private static final byte WS_AFTER_END_TAG_NAME
+    private static final byte WAIT_EQUALS
+    private static final byte WAIT_ATTRIBUTE_VALUE
+    private static final byte SLASH
+    private static final byte ATTRIBUTE_NAME
+    private static final byte S_ATTRIBUTE_VALUE
+    private static final byte DEFAULT_ATTRIBUTE_VALUE
+    private static final byte COMMENT_MINUS
+    private static final byte D_ATTRIBUTE_VALUE
+    private static final byte SCRIPT
+    private static final byte ENTITY_REF
+org.geometerplus.zlibrary.core.html.ZLHtmlProcessor:
+    25:25:public ZLHtmlProcessor()
+org.geometerplus.zlibrary.core.image.ZLFileImage:
+    public static final java.lang.String SCHEME
+org.geometerplus.zlibrary.core.image.ZLImageManager:
+    122:122:private static int uShort(byte[],int)
+    121:121:static synthetic int access$0(byte[],int)
+org.geometerplus.zlibrary.core.image.ZLImageManager$PalmImageHeader
+org.geometerplus.zlibrary.core.image.ZLImageMap:
+    private static final long serialVersionUID
+org.geometerplus.zlibrary.core.image.ZLLoadableImage$SourceType
+org.geometerplus.zlibrary.core.language.ZLLanguageDetector
+org.geometerplus.zlibrary.core.language.ZLLanguageDetector$EncodingType
+org.geometerplus.zlibrary.core.language.ZLLanguageDetector$LanguageInfo
+org.geometerplus.zlibrary.core.language.ZLLanguageMatcher
+org.geometerplus.zlibrary.core.language.ZLLanguageMatcher$ZLLanguagePatternBasedMatcher
+org.geometerplus.zlibrary.core.language.ZLLanguageMatcher$ZLWordBasedMatcher
+org.geometerplus.zlibrary.core.language.ZLLanguageUtil:
+    public static final java.lang.String OTHER_LANGUAGE_CODE
+    public static final java.lang.String MULTI_LANGUAGE_CODE
+    33:34:private ZLLanguageUtil()
+org.geometerplus.zlibrary.core.library.ZLibrary:
+    public static final java.lang.String SCREEN_ORIENTATION_SYSTEM
+    public static final java.lang.String SCREEN_ORIENTATION_SENSOR
+    public static final java.lang.String SCREEN_ORIENTATION_PORTRAIT
+    public static final java.lang.String SCREEN_ORIENTATION_LANDSCAPE
+    public static final java.lang.String SCREEN_ORIENTATION_REVERSE_PORTRAIT
+    public static final java.lang.String SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+    public abstract java.lang.String getFullVersionName()
+    public abstract int getVersionCode()
+org.geometerplus.zlibrary.core.money.MoneyException:
+    private static final long serialVersionUID
+org.geometerplus.zlibrary.core.network.ZLNetworkException:
+    private static final long serialVersionUID
+    public static final java.lang.String ERROR_UNKNOWN_ERROR
+    public static final java.lang.String ERROR_TIMEOUT
+    public static final java.lang.String ERROR_CONNECT_TO_NETWORK
+    public static final java.lang.String ERROR_UNSUPPORTED_PROTOCOL
+    public static final java.lang.String ERROR_INVALID_URL
+    public static final java.lang.String ERROR_AUTHENTICATION_FAILED
+    public static final java.lang.String ERROR_SOMETHING_WRONG
+    public static final java.lang.String ERROR_CREATE_DIRECTORY
+    public static final java.lang.String ERROR_CREATE_FILE
+    public static final java.lang.String ERROR_CONNECT_TO_HOST
+    public static final java.lang.String ERROR_RESOLVE_HOST
+    public static final java.lang.String ERROR_HOST_CANNOT_BE_REACHED
+    public static final java.lang.String ERROR_CONNECTION_REFUSED
+    78:79:public ZLNetworkException(java.lang.String,java.lang.Throwable)
+org.geometerplus.zlibrary.core.network.ZLNetworkManager:
+    432:433:public final void downloadToFile(java.lang.String,java.lang.String,java.io.File)
+org.geometerplus.zlibrary.core.options.ZLOption:
+    public static final java.lang.String PLATFORM_GROUP
+org.geometerplus.zlibrary.core.resources.ZLMissingResource:
+    static final java.lang.String Value
+org.geometerplus.zlibrary.core.resources.ZLTreeResource$ResourceTreeReader:
+    private static final java.lang.String NODE
+org.geometerplus.zlibrary.core.util.MimeType:
+    public static final java.lang.String IMAGE_PREFIX
+org.geometerplus.zlibrary.core.util.ZLArrayUtils:
+    22:22:public ZLArrayUtils()
+    24:28:public static boolean[] createCopy(boolean[],int,int)
+org.geometerplus.zlibrary.core.util.ZLCharacterUtil:
+    22:22:public ZLCharacterUtil()
+org.geometerplus.zlibrary.core.util.ZLMiscUtil:
+    24:24:public ZLMiscUtil()
+    30:30:public static boolean isEmptyString(java.lang.String)
+    38:44:public static boolean listsEquals(java.util.List,java.util.List)
+org.geometerplus.zlibrary.core.util.ZLNetworkUtil:
+    27:27:public ZLNetworkUtil()
+org.geometerplus.zlibrary.core.util.ZLSearchUtil:
+    23:24:private ZLSearchUtil()
+org.geometerplus.zlibrary.core.util.ZLUnicodeUtil
+org.geometerplus.zlibrary.core.view.DummyPaintContext:
+    113:113:public void drawFilledCircle(int,int,int)
+    127:127:public java.lang.String realFontFamilyName(java.lang.String)
+    131:131:protected void fillFamiliesList(java.util.ArrayList)
+org.geometerplus.zlibrary.core.view.ZLPaintContext:
+    public abstract void drawFilledCircle(int,int,int)
+    187:190:public java.util.ArrayList fontFamilies()
+    public abstract java.lang.String realFontFamilyName(java.lang.String)
+    protected abstract void fillFamiliesList(java.util.ArrayList)
+org.geometerplus.zlibrary.core.view.ZLPaintContext$FillStyle
+org.geometerplus.zlibrary.core.view.ZLPaintContext$LineStyle
+org.geometerplus.zlibrary.core.view.ZLView:
+    33:33:public final org.geometerplus.zlibrary.core.view.ZLPaintContext getContext()
+org.geometerplus.zlibrary.core.xml.ZLDTDParser:
+    private static final byte IGNORABLE_WHITESPACE
+    private static final byte LANGLE
+    private static final byte TAG_PREFIX
+    private static final byte COMMENT
+    private static final byte END_OF_COMMENT1
+    private static final byte END_OF_COMMENT2
+    private static final byte ENTITY
+    private static final byte WAIT_NAME
+    private static final byte NAME
+    private static final byte WAIT_VALUE
+    private static final byte VALUE
+    private static final byte WAIT_END_OF_ENTITY
+org.geometerplus.zlibrary.core.xml.ZLXMLParser:
+    private static final byte START_DOCUMENT
+    private static final byte START_TAG
+    private static final byte END_TAG
+    private static final byte TEXT
+    private static final byte COMMENT
+    private static final byte END_OF_COMMENT1
+    private static final byte END_OF_COMMENT2
+    private static final byte EXCL_TAG
+    private static final byte EXCL_TAG_START
+    private static final byte Q_TAG
+    private static final byte END_OF_Q_TAG
+    private static final byte LANGLE
+    private static final byte WS_AFTER_START_TAG_NAME
+    private static final byte WS_AFTER_ATTRIBUTE_VALUE
+    private static final byte WAIT_EQUALS
+    private static final byte WAIT_ATTRIBUTE_VALUE
+    private static final byte SLASH
+    private static final byte ATTRIBUTE_NAME
+    private static final byte ATTRIBUTE_VALUE_QUOT
+    private static final byte ATTRIBUTE_VALUE_APOS
+    private static final byte ENTITY_REF
+    private static final byte CDATA
+    private static final byte END_OF_CDATA1
+    private static final byte END_OF_CDATA2
+org.geometerplus.zlibrary.core.xml.ZLXMLProcessor:
+    29:29:public ZLXMLProcessor()
+org.geometerplus.zlibrary.core.xml.ZLXMLReaderAdapter:
+    98:113:protected java.lang.String getAttributeValue(org.geometerplus.zlibrary.core.xml.ZLStringMap,org.geometerplus.zlibrary.core.xml.ZLXMLReaderAdapter$Predicate,java.lang.String)
+org.geometerplus.zlibrary.core.xml.ZLXMLReaderAdapter$Predicate
+org.geometerplus.zlibrary.text.hyphenation.ZLTextHyphenationReader:
+    private static final java.lang.String PATTERN
+org.geometerplus.zlibrary.text.hyphenation.ZLTextHyphenator:
+    38:42:public static void deleteInstance()
+    public abstract void unload()
+org.geometerplus.zlibrary.text.hyphenation.ZLTextTeXHyphenationPattern:
+    114:114:public int getLength()
+    118:118:public char[] getSymbols()
+    122:122:public byte[] getValues()
+org.geometerplus.zlibrary.text.model.CachedCharStorage:
+    116:117:public void clear()
+org.geometerplus.zlibrary.text.model.CachedCharStorageException:
+    private static final long serialVersionUID
+org.geometerplus.zlibrary.text.model.CharStorage:
+    public abstract void clear()
+org.geometerplus.zlibrary.text.model.SimpleCharStorage
+org.geometerplus.zlibrary.text.model.ZLTextAlignmentType
+org.geometerplus.zlibrary.text.model.ZLTextForcedControlEntry:
+    static final short SUPPORTS_LEFT_INDENT
+    static final short SUPPORTS_RIGHT_INDENT
+    static final short SUPPORTS_ALIGNMENT_TYPE
+    36:36:short getMask()
+    40:40:public boolean isLeftIndentSupported()
+    44:44:public short getLeftIndent()
+    53:53:public boolean isRightIndentSupported()
+    57:57:public short getRightIndent()
+    66:66:public boolean isAlignmentTypeSupported()
+    70:70:public byte getAlignmentType()
+org.geometerplus.zlibrary.text.model.ZLTextMark:
+    33:37:public ZLTextMark(org.geometerplus.zlibrary.text.model.ZLTextMark)
+org.geometerplus.zlibrary.text.model.ZLTextParagraph$Entry
+org.geometerplus.zlibrary.text.model.ZLTextParagraph$Kind
+org.geometerplus.zlibrary.text.model.ZLTextPlainModel$EntryIteratorImpl:
+    111:111:public org.geometerplus.zlibrary.text.model.ZLTextForcedControlEntry getForcedControlEntry()
+org.geometerplus.zlibrary.text.model.ZLTextWritableModel:
+    public abstract void addText(char[])
+org.geometerplus.zlibrary.text.model.ZLTextWritablePlainModel:
+    85:86:public void addText(char[])
+    101:118:public void addControl(org.geometerplus.zlibrary.text.model.ZLTextForcedControlEntry)
+org.geometerplus.zlibrary.text.view.PaintStateEnum
+org.geometerplus.zlibrary.text.view.ZLTextAbstractHighlighting:
+    public abstract boolean clear()
+    public abstract org.geometerplus.zlibrary.text.view.ZLTextPosition getStartPosition()
+    public abstract org.geometerplus.zlibrary.text.view.ZLTextPosition getEndPosition()
+org.geometerplus.zlibrary.text.view.ZLTextElementArea:
+    54:54:boolean contains(int,int)
+org.geometerplus.zlibrary.text.view.ZLTextElementAreaVector:
+    108:108:org.geometerplus.zlibrary.text.view.ZLTextElementArea binarySearch(int,int)
+org.geometerplus.zlibrary.text.view.ZLTextHighlighting:
+    45:45:public org.geometerplus.zlibrary.text.view.ZLTextPosition getStartPosition()
+    49:49:public org.geometerplus.zlibrary.text.view.ZLTextPosition getEndPosition()
+org.geometerplus.zlibrary.text.view.ZLTextParagraphCursor:
+    261:261:org.geometerplus.zlibrary.text.model.ZLTextParagraph getParagraph()
+org.geometerplus.zlibrary.text.view.ZLTextParagraphCursor$Processor:
+    private static final int NO_SPACE
+    private static final int SPACE
+org.geometerplus.zlibrary.text.view.ZLTextParagraphCursorCache:
+    27:27:ZLTextParagraphCursorCache()
+org.geometerplus.zlibrary.text.view.ZLTextTraverser:
+    protected abstract void processControlElement(org.geometerplus.zlibrary.text.view.ZLTextControlElement)
+org.geometerplus.zlibrary.text.view.ZLTextView:
+    public static final int MAX_SELECTION_DISTANCE
+    public static final int SCROLLBAR_HIDE
+    public static final int SCROLLBAR_SHOW
+    public static final int SCROLLBAR_SHOW_AS_PROGRESS
+    1449:1449:protected org.geometerplus.zlibrary.text.view.ZLTextElementArea getElementByCoordinates(int,int)
+    1555:1557:public void resetRegionPointer()
+org.geometerplus.zlibrary.text.view.ZLTextView$ScrollingMode
+org.geometerplus.zlibrary.text.view.ZLTextView$SizeUnit
+org.geometerplus.zlibrary.text.view.ZLTextViewBase:
+    174:174:final int getWordWidth(org.geometerplus.zlibrary.text.view.ZLTextWord,int,int)
+    200:211:int getAreaLength(org.geometerplus.zlibrary.text.view.ZLTextParagraphCursor,org.geometerplus.zlibrary.text.view.ZLTextElementArea,int)
+org.geometerplus.zlibrary.text.view.ZLTextWordCursor:
+    45:47:public ZLTextWordCursor(org.geometerplus.zlibrary.text.view.ZLTextParagraphCursor)
+    122:124:public void previousWord()
+org.geometerplus.zlibrary.text.view.style.ZLTextBaseStyle:
+    private static final java.lang.String GROUP
+    private static final java.lang.String OPTIONS
+org.geometerplus.zlibrary.text.view.style.ZLTextStyleCollection:
+    45:46:public static void deleteInstance()
+org.geometerplus.zlibrary.text.view.style.ZLTextStyleDecoration:
+    static final java.lang.String STYLE
+org.geometerplus.zlibrary.ui.android.image.ZLAndroidImageLoader:
+    private static final int IMAGE_LOADING_THREADS_NUMBER
+org.geometerplus.zlibrary.ui.android.library.BugReportActivity:
+    static final java.lang.String STACKTRACE
+    static final java.lang.String JUST_SHOW_ALERT
+org.geometerplus.zlibrary.ui.android.library.ZLAndroidActivity:
+    private static final java.lang.String REQUESTED_ORIENTATION_KEY
+    private static final java.lang.String ORIENTATION_CHANGE_COUNTER_KEY
+org.geometerplus.zlibrary.ui.android.util.ZLAndroidColorUtil:
+    27:27:public ZLAndroidColorUtil()
+org.geometerplus.zlibrary.ui.android.view.AndroidFontUtil:
+    34:34:public AndroidFontUtil()
+org.geometerplus.zlibrary.ui.android.view.ZLAndroidPaintContext:
+    349:349:public void drawFilledCircle(int,int,int)
+    358:359:protected void fillFamiliesList(java.util.ArrayList)
+org.vimgadgets.linebreak.LineBreaker:
+    public static final char MUSTBREAK
+    public static final char ALLOWBREAK
+    public static final char NOBREAK
+    public static final char INSIDEACHAR
+    private static native void setLineBreaksForString(java.lang.String,java.lang.String,byte[])
+    29:30:public void setLineBreaks(java.lang.String,byte[])
